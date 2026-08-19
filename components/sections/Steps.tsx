@@ -116,11 +116,11 @@ export function JourneySteps({
                 <div key={step.title} className="relative text-center">
                   <span
                     className={cn(
-                      'relative z-10 mx-auto flex h-[60px] w-[60px] items-center justify-center rounded-full ring-[6px] ring-white',
+                      'relative z-10 mx-auto flex h-[66px] w-[66px] items-center justify-center rounded-full ring-[6px] ring-white',
                       solidStep[accent],
                     )}
                   >
-                    <step.icon className="h-7 w-7" />
+                    <step.icon className="h-[30px] w-[30px]" />
                   </span>
                   {connector === 'arrow' && i < steps.length - 1 && (
                     <ArrowRight
@@ -128,11 +128,11 @@ export function JourneySteps({
                       className="absolute right-[-14px] top-[22px] hidden h-4 w-4 text-navy/25 xl:block"
                     />
                   )}
-                  <h3 className="mt-4 font-heading text-[13.5px] font-semibold text-navy">
+                  <h3 className="mt-4 font-heading text-[14.5px] font-semibold text-navy">
                     {i + 1}. {step.title}
                   </h3>
                   {step.desc && (
-                    <p className="mx-auto mt-2 max-w-[13.5rem] text-[11.5px] leading-relaxed text-navy/62">
+                    <p className="mx-auto mt-2 max-w-[12rem] text-[12px] leading-[1.55] text-navy/62">
                       {step.desc}
                     </p>
                   )}

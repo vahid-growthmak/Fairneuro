@@ -52,10 +52,10 @@ export function Hero({
 }: HeroProps) {
   return (
     <section className={cn('relative overflow-hidden', background === 'ivory' ? 'bg-ivory' : 'bg-white')}>
-      <div className="shell pb-14 pt-8 lg:pb-20 lg:pt-10">
+      <div className="shell pb-10 pt-8 lg:pb-12 lg:pt-9">
         {crumbs && <Breadcrumb items={crumbs} />}
 
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:gap-14">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10">
           <div>
             {eyebrow && (
               <p className="mb-4 font-heading text-[11.5px] font-semibold uppercase tracking-[0.18em] text-teal">
@@ -65,7 +65,7 @@ export function Hero({
 
             <h1
               className={cn(
-                'text-[38px] font-semibold leading-[1.1] text-navy sm:text-[46px] lg:text-[52px]',
+                'text-[40px] font-semibold leading-[1.06] text-navy sm:text-[50px] lg:text-[57px]',
                 titleFont === 'serif' ? 'font-display' : 'font-heading tracking-[-0.015em]',
                 titleClassName,
               )}
@@ -74,13 +74,13 @@ export function Hero({
             </h1>
 
             {lede && (
-              <p className="mt-4 font-heading text-[17px] font-medium leading-snug text-teal sm:text-[19px]">
+              <p className="mt-3.5 font-heading text-[18px] font-medium leading-snug text-teal sm:text-[20px]">
                 {lede}
               </p>
             )}
 
             {body && (
-              <p className="mt-5 max-w-[36rem] text-[14.5px] leading-relaxed text-navy/70">{body}</p>
+              <p className="mt-5 max-w-[21.5rem] text-[15px] leading-[1.65] text-navy/70">{body}</p>
             )}
 
             {features && (
@@ -103,7 +103,7 @@ export function Hero({
               </ul>
             )}
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-wrap items-center gap-3.5">
               <Button href={primaryCta.href} icon={<Calendar />} size="lg">
                 {primaryCta.label}
               </Button>
@@ -119,7 +119,7 @@ export function Hero({
               )}
             </div>
 
-            {ticks && <TickRow items={ticks} className="mt-6" />}
+            {ticks && <TickRow items={ticks} className="mt-5" />}
           </div>
 
           <BlobPhoto src={image.src} alt={image.alt} priority />

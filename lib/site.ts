@@ -163,11 +163,10 @@ export const footerColumns = [
   {
     title: 'Assessments',
     links: [
-      { label: 'ADHD Assessment', href: '/assessments/adhd' },
-      { label: 'Autism Assessment', href: '/assessments/autism' },
-      { label: 'ADHD + Autism Assessment', href: '/assessments/adhd-autism' },
-      { label: 'Dyslexia Assessment', href: '/assessments/dyslexia' },
-      { label: 'View All Assessments', href: '/assessments' },
+      { label: 'ADHD', href: '/assessments/adhd' },
+      { label: 'Autism', href: '/assessments/autism' },
+      { label: 'Dyslexia', href: '/assessments/dyslexia' },
+      { label: 'ADHD + Autism', href: '/assessments/adhd-autism' },
     ],
   },
   {
@@ -176,7 +175,6 @@ export const footerColumns = [
       { label: 'Adult ADHD', href: '/adults/adhd' },
       { label: 'Adult Autism', href: '/adults/autism' },
       { label: 'Adult Dyslexia', href: '/adults/dyslexia' },
-      { label: 'Adult Support', href: '/adults' },
     ],
   },
   {
@@ -185,37 +183,29 @@ export const footerColumns = [
       { label: 'Child ADHD', href: '/children/adhd' },
       { label: 'Child Autism', href: '/children/autism' },
       { label: 'Child Dyslexia', href: '/children/dyslexia' },
-      { label: 'Parent Support', href: '/support/parent-family' },
     ],
   },
   {
     title: 'Support',
     links: [
       { label: 'Coaching', href: '/support/adhd-coaching' },
-      { label: 'Education', href: '/support/education-support' },
-      { label: 'Workplace', href: '/support/workplace-support' },
-      { label: 'Therapy & Wellbeing', href: '/support/therapy-wellbeing' },
-      { label: 'Post-Diagnostic Support', href: '/support/post-diagnostic' },
+      { label: 'Parent Support', href: '/support/parent-family' },
+      { label: 'Workplace Support', href: '/support/workplace-support' },
     ],
   },
   {
-    title: 'Information',
+    title: 'About',
     links: [
-      { label: 'How It Works', href: '/how-it-works' },
       { label: 'Why Fairneuro', href: '/why-fairneuro' },
-      { label: 'Resources', href: '/resources' },
-      { label: 'FAQs', href: '/faqs' },
       { label: 'Our Standards', href: '/why-fairneuro/our-standards' },
+      { label: 'How It Works', href: '/how-it-works' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Help',
     links: [
-      { label: 'About Us', href: '/about' },
+      { label: 'FAQs', href: '/faqs' },
       { label: 'Contact Us', href: '/contact' },
-      { label: 'Professional Referrals', href: '/professional-referrals' },
-      { label: 'Schools & Education', href: '/schools' },
-      { label: 'Employers', href: '/employers' },
     ],
   },
 ];

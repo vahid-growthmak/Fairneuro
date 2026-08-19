@@ -4,10 +4,10 @@ import { cn } from '@/lib/cn';
 /** The small "Free consultation ✓ No obligation ✓ Here to help" row under hero CTAs. */
 export function TickRow({ items, className }: { items: string[]; className?: string }) {
   return (
-    <ul className={cn('flex flex-wrap items-center gap-x-7 gap-y-2', className)}>
+    <ul className={cn('flex flex-wrap items-center gap-x-8 gap-y-2', className)}>
       {items.map((item) => (
-        <li key={item} className="flex items-center gap-2 text-[13px] text-navy/70">
-          <Check className="h-3.5 w-3.5 shrink-0 text-teal" strokeWidth={2.4} />
+        <li key={item} className="flex items-center gap-2 text-[13.5px] text-navy/72">
+          <Check className="h-4 w-4 shrink-0 text-teal" strokeWidth={2.6} />
           {item}
         </li>
       ))}

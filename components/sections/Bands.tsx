@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button';
 import { IconBadge, type IconType } from '@/components/ui/IconBadge';
 import { TickRow } from '@/components/ui/TickList';
-import { ArrowRight, Calendar, Question } from '@/components/icons';
+import { ArrowRight, Calendar, Check, Question } from '@/components/icons';
 import { cn } from '@/lib/cn';
 
 /**
@@ -30,18 +30,20 @@ export function PromptBand({
   return (
     <section className={bg}>
       <div className="shell pb-4">
-        <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-6 py-6 sm:flex-row sm:items-center lg:px-8">
+        <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-7 py-7 sm:flex-row sm:items-center lg:px-9">
           <div className="flex items-center gap-4">
             {variant === 'outline' ? (
               <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.6px] border-navy/25 sm:flex">
                 <Icon className="h-5 w-5 text-navy/70" />
               </span>
             ) : (
-              <IconBadge icon={Icon} accent="teal" size="md" className="hidden shrink-0 sm:inline-flex" />
+              <span className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-full bg-teal text-white sm:flex">
+                <Icon className="h-7 w-7" />
+              </span>
             )}
             <div>
-              <h2 className="font-heading text-[15.5px] font-semibold text-navy">{title}</h2>
-              {body && <p className="mt-1 max-w-2xl text-[13px] text-navy/68">{body}</p>}
+              <h2 className="font-heading text-[16.5px] font-semibold text-navy">{title}</h2>
+              {body && <p className="mt-1.5 max-w-lg text-[13.5px] leading-relaxed text-navy/68">{body}</p>}
             </div>
           </div>
           <Button href={cta.href} variant={buttonVariant} icon={<Calendar />} className="shrink-0">
@@ -83,6 +85,8 @@ export function CtaBand({
   tone = 'navy',
   background = 'white',
   layout = 'inline',
+  /** The calendar medallion appears on inner pages but not the homepage band. */
+  medallion = true,
 }: {
   title: string;
   body?: string;
@@ -92,20 +96,21 @@ export function CtaBand({
   background?: 'white' | 'ivory' | 'soft-teal';
   /** `inline` puts the ticks under the button, `split` puts them in a right column. */
   layout?: 'inline' | 'split';
+  medallion?: boolean;
 }) {
   const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
 
   return (
     <section className={bg}>
-      <div className="shell py-14">
+      <div className="shell py-12">
         <div
           className={cn(
-            'relative overflow-hidden rounded-2xl px-6 py-9 sm:px-10 lg:px-14',
+            'relative overflow-hidden rounded-2xl px-6 py-10 sm:px-10 lg:px-14',
             tone === 'navy' ? 'bg-navy' : 'bg-teal',
           )}
         >
-          <Leaves className="-left-8 top-0" />
-          <Leaves className="-right-8 bottom-0 scale-x-[-1]" />
+          <Leaves className="-left-6 top-0" />
+          <Leaves className="-right-6 bottom-0 scale-x-[-1]" />
 
           <div
             className={cn(
@@ -113,38 +118,49 @@ export function CtaBand({
               layout === 'split' ? 'lg:justify-between' : 'lg:justify-center',
             )}
           >
-            <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white">
-              <Calendar className="h-8 w-8 text-navy" />
-            </span>
+            {medallion && (
+              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white">
+                <Calendar className="h-8 w-8 text-navy" />
+              </span>
+            )}
 
             <div className="lg:mr-auto">
-              <h2 className="font-display text-[23px] font-semibold text-white sm:text-[26px]">
+              <h2 className="font-heading text-[25px] font-semibold text-white sm:text-[28px]">
                 {title}
               </h2>
-              {body && <p className="mt-2 max-w-xl text-[13.5px] text-white/75">{body}</p>}
-            </div>
-
-            <div className="shrink-0">
-              <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
-                {cta.label}
-              </Button>
-              {ticks && layout === 'inline' && (
-                <ul className="mt-3.5 flex flex-wrap justify-center gap-x-5 gap-y-1.5">
-                  {ticks.map((t) => (
-                    <li key={t} className="flex items-center gap-1.5 text-[12px] text-white/70">
-                      <span className="text-teal">✓</span>
-                      {t}
-                    </li>
-                  ))}
-                </ul>
+              {body && <p className="mt-2 max-w-xl text-[14px] text-white/75">{body}</p>}
+              {layout === 'split' && (
+                <div className="mt-6">
+                  <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
+                    {cta.label}
+                  </Button>
+                </div>
               )}
             </div>
 
+            {layout === 'inline' && (
+              <div className="shrink-0">
+                <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
+                  {cta.label}
+                </Button>
+                {ticks && (
+                  <ul className="mt-3.5 flex flex-wrap justify-center gap-x-5 gap-y-1.5">
+                    {ticks.map((t) => (
+                      <li key={t} className="flex items-center gap-1.5 text-[12px] text-white/70">
+                        <Check className="h-3 w-3 text-teal" strokeWidth={3} />
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+
             {ticks && layout === 'split' && (
-              <ul className="shrink-0 space-y-2.5 border-white/20 lg:border-l lg:pl-10">
+              <ul className="shrink-0 space-y-3.5 self-center border-white/25 lg:border-l lg:pl-14">
                 {ticks.map((t) => (
-                  <li key={t} className="flex items-center gap-2.5 text-[13px] text-white/75">
-                    <span className="text-teal">✓</span>
+                  <li key={t} className="flex items-center gap-3 text-[13.5px] text-white/80">
+                    <Check className="h-4 w-4 shrink-0 text-teal" strokeWidth={2.6} />
                     {t}
                   </li>
                 ))}
@@ -232,26 +248,28 @@ export function StatsBar({
 }) {
   return (
     <section className="bg-ivory">
-      <div className="shell pb-16">
+      <div className="shell pb-14">
         <div className="grid rounded-2xl border border-navy/[0.06] bg-white shadow-card sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
             <div
               key={item.label}
               className={cn(
-                'flex items-center gap-4 px-6 py-7',
+                'flex items-center gap-4 px-7 py-6',
                 i > 0 && 'lg:border-l lg:border-navy/[0.08]',
               )}
             >
               <IconBadge
                 icon={item.icon}
                 accent={item.accent ?? (['teal', 'coral', 'orange', 'teal'] as const)[i % 4]}
-                size="md"
+                size="lg"
               />
               <div>
-                <p className="font-heading text-[20px] font-semibold leading-tight text-navy">
+                <p className="font-heading text-[21px] font-semibold leading-tight text-navy">
                   {item.value}
                 </p>
-                <p className="mt-0.5 text-[12px] leading-snug text-navy/62">{item.label}</p>
+                <p className="mt-1 max-w-[9rem] text-[12.5px] leading-[1.35] text-navy/62">
+                  {item.label}
+                </p>
               </div>
             </div>
           ))}

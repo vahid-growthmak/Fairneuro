@@ -3,8 +3,7 @@ import { Hero } from '@/components/sections/Hero';
 import { CtaBand, PromptBand, StatsBar } from '@/components/sections/Bands';
 import { CardGrid } from '@/components/sections/CardGrid';
 import { JourneySteps } from '@/components/sections/Steps';
-import { FairStandard } from '@/components/sections/Panels';
-import { TestimonialCarousel } from '@/components/sections/Testimonials';
+import { TestimonialQuote } from '@/components/sections/Testimonials';
 import { journey } from '@/lib/journey';
 import { Button } from '@/components/ui/Button';
 import { IconBadge } from '@/components/ui/IconBadge';
@@ -112,6 +111,7 @@ export default function HomePage() {
         columns={4}
         background="white"
         serif={false}
+        iconStyle="bare"
       />
 
       <PromptBand
@@ -150,10 +150,10 @@ export default function HomePage() {
                 <Link
                   key={s.title}
                   href={s.href}
-                  className="flex flex-col items-center rounded-xl border border-navy/[0.07] bg-white p-4 text-center shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+                  className="flex flex-col items-center justify-start rounded-xl border border-navy/[0.07] bg-white px-3 py-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
                 >
-                  <IconBadge icon={s.icon} accent={s.accent} size="sm" />
-                  <p className="mt-3 font-heading text-[11.5px] font-semibold leading-snug text-navy">
+                  <IconBadge icon={s.icon} accent={s.accent} size="md" />
+                  <p className="mt-3 font-heading text-[12px] font-semibold leading-snug text-navy">
                     {s.title}
                   </p>
                 </Link>
@@ -163,45 +163,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      <FairStandard background="soft-teal" serif={false} />
-
-      <TestimonialCarousel
-        title="What our clients say"
-        serif={false}
+      <TestimonialQuote
         background="white"
         items={[
           {
             quote:
-              'Fairneuro changed everything for me. The process was incredibly thorough and supportive from start to finish. I finally feel understood and have a clear path forward.',
+              'Fairneuro changed everything for me. The assessment was thorough, the report was so clear and the coaching has helped me more than I ever expected.',
             name: 'Alex, 28',
-            role: 'ADHD Assessment',
-            avatar: img.avatarAlex,
           },
           {
             quote:
-              'The assessment was thorough, the report was so clear and the coaching has helped me more than I ever expected.',
+              'The whole process was calm and clear. I understood every step, and the report finally explained things I had wondered about for years.',
             name: 'Sarah, 34',
-            role: 'Adult Autism Assessment',
-            avatar: img.avatarSarah,
           },
           {
             quote:
-              'The team truly understand. From the first conversation, I felt heard and supported. The recommendations have been life-changing for my son.',
+              'From the first conversation I felt heard and supported. The recommendations have been life-changing for my son.',
             name: 'Priya',
-            role: 'Parent of an assessment client',
-            avatar: img.avatarPriya,
           },
         ]}
       />
 
       <CtaBand
-        title="You don't have to figure this out alone."
-        body="Book a free consultation and our team will guide you."
-        cta={{ label: 'Book Your Free Consultation', href: '/book-consultation' }}
+        title="Ready for answers?"
+        body="Book a free consultation and take the first step today."
+        cta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}
         ticks={['Free consultation', 'No obligation', 'A conversation, not a commitment']}
         layout="split"
-        background="ivory"
+        medallion={false}
+        background="white"
       />
+
     </>
   );
 }

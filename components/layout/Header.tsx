@@ -73,7 +73,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-navy/[0.07] bg-white/95 backdrop-blur-md">
-      <div className="shell flex h-[72px] items-center justify-between gap-3">
+      <div className="shell flex h-[84px] items-center justify-between gap-3">
         <Logo />
 
         {/* Desktop navigation */}
@@ -91,7 +91,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'relative inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 font-heading text-[13px] font-medium transition-colors 2xl:px-3 2xl:text-[13.5px]',
+                    'relative inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 font-heading text-[13.5px] font-medium transition-colors 2xl:px-3.5 2xl:text-[14px]',
                     active || open === item.label ? 'text-teal' : 'text-navy hover:text-teal',
                   )}
                   aria-expanded={hasPanel ? open === item.label : undefined}
@@ -137,7 +137,7 @@ export function Header() {
           <Button
             href="/book-consultation"
             variant="primary"
-            icon={<Calendar />}
+            size="lg"
             className="hidden md:inline-flex"
           >
             Book a Free Consultation
@@ -160,7 +160,7 @@ export function Header() {
           onMouseEnter={cancelClose}
           onMouseLeave={scheduleClose}
         >
-          <div className="shell pb-6 pt-2">
+          <div className="shell pb-6 pt-1">
             <div className="animate-fade-in-up overflow-hidden rounded-2xl border border-navy/[0.07] bg-white shadow-mega">
               <div className="grid grid-cols-[300px_1fr]">
                 {/* Left rail */}
@@ -322,7 +322,7 @@ export function Header() {
             onClick={() => setMobileOpen(false)}
           />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-mega">
-            <div className="flex h-[72px] shrink-0 items-center justify-between border-b border-navy/[0.07] px-5">
+            <div className="flex h-[84px] shrink-0 items-center justify-between border-b border-navy/[0.07] px-5">
               <Logo />
               <button
                 type="button"

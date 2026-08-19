@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Logo } from './Logo';
-import { Facebook, Instagram, LinkedIn, Mail, Phone, Pin } from '@/components/icons';
-import { footerColumns, legalLinks, site } from '@/lib/site';
+import { Facebook, Instagram, LinkedIn } from '@/components/icons';
+import { footerColumns, legalLinks } from '@/lib/site';
 
 const socials = [
   { label: 'Instagram', href: 'https://instagram.com', Icon: Instagram },
@@ -12,61 +12,20 @@ const socials = [
 export function Footer() {
   return (
     <footer className="bg-navy text-white">
-      <div className="shell py-14">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,3.2fr)]">
-          {/* Brand */}
-          <div>
-            <Logo tone="light" />
-            <p className="mt-5 max-w-[220px] font-heading text-[12.5px] font-medium uppercase leading-relaxed tracking-wide text-teal">
-              {site.tagline}
-            </p>
-            <ul className="mt-6 space-y-2.5 text-[13px] text-white/70">
-              <li className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 shrink-0 text-teal" />
-                <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="hover:text-white">
-                  {site.phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 shrink-0 text-teal" />
-                <a href={`mailto:${site.email}`} className="hover:text-white">
-                  {site.email}
-                </a>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <Pin className="mt-0.5 h-4 w-4 shrink-0 text-teal" />
-                <span>{site.location}</span>
-              </li>
-            </ul>
-            <div className="mt-6 flex items-center gap-2.5">
-              {socials.map(({ label, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:border-white hover:text-white"
-                >
-                  <Icon className="h-[18px] w-[18px]" />
-                </a>
-              ))}
-            </div>
-          </div>
+      <div className="shell py-11">
+        <div className="grid gap-9 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-start lg:gap-10">
+          <Logo tone="light" size="sm" />
 
-          {/* Link columns */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:pl-4">
             {footerColumns.map((col) => (
               <div key={col.title}>
-                <h3 className="font-heading text-[11.5px] font-semibold uppercase tracking-[0.12em] text-white">
-                  {col.title}
-                </h3>
-                <ul className="mt-4 space-y-2.5">
+                <h3 className="font-heading text-[13px] font-semibold text-white">{col.title}</h3>
+                <ul className="mt-3.5 space-y-2.5">
                   {col.links.map((l) => (
                     <li key={l.href + l.label}>
                       <Link
                         href={l.href}
-                        className="text-[13px] text-white/65 transition-colors hover:text-white"
+                        className="text-[12.5px] text-white/65 transition-colors hover:text-white"
                       >
                         {l.label}
                       </Link>
@@ -76,16 +35,33 @@ export function Footer() {
               </div>
             ))}
           </div>
+
+          <div className="flex items-center gap-2.5">
+            {socials.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white/85 transition-colors hover:border-white hover:text-white"
+              >
+                <Icon className="h-[19px] w-[19px]" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Legal bar */}
       <div className="border-t border-white/12">
-        <div className="shell flex flex-col items-center justify-between gap-3 py-5 text-[12px] text-white/55 md:flex-row">
-          <p>&copy; {new Date().getFullYear()} Fairneuro Diagnostics. All rights reserved.</p>
-          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        <div className="shell flex flex-col items-center justify-center gap-x-4 gap-y-2 py-4 text-[11.5px] text-white/55 sm:flex-row">
+          <p>&copy; 2024 Fairneuro Diagnostics. All rights reserved.</p>
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             {legalLinks.map((l) => (
-              <li key={l.href}>
+              <li key={l.href} className="flex items-center gap-4">
+                <span aria-hidden className="hidden text-white/25 sm:inline">
+                  |
+                </span>
                 <Link href={l.href} className="transition-colors hover:text-white">
                   {l.label}
                 </Link>

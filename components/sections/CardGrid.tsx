@@ -29,6 +29,8 @@ export function CardGrid({
   underline = false,
   background = 'white',
   cardAlign = 'center',
+  iconStyle = 'badge',
+  iconSize = 'md',
   className,
 }: {
   title?: string;
@@ -40,6 +42,9 @@ export function CardGrid({
   underline?: boolean;
   background?: 'white' | 'ivory' | 'soft-teal';
   cardAlign?: 'center' | 'left';
+  /** `bare` drops the pastel circle and shows the line icon on its own. */
+  iconStyle?: 'badge' | 'bare';
+  iconSize?: 'sm' | 'md' | 'lg';
   className?: string;
 }) {
   const cols = {
@@ -74,22 +79,32 @@ export function CardGrid({
             const a = accents[accent];
             const inner = (
               <>
-                <IconBadge
-                  icon={item.icon}
-                  accent={accent}
-                  size="md"
-                  className={cardAlign === 'center' ? 'mx-auto' : undefined}
-                />
-                <h3 className="mt-4 font-heading text-[15px] font-semibold leading-snug text-navy">
+                {iconStyle === 'bare' ? (
+                  <item.icon
+                    className={cn(
+                      'h-11 w-11',
+                      a.fg,
+                      cardAlign === 'center' && 'mx-auto',
+                    )}
+                  />
+                ) : (
+                  <IconBadge
+                    icon={item.icon}
+                    accent={accent}
+                    size={iconSize}
+                    className={cardAlign === 'center' ? 'mx-auto' : undefined}
+                  />
+                )}
+                <h3 className="mt-4 font-heading text-[16px] font-semibold leading-snug text-navy">
                   {item.title}
                 </h3>
                 {item.desc && (
-                  <p className="mt-2.5 text-[12.5px] leading-relaxed text-navy/65">{item.desc}</p>
+                  <p className="mt-2.5 text-[13px] leading-relaxed text-navy/65">{item.desc}</p>
                 )}
                 {item.href && (
                   <span
                     className={cn(
-                      'mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-medium',
+                      'mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium',
                       a.link,
                     )}
                   >
@@ -101,7 +116,7 @@ export function CardGrid({
             );
 
             const cls = cn(
-              'group flex flex-col rounded-xl border border-navy/[0.07] bg-white p-6 shadow-card transition-all duration-200',
+              'group flex flex-col rounded-xl border border-navy/[0.07] bg-white p-7 shadow-card transition-all duration-200',
               item.href && 'hover:-translate-y-0.5 hover:border-navy/[0.12] hover:shadow-card-hover',
               cardAlign === 'center' && 'text-center items-center',
             );

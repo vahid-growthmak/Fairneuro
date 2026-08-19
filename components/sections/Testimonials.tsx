@@ -14,11 +14,22 @@ export interface Testimonial {
   stars?: number;
 }
 
-export function Stars({ count = 5, className }: { count?: number; className?: string }) {
+export function Stars({
+  count = 5,
+  className,
+  tone = 'orange',
+}: {
+  count?: number;
+  className?: string;
+  tone?: 'orange' | 'teal';
+}) {
   return (
     <div className={cn('flex items-center gap-0.5', className)} aria-label={`${count} out of 5 stars`}>
       {Array.from({ length: count }).map((_, i) => (
-        <StarFilled key={i} className="h-4 w-4 text-orange" />
+        <StarFilled
+          key={i}
+          className={cn('h-4 w-4', tone === 'teal' ? 'text-teal' : 'text-orange')}
+        />
       ))}
     </div>
   );
@@ -168,6 +179,65 @@ export function TestimonialGrid({
               </figcaption>
             </figure>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+/**
+ * Card-less centred quote with edge arrows — the homepage treatment in the
+ * reference design: quote mark, two-line quote, teal stars, attribution.
+ */
+export function TestimonialQuote({
+  items,
+  background = 'ivory',
+}: {
+  items: Testimonial[];
+  background?: 'white' | 'ivory' | 'soft-teal';
+}) {
+  const [index, setIndex] = useState(0);
+  const total = items.length;
+  const current = items[index];
+  const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
+
+  const go = (dir: 1 | -1) => setIndex((i) => (i + dir + total) % total);
+
+  return (
+    <section className={bg}>
+      <div className="shell py-14 lg:py-16">
+        <div className="relative mx-auto max-w-4xl px-14 text-center">
+          <Quote className="mx-auto h-8 w-8 text-teal/75" />
+
+          <blockquote className="mx-auto mt-4 max-w-2xl text-[15.5px] leading-[1.75] text-navy/80">
+            &ldquo;{current.quote}&rdquo;
+          </blockquote>
+
+          <Stars count={current.stars ?? 5} tone="teal" className="mt-4 justify-center" />
+
+          <p className="mt-2.5 text-[13px] text-navy/65">&ndash; {current.name}</p>
+
+          {total > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Previous testimonial"
+                className="absolute left-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-navy/70 transition-colors hover:bg-white hover:text-teal"
+              >
+                <ArrowRight className="h-4 w-4 rotate-180" />
+              </button>
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Next testimonial"
+                className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-navy/70 transition-colors hover:bg-white hover:text-teal"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </section>
