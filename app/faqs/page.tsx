@@ -1,7 +1,10 @@
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, SplitBand } from '@/components/sections/Bands';
 import { CardGrid, IconColumns } from '@/components/sections/CardGrid';
-import { Accordion } from '@/components/sections/Accordion';
+import { Accordion, type FaqItem } from '@/components/sections/Accordion';
+import { faqs as fallbackFaqs } from '@/lib/fallbacks';
+import { sanityFetch } from '@/sanity/lib/fetch';
+import { POPULAR_FAQS_QUERY } from '@/sanity/lib/queries';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { img } from '@/lib/images';
 import {
@@ -25,42 +28,26 @@ export const metadata = {
     'Clear answers about assessments, screeners, reports, support after diagnosis and children & young people.',
 };
 
-const faqs = [
-  {
-    q: 'How long does an assessment take?',
-    a: 'Most assessments involve a clinical interview of 90 minutes to three hours, plus questionnaires you complete beforehand. Your written report usually follows within 10 to 15 working days.',
-  },
-  {
-    q: 'Do I need a GP referral?',
-    a: 'No. You can self-refer directly to Fairneuro. If you would like us to share your report with your GP afterwards, we can do so with your consent.',
-  },
-  {
-    q: 'Are assessments carried out online or in person?',
-    a: 'Both are available. Online assessments are conducted over secure video and are equally valid; in-person appointments are available in selected locations.',
-  },
-  {
-    q: 'Is the free consultation really free?',
-    a: 'Yes. It is a 15–20 minute conversation with no cost and no obligation. Its purpose is to help you understand your options — not to sell you an assessment.',
-  },
-  {
-    q: 'What qualifications do your assessors hold?',
-    a: 'All of our assessors are qualified clinical professionals registered with the relevant professional bodies, with specialist experience in neurodevelopmental assessment.',
-  },
-  {
-    q: 'Will my diagnosis be recognised by my school, university or employer?',
-    a: 'Yes. Our reports are written to the standards expected by educational institutions and employers, including for exam access arrangements and workplace adjustments.',
-  },
-  {
-    q: 'What happens after I receive my report?',
-    a: 'You have a feedback session to talk it through, and you can access our post-diagnostic support, coaching and workplace or education services whenever you are ready.',
-  },
-  {
-    q: 'How is my information kept confidential?',
-    a: 'All records are stored securely and handled in line with UK GDPR. Nothing is shared with anyone — including your GP — without your explicit consent.',
-  },
-];
 
-export default function Page() {
+export const revalidate = 60;
+
+interface CmsFaq {
+  _id: string;
+  question: string;
+  answer: string;
+}
+
+export default async function Page() {
+  const cms = await sanityFetch<CmsFaq[]>({
+    query: POPULAR_FAQS_QUERY,
+    fallback: [],
+    tags: ['faq'],
+  });
+
+  const faqs: FaqItem[] = cms.length
+    ? cms.map((f) => ({ q: f.question, a: f.answer }))
+    : fallbackFaqs;
+
   return (
     <>
       <Hero

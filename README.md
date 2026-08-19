@@ -2,7 +2,7 @@
 
 Marketing site for Fairneuro Diagnostics, built from the design set in [`Pages/`](Pages/).
 
-**Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS
+**Stack:** Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS · Sanity CMS
 
 ## Getting started
 
@@ -36,6 +36,77 @@ The homepage uses Poppins throughout, matching the reference.
 Buttons follow the three variants on the sheet — primary (navy), secondary
 (teal), tertiary (white with teal border).
 
+
+## CMS (Sanity)
+
+Content is managed in Sanity, with the Studio embedded at **`/studio`**.
+
+### Setup
+
+1. Create a free project at [sanity.io/manage](https://sanity.io/manage), or run:
+   ```bash
+   npx sanity@latest init
+   ```
+2. Copy `.env.example` to `.env.local` and fill in the values:
+
+   | Variable | Where it comes from |
+   | --- | --- |
+   | `NEXT_PUBLIC_SANITY_PROJECT_ID` | sanity.io/manage → your project |
+   | `NEXT_PUBLIC_SANITY_DATASET` | usually `production` |
+   | `NEXT_PUBLIC_SANITY_API_VERSION` | pin a date, e.g. `2024-10-01` |
+   | `SANITY_API_READ_TOKEN` | API → Tokens → **Viewer** (for draft preview) |
+   | `SANITY_REVALIDATE_SECRET` | any random string — `openssl rand -base64 32` |
+
+3. Restart the dev server and open <http://localhost:3000/studio>.
+
+> `.env.local` is gitignored. Set the same variables on your host for production.
+> Only `NEXT_PUBLIC_*` values reach the browser — the token and webhook secret
+> are server-only and must never take that prefix.
+
+### Content types
+
+| Type | Drives |
+| --- | --- |
+| **Resource Article** (`post`) | `/resources` cards and `/resources/[slug]` pages |
+| **Category** | Resource topics and card accent colours |
+| **Author** | Article bylines |
+| **Testimonial** | Homepage and About quotes (filtered by placement) |
+| **FAQ** | `/faqs` accordion |
+| **Site Settings** | Global contact details and homepage stats (singleton) |
+
+### Renders without a CMS
+
+Every CMS-backed section keeps its original content in [`lib/fallbacks.ts`](lib/fallbacks.ts)
+and falls back to it when Sanity is unconfigured, a query fails, or a query
+returns nothing — see [`sanity/lib/fetch.ts`](sanity/lib/fetch.ts). The site
+builds and looks correct before you connect a project, and a CMS outage
+degrades to static content rather than an error page.
+
+### Draft preview
+
+With `SANITY_API_READ_TOKEN` set, `/api/draft-mode/enable` turns on Next.js
+draft mode so unpublished changes render; `/api/draft-mode/disable` exits.
+Draft reads bypass the cache and use a token-authenticated client, so drafts
+never leak into the published site.
+
+### Revalidation
+
+Published content is cached with ISR (`revalidate = 60`) and tagged `sanity`.
+For instant updates, add a webhook in sanity.io/manage → API → Webhooks:
+
+- **URL:** `https://your-site.com/api/revalidate`
+- **Trigger on:** create, update, delete
+- **Secret:** the same value as `SANITY_REVALIDATE_SECRET`
+
+The handler revalidates the `sanity` tag plus the specific paths affected by
+the changed document type.
+
+### Backups
+
+```bash
+npx sanity dataset export production
+```
+
 ## Structure
 
 ```
@@ -50,6 +121,15 @@ lib/
   images.ts             ← central image manifest (see below)
   site.ts               navigation + footer data
   accents.ts            pastel accent rotation used by cards and steps
+  fallbacks.ts          content used when the CMS is unavailable
+sanity/
+  env.ts                env vars + isSanityConfigured switch
+  client.ts             published + draft read clients
+  image.ts              image URL builder
+  schemaTypes/          content models
+  lib/queries.ts        GROQ queries
+  lib/fetch.ts          fetch with fallback + draft handling
+sanity.config.ts        Studio config
 ```
 
 Most pages are thin data files rendered through a shared template:
@@ -86,3 +166,6 @@ audience tiles are square as well.
   backend / screening platform when ready (`components/sections/ContactForm.tsx`
   and the `#screener` block in `components/templates/ScreenerPage.tsx`).
 - `Pages/` holds the source design references and is not part of the build.
+- Sanity is pinned to the 4.x line. Sanity 5+ imports `useEffectEvent` directly
+  from React, which Next 15's vendored React copy does not export; 4.x uses a
+  shim and builds cleanly. Revisit when Next vendors a newer React.

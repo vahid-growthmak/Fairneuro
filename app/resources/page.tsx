@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, SplitBand } from '@/components/sections/Bands';
-import { CardGrid } from '@/components/sections/CardGrid';
+import { CardGrid, type CardItem } from '@/components/sections/CardGrid';
+import { featuredResources, type ResourceCard } from '@/lib/fallbacks';
+import { sanityFetch } from '@/sanity/lib/fetch';
+import { FEATURED_POSTS_QUERY } from '@/sanity/lib/queries';
 import { ProcessRow } from '@/components/sections/Steps';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { IconBadge } from '@/components/ui/IconBadge';
@@ -41,7 +44,25 @@ const topics = [
 
 const tags = ['ADHD', 'Autism', 'Dyslexia', 'Adults', 'Children', 'Parents', 'Work', 'Study'];
 
-export default function Page() {
+export const revalidate = 60;
+
+export default async function Page() {
+  const posts = await sanityFetch<ResourceCard[]>({
+    query: FEATURED_POSTS_QUERY,
+    fallback: featuredResources,
+    tags: ['post'],
+  });
+
+  // CMS articles live at /resources/<slug>; fallbacks keep their own routes.
+  const featuredItems: CardItem[] = posts.map((p, i) => ({
+    icon: [ClipboardCheck, Document, Signpost, Briefcase, GradCap, People][i % 6],
+    title: p.title,
+    desc: p.excerpt,
+    href: p.href ?? `/resources/${p.slug}`,
+    linkLabel: 'Read guide',
+    accent: (['teal', 'coral', 'orange', 'purple', 'teal', 'coral'] as const)[i % 6],
+  }));
+
   return (
     <>
       <Hero
@@ -85,14 +106,7 @@ export default function Page() {
         columns={3}
         background="ivory"
         cardAlign="left"
-        items={[
-          { icon: ClipboardCheck, title: 'Preparing for Your Assessment', desc: 'What to bring, what to expect and how to feel ready on the day.', href: '/resources/preparing-for-your-assessment', linkLabel: 'Read guide', accent: 'teal' },
-          { icon: Document, title: 'Your Report Explained', desc: 'A plain-English walkthrough of what each section of your report means.', href: '/resources/your-report-explained', linkLabel: 'Read guide', accent: 'coral' },
-          { icon: Signpost, title: 'Free Online Screener', desc: 'A quick, confidential first step if you are unsure where to begin.', href: '/screener', linkLabel: 'Start screener', accent: 'orange' },
-          { icon: Briefcase, title: 'Asking for Workplace Adjustments', desc: 'How to approach the conversation and what to ask for.', href: '/support/workplace-support', linkLabel: 'Read guide', accent: 'teal' },
-          { icon: GradCap, title: 'Exam Access Arrangements', desc: 'What evidence schools and universities typically need.', href: '/support/education-support', linkLabel: 'Read guide', accent: 'purple' },
-          { icon: People, title: 'Talking to Your Child About Diagnosis', desc: 'Age-appropriate ways to explain what an assessment found.', href: '/support/parent-family', linkLabel: 'Read guide', accent: 'coral' },
-        ]}
+        items={featuredItems}
       />
 
       <ProcessRow

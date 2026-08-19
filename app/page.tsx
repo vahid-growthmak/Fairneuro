@@ -3,7 +3,10 @@ import { Hero } from '@/components/sections/Hero';
 import { CtaBand, PromptBand, StatsBar } from '@/components/sections/Bands';
 import { CardGrid } from '@/components/sections/CardGrid';
 import { JourneySteps } from '@/components/sections/Steps';
-import { TestimonialQuote } from '@/components/sections/Testimonials';
+import { TestimonialQuote, type Testimonial } from '@/components/sections/Testimonials';
+import { homeTestimonials } from '@/lib/fallbacks';
+import { sanityFetch } from '@/sanity/lib/fetch';
+import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 import { journey } from '@/lib/journey';
 import { Button } from '@/components/ui/Button';
 import { IconBadge } from '@/components/ui/IconBadge';
@@ -75,7 +78,16 @@ const supportServices = [
   { icon: HeartHand, title: 'Therapy & Wellbeing', href: '/support/therapy-wellbeing', accent: 'teal' as const },
 ];
 
-export default function HomePage() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const testimonials = await sanityFetch<Testimonial[]>({
+    query: TESTIMONIALS_QUERY,
+    params: { placement: 'home' },
+    fallback: homeTestimonials,
+    tags: ['testimonial'],
+  });
+
   return (
     <>
       <Hero
@@ -163,26 +175,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TestimonialQuote
-        background="white"
-        items={[
-          {
-            quote:
-              'Fairneuro changed everything for me. The assessment was thorough, the report was so clear and the coaching has helped me more than I ever expected.',
-            name: 'Alex, 28',
-          },
-          {
-            quote:
-              'The whole process was calm and clear. I understood every step, and the report finally explained things I had wondered about for years.',
-            name: 'Sarah, 34',
-          },
-          {
-            quote:
-              'From the first conversation I felt heard and supported. The recommendations have been life-changing for my son.',
-            name: 'Priya',
-          },
-        ]}
-      />
+      <TestimonialQuote background="white" items={testimonials} />
 
       <CtaBand
         title="Ready for answers?"
