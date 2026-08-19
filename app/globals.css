@@ -3,11 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --font-poppins: 'Poppins';
-    --font-inter: 'Inter';
-    --font-fraunces: 'Fraunces';
-  }
+  /* Font variables (--font-poppins / --font-inter / --font-fraunces) are set on
+     <html> by next/font in app/layout.tsx. Do not redeclare them here: a :root
+     block later in the cascade wins the specificity tie and silently replaces
+     the generated @font-face family names with unloaded bare names. */
 
   html {
     scroll-behavior: smooth;
