@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Logo } from './Logo';
 import { Button } from '@/components/ui/Button';
 import { IconBadge } from '@/components/ui/IconBadge';
@@ -29,7 +30,11 @@ export function Header() {
   const [open, setOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Portals need a DOM target, so only render the drawer after hydration.
+  useEffect(() => setMounted(true), []);
 
   // Close every menu on navigation.
   useEffect(() => {
@@ -312,9 +317,18 @@ export function Header() {
         </div>
       )}
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 xl:hidden">
+      {/*
+        Mobile drawer.
+
+        Portalled to <body> deliberately: this header sets `backdrop-blur`, and an
+        element with a backdrop-filter becomes the containing block for its
+        fixed-position descendants. Rendered in place, the drawer would resolve
+        `fixed inset-0` against the 84px header box instead of the viewport.
+      */}
+      {mounted &&
+        mobileOpen &&
+        createPortal(
+        <div className="fixed inset-0 z-[60] xl:hidden">
           <button
             type="button"
             aria-label="Close menu"
@@ -394,8 +408,9 @@ export function Header() {
               </Button>
             </div>
           </div>
-        </div>
-      )}
+        </div>,
+          document.body,
+        )}
     </header>
   );
 }
