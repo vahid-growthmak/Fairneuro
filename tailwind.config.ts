@@ -30,7 +30,7 @@ const config: Config = {
         display: ['var(--font-fraunces)', 'Georgia', 'serif'],
       },
       maxWidth: {
-        shell: '1200px',
+        shell: '1340px',
       },
       boxShadow: {
         card: '0 1px 3px rgba(17, 58, 97, 0.06), 0 1px 2px rgba(17, 58, 97, 0.04)',
