@@ -1,0 +1,54 @@
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './lib/**/*.{ts,tsx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        navy: '#113A61',
+        teal: '#53ABB3',
+        'soft-teal': '#E7F4F3',
+        ivory: '#F9F5F2',
+        coral: '#E9728A',
+        blush: '#FCECEF',
+        orange: '#F5A623',
+        purple: '#8B7DD8',
+        'soft-purple': '#EFECFB',
+        'soft-orange': '#FEF3E2',
+        green: '#5CB89A',
+        'soft-green': '#E6F4EF',
+        blue: '#5B9BD5',
+        'soft-blue': '#E8F1FA',
+      },
+      fontFamily: {
+        heading: ['var(--font-poppins)', 'Poppins', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['var(--font-fraunces)', 'Georgia', 'serif'],
+      },
+      maxWidth: {
+        shell: '1200px',
+      },
+      boxShadow: {
+        card: '0 1px 3px rgba(17, 58, 97, 0.06), 0 1px 2px rgba(17, 58, 97, 0.04)',
+        'card-hover': '0 12px 28px rgba(17, 58, 97, 0.10)',
+        mega: '0 24px 60px rgba(17, 58, 97, 0.16)',
+      },
+      keyframes: {
+        'fade-in-up': {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 0.22s ease-out both',
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;

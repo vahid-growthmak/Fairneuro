@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 680" width="800" height="680" role="img" aria-label="Portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBE7EB"/>
+      <stop offset="100%" stop-color="#FAF6F2"/>
+    </linearGradient>
+    <linearGradient id="cloth" x1="0.2" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#9FB79A"/>
+      <stop offset="100%" stop-color="#9FB79A" stop-opacity="0.78"/>
+    </linearGradient>
+    <radialGradient id="cheek" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#E9728A" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#E9728A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="680" fill="url(#bg)"/>
+
+  <!-- soft room shapes -->
+  <circle cx="120" cy="120" r="74" fill="#FFFFFF" opacity="0.42"/>
+  <rect x="612" y="86" width="132" height="176" rx="16" fill="#FFFFFF" opacity="0.34"/>
+  <path d="M78 470c26-58 74-92 132-96" stroke="#53ABB3" stroke-opacity="0.24" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+  <!-- plant -->
+  <g opacity="0.5" stroke="#5CB89A" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M690 470V372"/>
+    <path d="M690 414c-32 0-50-18-50-44 30 0 50 18 50 44Z"/>
+    <path d="M690 440c32 0 50-18 50-44-30 0-50 18-50 44Z"/>
+  </g>
+  <path d="M652 470h76l-11 74h-54Z" fill="#E9DDCB" opacity="0.75"/>
+
+  <!-- shoulders -->
+  <path d="M232 680c0-118 74-186 168-186s168 68 168 186Z" fill="url(#cloth)"/>
+  <path d="M336 508c26 30 102 30 128 0l-18-42H354Z" fill="#C89066"/>
+
+  <!-- neck + head -->
+  <rect x="364" y="404" width="72" height="86" rx="34" fill="#C89066"/>
+  <ellipse cx="400" cy="330" rx="102" ry="118" fill="#C89066"/>
+
+  <!-- hair -->
+  <path d="M400 196c-72 0-114 48-114 116 0 22 5 40 12 54 4-52 16-84 34-100 22 24 92 34 148 12 14 14 22 46 24 88 8-16 14-34 14-54 0-68-46-116-118-116Z" fill="#231A16"/>
+
+  <!-- features -->
+  <circle cx="366" cy="326" r="7" fill="#2A2320" opacity="0.82"/>
+  <circle cx="434" cy="326" r="7" fill="#2A2320" opacity="0.82"/>
+  <path d="M348 296c10-9 26-10 36-3M416 293c10-7 26-6 36 3" stroke="#231A16" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M382 388c11 8 25 8 36 0" stroke="#B4675C" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <ellipse cx="330" cy="356" rx="30" ry="20" fill="url(#cheek)"/>
+  <ellipse cx="470" cy="356" rx="30" ry="20" fill="url(#cheek)"/>
+</svg>

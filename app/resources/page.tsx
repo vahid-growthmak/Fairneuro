@@ -1,0 +1,154 @@
+import Link from 'next/link';
+import { Hero } from '@/components/sections/Hero';
+import { CtaBand, SplitBand } from '@/components/sections/Bands';
+import { CardGrid } from '@/components/sections/CardGrid';
+import { ProcessRow } from '@/components/sections/Steps';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { IconBadge } from '@/components/ui/IconBadge';
+import { img } from '@/lib/images';
+import {
+  ArrowRight,
+  Book,
+  Brain,
+  Briefcase,
+  ClipboardCheck,
+  Document,
+  GradCap,
+  Leaf,
+  People,
+  Person,
+  Search,
+  Signpost,
+  Sparkle,
+} from '@/components/icons';
+
+export const metadata = {
+  title: 'Resources',
+  description:
+    'Guides, articles and practical tools on ADHD, autism, dyslexia, parenting, education, workplace support and life after diagnosis.',
+};
+
+const topics = [
+  { icon: Brain, title: 'ADHD', href: '/assessments/adhd', accent: 'teal' as const },
+  { icon: Person, title: 'Autism', href: '/assessments/autism', accent: 'coral' as const },
+  { icon: Book, title: 'Dyslexia', href: '/assessments/dyslexia', accent: 'orange' as const },
+  { icon: People, title: 'Parents & Families', href: '/support/parent-family', accent: 'purple' as const },
+  { icon: GradCap, title: 'Education', href: '/support/education-support', accent: 'teal' as const },
+  { icon: Briefcase, title: 'Workplace', href: '/support/workplace-support', accent: 'coral' as const },
+  { icon: Leaf, title: 'After Diagnosis', href: '/support/post-diagnostic', accent: 'green' as const },
+  { icon: Sparkle, title: 'General Neurodiversity', href: '/screener/general', accent: 'blue' as const },
+];
+
+const tags = ['ADHD', 'Autism', 'Dyslexia', 'Adults', 'Children', 'Parents', 'Work', 'Study'];
+
+export default function Page() {
+  return (
+    <>
+      <Hero
+        crumbs={[{ label: 'Home', href: '/' }, { label: 'Resources' }]}
+        title="Resources"
+        lede="Practical guidance, whenever you need it."
+        body="Guides, articles and tools written by our clinicians — covering everything from preparing for an assessment to thriving at work and school afterwards."
+        secondaryCta={{ label: 'Free Online Screener', href: '/screener' }}
+        image={{ src: img.heroResources, alt: 'A person reading a guide' }}
+      />
+
+      {/* Explore by topic */}
+      <section className="bg-white">
+        <div className="shell py-16 lg:py-20">
+          <SectionHeading title="Explore by topic" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {topics.map((t) => (
+              <Link
+                key={t.title}
+                href={t.href}
+                className="group flex items-center gap-4 rounded-xl border border-navy/[0.07] bg-white p-5 shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+              >
+                <IconBadge icon={t.icon} accent={t.accent} size="md" />
+                <span className="flex-1">
+                  <span className="block font-heading text-[14px] font-semibold text-navy">
+                    {t.title}
+                  </span>
+                  <span className="mt-1 inline-flex items-center gap-1.5 text-[12px] text-teal">
+                    Explore
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CardGrid
+        title="Featured guides"
+        columns={3}
+        background="ivory"
+        cardAlign="left"
+        items={[
+          { icon: ClipboardCheck, title: 'Preparing for Your Assessment', desc: 'What to bring, what to expect and how to feel ready on the day.', href: '/resources/preparing-for-your-assessment', linkLabel: 'Read guide', accent: 'teal' },
+          { icon: Document, title: 'Your Report Explained', desc: 'A plain-English walkthrough of what each section of your report means.', href: '/resources/your-report-explained', linkLabel: 'Read guide', accent: 'coral' },
+          { icon: Signpost, title: 'Free Online Screener', desc: 'A quick, confidential first step if you are unsure where to begin.', href: '/screener', linkLabel: 'Start screener', accent: 'orange' },
+          { icon: Briefcase, title: 'Asking for Workplace Adjustments', desc: 'How to approach the conversation and what to ask for.', href: '/support/workplace-support', linkLabel: 'Read guide', accent: 'teal' },
+          { icon: GradCap, title: 'Exam Access Arrangements', desc: 'What evidence schools and universities typically need.', href: '/support/education-support', linkLabel: 'Read guide', accent: 'purple' },
+          { icon: People, title: 'Talking to Your Child About Diagnosis', desc: 'Age-appropriate ways to explain what an assessment found.', href: '/support/parent-family', linkLabel: 'Read guide', accent: 'coral' },
+        ]}
+      />
+
+      <ProcessRow
+        title="Browse by stage"
+        background="white"
+        steps={[
+          { icon: Search, title: 'Before Assessment', desc: 'Understanding your options and deciding whether to proceed.', accent: 'teal' },
+          { icon: ClipboardCheck, title: 'Preparing for Assessment', desc: 'Practical preparation so you feel calm and ready.', accent: 'coral' },
+          { icon: Document, title: 'Understanding Your Report', desc: 'Making sense of the findings and recommendations.', accent: 'orange' },
+          { icon: Leaf, title: 'Support & Next Steps', desc: 'Putting recommendations into practice in everyday life.', accent: 'teal' },
+        ]}
+      />
+
+      {/* Search + tags */}
+      <section className="bg-ivory">
+        <div className="shell py-16 lg:py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <SectionHeading title="Looking for something specific?" />
+            <label htmlFor="resource-search" className="sr-only">
+              Search resources
+            </label>
+            <div className="relative">
+              <Search className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-navy/40" />
+              <input
+                id="resource-search"
+                type="search"
+                placeholder="Search guides and articles…"
+                className="w-full rounded-full border border-navy/15 bg-white py-3.5 pl-12 pr-5 text-[13.5px] text-navy placeholder:text-navy/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"
+              />
+            </div>
+            <ul className="mt-6 flex flex-wrap justify-center gap-2.5">
+              {tags.map((t) => (
+                <li key={t}>
+                  <span className="inline-flex rounded-full border border-navy/12 bg-white px-4 py-1.5 text-[12px] text-navy/70">
+                    {t}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <SplitBand
+        title="Assessment is only the beginning."
+        body="Understand. Support. Thrive. — explore the support available once you have your answers."
+        cta={{ label: 'Explore Support', href: '/support' }}
+        icon={Leaf}
+        background="white"
+      />
+
+      <CtaBand
+        title="Not sure where to start?"
+        body="Book a free consultation and we'll point you to the right resources and pathway."
+        background="white"
+      />
+    </>
+  );
+}

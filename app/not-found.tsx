@@ -1,0 +1,31 @@
+import { Button } from '@/components/ui/Button';
+import { Calendar, Search } from '@/components/icons';
+
+export const metadata = { title: 'Page not found' };
+
+export default function NotFound() {
+  return (
+    <section className="bg-ivory">
+      <div className="shell flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-soft-teal">
+          <Search className="h-8 w-8 text-teal" />
+        </span>
+        <h1 className="mt-7 font-display text-[38px] font-semibold text-navy sm:text-[44px]">
+          Page not found
+        </h1>
+        <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-navy/70">
+          The page you are looking for has moved or no longer exists. Let&apos;s get you back on
+          track.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button href="/" size="lg">
+            Back to home
+          </Button>
+          <Button href="/book-consultation" variant="tertiary" icon={<Calendar />} size="lg">
+            Book a Free Consultation
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
