@@ -1,5 +1,6 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CalendlyPopup } from '@/components/ui/CalendlyPopup';
 
 /**
  * Chrome for the public site. It lives here rather than in the root layout so
@@ -15,6 +16,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       >
         Skip to content
       </a>
+      <CalendlyPopup />
       <Header />
       <main id="main">{children}</main>
       <Footer />
