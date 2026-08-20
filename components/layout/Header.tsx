@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -174,16 +175,16 @@ export function Header() {
 
       {/* Assessments mega-menu */}
       {open === 'Assessments' && (
-        <div
-          className="absolute inset-x-0 top-full hidden xl:block"
-          onMouseEnter={cancelClose}
-          onMouseLeave={scheduleClose}
-        >
+        <div className="pointer-events-none absolute inset-x-0 top-full hidden xl:block">
           <div className="shell pb-6 pt-1">
-            <div className="animate-fade-in-up overflow-hidden rounded-2xl border border-navy/[0.07] bg-white shadow-mega">
+            <div
+              className="pointer-events-auto animate-fade-in-up overflow-hidden rounded-2xl border border-navy/[0.07] bg-white shadow-mega"
+              onMouseEnter={cancelClose}
+              onMouseLeave={scheduleClose}
+            >
               <div className="grid grid-cols-[300px_1fr]">
                 {/* Left rail */}
-                <div className="relative overflow-hidden bg-soft-teal/70 p-8">
+                <div className="relative overflow-hidden bg-soft-teal/70 p-7">
                   <h2 className="font-heading text-[28px] font-semibold text-navy">Assessments</h2>
                   <p className="mt-2 font-heading text-[15.5px] font-medium text-teal">
                     Assessment is only the beginning.
@@ -217,13 +218,21 @@ export function Header() {
                   </div>
                   <span
                     aria-hidden
-                    className="blob-mask absolute -bottom-14 -left-10 h-44 w-52 bg-white/45"
+                    className="blob-mask absolute -bottom-16 -left-12 h-44 w-52 bg-white/45"
+                  />
+                  <Image
+                    src="/images/logo-mark.png"
+                    alt=""
+                    aria-hidden
+                    width={140}
+                    height={122}
+                    className="pointer-events-none absolute -bottom-10 -left-8 w-[168px] opacity-[0.16]"
                   />
                 </div>
 
                 {/* Columns */}
-                <div className="p-8">
-                  <div className="grid grid-cols-4 gap-x-7">
+                <div className="p-7">
+                  <div className="grid grid-cols-4 gap-x-5">
                     {assessmentsMega.map((col, i) => {
                       const Icon = megaIcons[col.icon];
                       return (
@@ -231,14 +240,14 @@ export function Header() {
                           key={col.title}
                           className={cn(
                             'flex flex-col',
-                            i > 0 && 'border-l border-navy/[0.07] pl-7',
+                            i > 0 && 'border-l border-navy/[0.07] pl-5',
                           )}
                         >
-                          <IconBadge icon={Icon} accent={col.accent} size="md" className="mb-3" />
-                          <h3 className="font-heading text-[16.5px] font-semibold text-navy">
+                          <IconBadge icon={Icon} accent={col.accent} size="md" className="mx-auto mb-3" />
+                          <h3 className="text-center font-heading text-[16.5px] font-semibold text-navy">
                             {col.title}
                           </h3>
-                          <p className="mt-2 text-[13.5px] leading-relaxed text-navy/65">
+                          <p className="mt-2 text-center text-[13.5px] leading-relaxed text-navy/65">
                             {col.desc}
                           </p>
                           <ul className="mt-4 space-y-0.5 border-t border-navy/[0.07] pt-3">
