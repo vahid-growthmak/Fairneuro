@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { IconBadge } from '@/components/ui/IconBadge';
 import { Check, Chat, Globe, Heart, Lock, People, ShieldCheck, Person } from '@/components/icons';
 import { journey } from '@/lib/journey';
+import { withDescs } from '@/lib/shared';
 import { cycle, solidStep, stepCycle } from '@/lib/accents';
 import { cn } from '@/lib/cn';
 import { img } from '@/lib/images';
@@ -16,6 +17,16 @@ export const metadata = {
   description:
     'A clear, supportive journey from first step to lasting support. Six simple stages: talk, screen, match, assess, understand and thrive.',
 };
+
+/** The journey row on this page states each stage more fully than the shared set. */
+const journeySteps = withDescs(journey, [
+  'Free consultation with our team to understand your needs and answer your questions.',
+  'Complete our online screener to help us understand your experiences better.',
+  'We match you with the most appropriate assessor for your needs.',
+  'Your comprehensive assessment is completed in a supportive environment.',
+  'Receive a detailed report and feedback explaining your results.',
+  'Access personalised support and recommendations to help you thrive.',
+]);
 
 const detailedJourney = [
   {
@@ -66,7 +77,7 @@ export default function Page() {
       <StepCards
         title="Your journey with Fairneuro"
         subtitle="We guide you every step of the way."
-        steps={journey}
+        steps={journeySteps}
         background="white"
       />
 

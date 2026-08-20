@@ -1,5 +1,5 @@
 import { AssessmentPage } from '@/components/templates/AssessmentPage';
-import { allAgesAudience, generalTrust, includedSteps } from '@/lib/shared';
+import { allAgesAudience, withDescs, generalTrust, includedSteps } from '@/lib/shared';
 import { Bulb, Calendar, Clipboard, People, Question, Star, Target, Waves } from '@/components/icons';
 import { img } from '@/lib/images';
 
@@ -55,7 +55,11 @@ export default function Page() {
       }}
       audience={{
         heading: 'Who is this assessment for?',
-        items: allAgesAudience('attention, identity, routine, focus and sensory differences'),
+        items: withDescs(allAgesAudience('attention, identity, routine, focus and sensory differences'), [
+          'For adults seeking answers about attention, identity, relationships, routine, focus or sensory differences.',
+          'For parents concerned about overlapping attention, communication, learning or developmental needs.',
+          'For teenagers navigating school, friendships, emotions, identity and day-to-day functioning.',
+        ]),
       }}
       trust={[
         ...generalTrust,
