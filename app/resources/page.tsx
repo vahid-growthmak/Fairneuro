@@ -68,7 +68,7 @@ export default async function Page() {
       <Hero
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Resources' }]}
         title="Resources"
-        lede="Practical guidance, whenever you need it."
+        lede="Helpful guidance, insights and practical support for every stage of the journey."
         body="Guides, articles and tools written by our clinicians — covering everything from preparing for an assessment to thriving at work and school afterwards."
         secondaryCta={{ label: 'Free Online Screener', href: '/screener' }}
         image={{ src: img.heroResources, alt: 'A person reading a guide' }}
@@ -76,7 +76,7 @@ export default async function Page() {
 
       {/* Explore by topic */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading title="Explore by topic" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {topics.map((t) => (
@@ -87,10 +87,10 @@ export default async function Page() {
               >
                 <IconBadge icon={t.icon} accent={t.accent} size="md" />
                 <span className="flex-1">
-                  <span className="block font-heading text-[14px] font-semibold text-navy">
+                  <span className="block font-heading text-[15.5px] font-semibold text-navy">
                     {t.title}
                   </span>
-                  <span className="mt-1 inline-flex items-center gap-1.5 text-[12px] text-teal">
+                  <span className="mt-1 inline-flex items-center gap-1.5 text-[13px] text-teal">
                     Explore
                     <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                   </span>
@@ -102,7 +102,7 @@ export default async function Page() {
       </section>
 
       <CardGrid
-        title="Featured guides"
+        title="Featured articles and guides"
         columns={3}
         background="ivory"
         cardAlign="left"
@@ -122,7 +122,7 @@ export default async function Page() {
 
       {/* Search + tags */}
       <section className="bg-ivory">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="mx-auto max-w-2xl text-center">
             <SectionHeading title="Looking for something specific?" />
             <label htmlFor="resource-search" className="sr-only">
@@ -134,13 +134,13 @@ export default async function Page() {
                 id="resource-search"
                 type="search"
                 placeholder="Search guides and articles…"
-                className="w-full rounded-full border border-navy/15 bg-white py-3.5 pl-12 pr-5 text-[13.5px] text-navy placeholder:text-navy/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"
+                className="w-full rounded-full border border-navy/15 bg-white py-3.5 pl-12 pr-5 text-[15px] text-navy placeholder:text-navy/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"
               />
             </div>
             <ul className="mt-6 flex flex-wrap justify-center gap-2.5">
               {tags.map((t) => (
                 <li key={t}>
-                  <span className="inline-flex rounded-full border border-navy/12 bg-white px-4 py-1.5 text-[12px] text-navy/70">
+                  <span className="inline-flex rounded-full border border-navy/12 bg-white px-4 py-1.5 text-[13px] text-navy/70">
                     {t}
                   </span>
                 </li>

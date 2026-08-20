@@ -1,25 +1,24 @@
 import { ScreenerPage } from '@/components/templates/ScreenerPage';
 import { img } from '@/lib/images';
 import {
-  Calendar,
+  Brain,
   Chat,
   ClipboardCheck,
-  Document,
   GradCap,
   HeartHand,
   Laptop,
   Lock,
   People,
   Person,
+  ShieldLock,
   Signpost,
-  Sparkle,
   Star,
 } from '@/components/icons';
 
 export const metadata = {
   title: 'Autism Screener',
   description:
-    'A free, confidential screener exploring communication, sensory experiences, routines and social connection — and whether a full autism assessment might be helpful.',
+    'A short online tool to help individuals, parents and carers understand whether autistic traits may be present and whether a full assessment could be helpful.',
 };
 
 export default function Page() {
@@ -27,51 +26,72 @@ export default function Page() {
     <ScreenerPage
       crumbs={[
         { label: 'Home', href: '/' },
-        { label: 'Online Screener', href: '/screener' },
+        { label: 'Online Screeners', href: '/screener' },
         { label: 'Autism Screener' },
       ]}
       title="Autism Screener"
-      lede="A gentle first step towards understanding your profile."
-      body="A free, confidential screener exploring communication, sensory experiences, routines and social connection — and whether a full autism assessment might be helpful."
-      image={{ src: img.heroAutism, alt: 'A person in a calm, reflective moment' }}
+      lede="Calm. Clear. A helpful first step."
+      body="Our Autism Screener is a short, trusted online tool designed to help individuals, parents and carers understand whether autistic traits may be present and whether a full assessment could be helpful."
+      ticks={[
+        'Gain early insight into autistic traits',
+        'Understand possible next steps',
+        'Confidential and secure online screening',
+      ]}
+      startLabel="Start Autism Screener"
+      secondaryCta={{ label: 'Learn More', href: '/assessments/autism' }}
+      image={{ src: img.heroAutism, alt: 'A young person deep in thought' }}
       features={[
-        { icon: Laptop, title: 'Online & Convenient', desc: 'Complete it whenever and wherever suits you.', accent: 'teal' },
-        { icon: Lock, title: 'Secure & Confidential', desc: 'Your answers are private and never shared.', accent: 'coral' },
-        { icon: Sparkle, title: 'Around 10 Minutes', desc: 'Short, clear questions in plain English.', accent: 'orange' },
-        { icon: Signpost, title: 'Supportive Next Steps', desc: 'Clear guidance on what your result means.', accent: 'teal' },
+        { icon: Laptop, title: 'Online & Convenient', desc: 'Complete from anywhere in just a few minutes.', accent: 'teal' },
+        { icon: Lock, title: 'Secure & Confidential', desc: 'Your information is protected and never shared.', accent: 'coral' },
+        { icon: Brain, title: 'Evidence-Based', desc: 'Built on trusted screening methods and best practice.', accent: 'orange' },
+        { icon: HeartHand, title: 'Supportive Next Steps', desc: 'Expert guidance to help you move forward.', accent: 'teal' },
       ]}
       what={{
-        heading: 'What is the autism screener?',
-        body: 'A short, evidence-informed questionnaire based on recognised autism screening measures. It is not a diagnosis — it is a structured way of checking whether a full assessment is worth considering.',
-        checksHeading: 'What can this screener help explore?',
+        heading: 'What is the Autism Screener?',
+        body: [
+          'The Autism Screener is a brief online tool designed to identify traits commonly associated with autism in children, young people and adults.',
+          'It is not a diagnosis, but it can help you understand whether further assessment may be helpful.',
+          'Early insight can support better understanding, appropriate supports, and informed next steps.',
+        ],
+        checksHeading: 'Common traits this screener may explore:',
         checks: [
-          'Differences in social communication and connection',
-          'Sensory sensitivities or sensory seeking',
-          'A strong preference for routine and predictability',
-          'Deep, focused interests',
-          'Masking or camouflaging and the exhaustion that follows',
-          'A long-standing sense of being different or out of step',
+          'Differences in social communication',
+          'Sensitivity to sensory input',
+          'Preference for routine and predictability',
+          'Focused interests',
+          'Feeling overwhelmed in social situations',
+          'Masking or trying hard to fit in',
         ],
       }}
       who={{
-        heading: 'Who can use this screener?',
+        heading: 'Who can use the Autism Screener?',
         items: [
-          { icon: Person, title: 'Adults', desc: 'For adults exploring their own experiences, at any age.', accent: 'teal' },
-          { icon: People, title: 'Parents & Carers', desc: 'For parents wondering whether to explore an assessment for their child.', accent: 'coral' },
-          { icon: HeartHand, title: 'Young People', desc: 'For teenagers, with a parent or carer alongside them.', accent: 'orange' },
-          { icon: GradCap, title: 'Students', desc: 'For students considering study support or exam adjustments.', accent: 'teal' },
+          { icon: People, title: 'Children & Young People', desc: 'A helpful first step for children and young people showing signs of autistic traits.', accent: 'teal' },
+          { icon: HeartHand, title: 'Parents & Carers', desc: 'Gain insight and understand whether further support or assessment may be helpful.', accent: 'coral' },
+          { icon: Person, title: 'Adults', desc: 'Explore whether autistic traits may be impacting your daily life or wellbeing.', accent: 'orange' },
+          { icon: GradCap, title: 'Students', desc: 'Support for students seeking clarity about their strengths and challenges.', accent: 'purple' },
         ],
+      }}
+      invite={{
+        title: 'Take the Autism Screener today',
+        body: 'A small step today can lead to greater understanding and the right support.',
       }}
       how={{
-        heading: 'How the screener works',
+        heading: 'How the Autism Screener works',
         steps: [
-          { icon: ClipboardCheck, title: 'Answer the questions', desc: 'Around ten minutes of clear, plain-English questions.', accent: 'teal' },
-          { icon: Document, title: 'Get your result', desc: 'An immediate, easy-to-understand summary.', accent: 'coral' },
-          { icon: Chat, title: 'Understand what it means', desc: 'We explain clearly what a screener can and cannot tell you.', accent: 'orange' },
-          { icon: Calendar, title: 'Book if you want to', desc: 'A free consultation is available whenever you are ready.', accent: 'teal' },
-          { icon: Star, title: 'Move forward with clarity', desc: 'Either way, you leave knowing more than you did.', accent: 'coral' },
+          { icon: Laptop, title: 'Complete the screener', desc: 'Answer a series of simple, research-backed questions.', accent: 'teal' },
+          { icon: ClipboardCheck, title: 'Receive your insights', desc: 'Get an instant summary of your screening results.', accent: 'coral' },
+          { icon: Signpost, title: 'Explore next steps', desc: 'Understand whether further assessment or support may be helpful for you or your child.', accent: 'orange' },
+          { icon: Chat, title: 'Speak with our team', desc: 'Book a free consultation to discuss your results and options.', accent: 'teal' },
+          { icon: Star, title: 'Move forward with clarity', desc: 'Get guidance and support to take confident next steps.', accent: 'coral' },
         ],
       }}
+      trust={[
+        { icon: ShieldLock, title: 'Trusted & Secure', desc: 'Your information is confidential and handled with care.', accent: 'coral' },
+        { icon: People, title: 'For Children & Adults', desc: 'Suitable for all ages and life stages.', accent: 'teal' },
+        { icon: Brain, title: 'Expert-Led', desc: 'Designed by neurodevelopmental specialists.', accent: 'orange' },
+        { icon: Signpost, title: 'A Clear Next Step', desc: 'Gain insight and move forward with confidence.', accent: 'teal' },
+      ]}
       ctaTitle="Wondering whether autism explains what you experience?"
     />
   );

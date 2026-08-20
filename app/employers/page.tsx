@@ -88,7 +88,7 @@ export default function Page() {
           { icon: People, title: 'Employee-Focused Support', desc: 'Support that empowers employees to thrive at work.', accent: 'orange' },
           { icon: HeartHand, title: 'Support Beyond Diagnosis', desc: 'We provide advice and strategies that make a real difference.', accent: 'teal' },
           { icon: Heart, title: 'Person-Centred Approach', desc: 'We focus on the whole person and the workplace context.', accent: 'coral' },
-          { icon: Handshake, title: 'Partnership-Led Support', desc: 'We work together for the best outcomes and lasting impact.', accent: 'orange' },
+          { icon: Handshake, title: 'Partnership-Led Service', desc: 'We work together for the best outcomes and lasting impact.', accent: 'orange' },
         ],
       }}
       softBand={{

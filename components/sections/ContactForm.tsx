@@ -16,7 +16,7 @@ const enquiryTypes = [
 ];
 
 const fieldClass =
-  'w-full rounded-lg border border-navy/15 bg-white px-4 py-3 text-[13.5px] text-navy placeholder:text-navy/40 transition-colors focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25';
+  'w-full rounded-lg border border-navy/15 bg-white px-4 py-3 text-[15px] text-navy placeholder:text-navy/40 transition-colors focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25';
 
 /**
  * Enquiry form. Submission is intentionally client-side only until a
@@ -36,8 +36,8 @@ export function ContactForm() {
         <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal text-white">
           <Check className="h-7 w-7" strokeWidth={2.6} />
         </span>
-        <h3 className="mt-5 font-display text-[22px] font-semibold text-navy">Thank you</h3>
-        <p className="mx-auto mt-3 max-w-md text-[13.5px] leading-relaxed text-navy/70">
+        <h3 className="mt-5 font-heading text-[24px] font-semibold text-navy">Thank you</h3>
+        <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-navy/70">
           Your enquiry has been received. A member of our team will be in touch within one working
           day.
         </p>
@@ -49,28 +49,28 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="rounded-2xl border border-navy/[0.07] bg-white p-7 shadow-card lg:p-9">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-2 block font-heading text-[12.5px] font-medium text-navy">
+          <label htmlFor="name" className="mb-2 block font-heading text-[13.5px] font-medium text-navy">
             Full Name <span className="text-coral">*</span>
           </label>
           <input id="name" name="name" type="text" required autoComplete="name" placeholder="Your full name" className={fieldClass} />
         </div>
 
         <div>
-          <label htmlFor="email" className="mb-2 block font-heading text-[12.5px] font-medium text-navy">
+          <label htmlFor="email" className="mb-2 block font-heading text-[13.5px] font-medium text-navy">
             Email Address <span className="text-coral">*</span>
           </label>
           <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={fieldClass} />
         </div>
 
         <div>
-          <label htmlFor="phone" className="mb-2 block font-heading text-[12.5px] font-medium text-navy">
+          <label htmlFor="phone" className="mb-2 block font-heading text-[13.5px] font-medium text-navy">
             Telephone
           </label>
           <input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="Optional" className={fieldClass} />
         </div>
 
         <div>
-          <label htmlFor="topic" className="mb-2 block font-heading text-[12.5px] font-medium text-navy">
+          <label htmlFor="topic" className="mb-2 block font-heading text-[13.5px] font-medium text-navy">
             How can we help? <span className="text-coral">*</span>
           </label>
           <select id="topic" name="topic" required defaultValue="" className={fieldClass}>
@@ -86,7 +86,7 @@ export function ContactForm() {
         </div>
 
         <div className="sm:col-span-2">
-          <label htmlFor="message" className="mb-2 block font-heading text-[12.5px] font-medium text-navy">
+          <label htmlFor="message" className="mb-2 block font-heading text-[13.5px] font-medium text-navy">
             Message <span className="text-coral">*</span>
           </label>
           <textarea
@@ -100,7 +100,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      <p className="mt-5 text-[11.5px] leading-relaxed text-navy/55">
+      <p className="mt-5 text-[12.5px] leading-relaxed text-navy/55">
         We use your details only to respond to your enquiry. Read our{' '}
         <a href="/privacy-policy" className="text-teal underline underline-offset-2">
           privacy policy
@@ -110,7 +110,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="mt-5 inline-flex items-center justify-center rounded-lg bg-navy px-7 py-3.5 font-heading text-[14px] font-medium text-white transition-colors hover:bg-navy/90"
+        className="mt-5 inline-flex items-center justify-center rounded-lg bg-coral px-7 py-3.5 font-heading text-[15.5px] font-medium text-white transition-colors hover:bg-coral/90"
       >
         Send Enquiry
       </button>

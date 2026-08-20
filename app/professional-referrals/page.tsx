@@ -89,6 +89,17 @@ export default function Page() {
         ],
         columns: 6,
       }}
+      pathways={{
+        heading: 'Referral pathways we can support with',
+        items: [
+          { icon: Brain, title: 'ADHD Assessment', accent: 'teal' },
+          { icon: Puzzle, title: 'Autism Assessment', accent: 'coral' },
+          { icon: People, title: 'ADHD + Autism Combined Assessment', accent: 'orange' },
+          { icon: Book, title: 'Dyslexia Assessment', accent: 'teal' },
+          { icon: HeartHand, title: 'Support Services', accent: 'coral' },
+          { icon: Heart, title: 'Guidance for Families', accent: 'orange' },
+        ],
+      }}
       softBand={{
         title: 'Need to discuss a referral?',
         body: 'Our referrals team is here to guide you through the process, answer any questions and ensure the right support pathway.',

@@ -13,14 +13,19 @@ export interface SupportServicePageProps {
   ticks?: string[];
   /** "Who is X for?" */
   audience: { heading: string; items: CardItem[] };
-  /** "How X can help" — label-only cells. */
-  helps: { heading: string; items: CardItem[] };
+  /** "How X can help" — label-only cells. Omitted on pages the design drops it from. */
+  helps?: { heading: string; items: CardItem[] };
   /** "What's included in X?" */
   includes: { heading: string; steps: Step[] };
   /** Optional card grid ("How could ADHD coaching help?"). */
   benefits?: { heading: string; items: CardItem[] };
   /** Optional bottom trust strip. */
   trust?: CardItem[];
+  /**
+   * Section order. The service pages run who -> helps -> included -> prompt;
+   * the newer coaching designs run benefits -> prompt -> included -> who.
+   */
+  layout?: 'service' | 'coaching';
   promptTitle: string;
   promptBody?: string;
   ctaTitle: string;
@@ -42,6 +47,7 @@ export function SupportServicePage({
   includes,
   benefits,
   trust,
+  layout = 'service',
   promptTitle,
   promptBody = "Book a free consultation with our team and we'll help you decide.",
   ctaTitle,
@@ -68,24 +74,38 @@ export function SupportServicePage({
         />
       )}
 
-      <IconColumns
-        title={audience.heading}
-        items={audience.items}
-        columns={5}
-        background="white"
-      />
+      {layout === 'coaching' ? (
+        <>
+          <PromptBand title={promptTitle} body={promptBody} background="white" />
 
-      <IconColumns
-        title={helps.heading}
-        items={helps.items}
-        columns={5}
-        compact
-        background="white"
-      />
+          <NumberedSteps title={includes.heading} steps={includes.steps} background="white" />
 
-      <NumberedSteps title={includes.heading} steps={includes.steps} background="white" />
+          <CardGrid
+            title={audience.heading}
+            items={audience.items}
+            columns={3}
+            cardAlign="left"
+            background="white"
+          />
+        </>
+      ) : (
+        <>
+          <IconColumns title={audience.heading} items={audience.items} background="white" />
 
-      <PromptBand title={promptTitle} body={promptBody} background="white" />
+          {helps && (
+            <IconColumns
+              title={helps.heading}
+              items={helps.items}
+              compact
+              background="white"
+            />
+          )}
+
+          <NumberedSteps title={includes.heading} steps={includes.steps} background="white" />
+
+          <PromptBand title={promptTitle} body={promptBody} background="white" />
+        </>
+      )}
 
       {trust && <IconColumns items={trust} columns={6} boxed compact background="white" />}
 

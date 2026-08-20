@@ -1,7 +1,7 @@
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, SplitBand } from '@/components/sections/Bands';
 import { HeroFeatureCards } from '@/components/sections/Hero';
-import { CardGrid, type CardItem } from '@/components/sections/CardGrid';
+import { CardGrid, IconColumns, type CardItem } from '@/components/sections/CardGrid';
 import { NumberedSteps, type Step } from '@/components/sections/Steps';
 import type { HeroFeature } from '@/components/sections/Hero';
 import type { Crumb } from '@/components/ui/Breadcrumb';
@@ -19,6 +19,8 @@ export interface PartnershipPageProps {
   process: { heading: string; steps: Step[] };
   services: { heading: string; items: CardItem[]; columns?: 4 | 5 | 6 };
   why: { heading: string; items: CardItem[]; columns?: 4 | 5 | 6 };
+  /** "Referral pathways we can support with" — shown when supplied. */
+  pathways?: { heading: string; items: CardItem[] };
   softBand: { title: string; body: string; cta: { label: string; href: string }; icon: CardItem['icon'] };
   ctaTitle: string;
   ctaBody?: string;
@@ -42,6 +44,7 @@ export function PartnershipPage({
   process,
   services,
   why,
+  pathways,
   softBand,
   ctaTitle,
   ctaBody,
@@ -87,6 +90,15 @@ export function PartnershipPage({
         align="left"
         background="white"
       />
+
+      {pathways && (
+        <IconColumns
+          title={pathways.heading}
+          items={pathways.items}
+          compact
+          background="white"
+        />
+      )}
 
       <SplitBand
         title={softBand.title}

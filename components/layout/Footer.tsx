@@ -19,13 +19,13 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:pl-4">
             {footerColumns.map((col) => (
               <div key={col.title}>
-                <h3 className="font-heading text-[13px] font-semibold text-white">{col.title}</h3>
+                <h3 className="font-heading text-[14px] font-semibold text-white">{col.title}</h3>
                 <ul className="mt-3.5 space-y-2.5">
                   {col.links.map((l) => (
                     <li key={l.href + l.label}>
                       <Link
                         href={l.href}
-                        className="text-[12.5px] text-white/65 transition-colors hover:text-white"
+                        className="text-[13.5px] text-white/65 transition-colors hover:text-white"
                       >
                         {l.label}
                       </Link>
@@ -54,8 +54,8 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/12">
-        <div className="shell flex flex-col items-center justify-center gap-x-4 gap-y-2 py-4 text-[11.5px] text-white/55 sm:flex-row">
-          <p>&copy; 2024 Fairneuro Diagnostics. All rights reserved.</p>
+        <div className="shell flex flex-col items-center justify-center gap-x-4 gap-y-2 py-4 text-[12.5px] text-white/55 sm:flex-row">
+          <p>&copy; {new Date().getFullYear()} Fairneuro Diagnostics. All rights reserved.</p>
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             {legalLinks.map((l) => (
               <li key={l.href} className="flex items-center gap-4">

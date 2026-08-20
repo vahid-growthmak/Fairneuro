@@ -7,14 +7,14 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TickList } from '@/components/ui/TickList';
 import { img } from '@/lib/images';
 import {
+  Chat,
+  ClipboardCheck,
+  Document,
   Globe,
-  Handshake,
   Heart,
   HeartHand,
   People,
-  Person,
   Rosette,
-  ShieldCheck,
   Sparkle,
   Star,
   Target,
@@ -39,7 +39,7 @@ export default function Page() {
       />
 
       <CardGrid
-        title="Who we are"
+        title="Who We Are"
         columns={3}
         background="white"
         cardAlign="left"
@@ -56,8 +56,8 @@ export default function Page() {
           <div className="grid gap-4 lg:grid-cols-2">
             <div className="rounded-2xl bg-blush/60 p-8 lg:p-10">
               <Target className="h-8 w-8 text-coral" />
-              <h2 className="mt-4 font-display text-[22px] font-semibold text-navy">Our Mission</h2>
-              <p className="mt-3 text-[13.5px] leading-relaxed text-navy/70">
+              <h2 className="mt-4 font-heading text-[24px] font-semibold text-navy">Our Mission</h2>
+              <p className="mt-3 text-[15px] leading-relaxed text-navy/70">
                 To raise the standard of neurodiversity assessment — making it fast, accessible,
                 integrated and reliable — so that every person who needs answers can get them
                 without unnecessary barriers.
@@ -65,8 +65,8 @@ export default function Page() {
             </div>
             <div className="rounded-2xl bg-soft-teal/70 p-8 lg:p-10">
               <Sparkle className="h-8 w-8 text-teal" />
-              <h2 className="mt-4 font-display text-[22px] font-semibold text-navy">Our Vision</h2>
-              <p className="mt-3 text-[13.5px] leading-relaxed text-navy/70">
+              <h2 className="mt-4 font-heading text-[24px] font-semibold text-navy">Our Vision</h2>
+              <p className="mt-3 text-[15px] leading-relaxed text-navy/70">
                 A world where being neurodivergent is understood rather than explained away, and
                 where the right support is available to everyone the moment they need it.
               </p>
@@ -79,11 +79,11 @@ export default function Page() {
 
       {/* Why Fairneuro exists */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <SectionHeading title="Why Fairneuro exists" align="left" />
-              <p className="text-[13.5px] leading-relaxed text-navy/70">
+              <SectionHeading title="Why Fairneuro Exists" align="left" />
+              <p className="text-[15px] leading-relaxed text-navy/70">
                 Too many people wait years for an assessment, then receive a report and no clear
                 idea what to do next. We were founded to close both gaps at once — shortening the
                 route to a clear answer, and connecting that answer directly to practical support.
@@ -100,22 +100,22 @@ export default function Page() {
             </div>
 
             <div>
-              <SectionHeading title="What makes Fairneuro different" align="left" />
+              <SectionHeading title="What Makes Fairneuro Different" align="left" />
               <ul className="grid gap-3 sm:grid-cols-2">
                 {[
-                  { icon: Rosette, title: 'Specialist expertise', accent: 'teal' as const },
-                  { icon: ShieldCheck, title: 'Evidence-based practice', accent: 'coral' as const },
-                  { icon: Person, title: 'Personalised approach', accent: 'orange' as const },
-                  { icon: Star, title: 'Clear, actionable reports', accent: 'teal' as const },
-                  { icon: Heart, title: 'Compassionate, human care', accent: 'coral' as const },
-                  { icon: Handshake, title: 'Long-term partnership', accent: 'purple' as const },
+                  { icon: Chat, title: 'Free Consultation', accent: 'teal' as const },
+                  { icon: ClipboardCheck, title: 'Online Screening', accent: 'coral' as const },
+                  { icon: People, title: 'Assessor Matching', accent: 'orange' as const },
+                  { icon: Document, title: 'Comprehensive Reports', accent: 'teal' as const },
+                  { icon: Heart, title: 'Ongoing Support', accent: 'coral' as const },
+                  { icon: Star, title: 'Coaching & Practical Help', accent: 'purple' as const },
                 ].map((m) => (
                   <li
                     key={m.title}
                     className="flex items-center gap-3 rounded-xl border border-navy/[0.07] bg-white p-4 shadow-card"
                   >
                     <m.icon className="h-5 w-5 shrink-0 text-teal" />
-                    <span className="font-heading text-[12.5px] font-semibold text-navy">
+                    <span className="font-heading text-[13.5px] font-semibold text-navy">
                       {m.title}
                     </span>
                   </li>
@@ -127,7 +127,7 @@ export default function Page() {
       </section>
 
       <IconColumns
-        title="Global reach. Trusted support."
+        title="Global Reach. Trusted Support."
         columns={4}
         background="ivory"
         items={[

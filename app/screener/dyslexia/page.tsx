@@ -1,6 +1,8 @@
 import { ScreenerPage } from '@/components/templates/ScreenerPage';
 import { img } from '@/lib/images';
 import {
+  Book,
+  Brain,
   Calendar,
   Chat,
   ClipboardCheck,
@@ -11,15 +13,16 @@ import {
   Lock,
   People,
   Person,
+  ShieldCheck,
+  ShieldLock,
   Signpost,
-  Sparkle,
   Star,
 } from '@/components/icons';
 
 export const metadata = {
   title: 'Dyslexia Screener',
   description:
-    'A free, confidential screener exploring reading, spelling, writing and processing — and whether a full dyslexia assessment might be helpful.',
+    'A brief online tool to help individuals, parents and carers understand whether reading, spelling and written-language difficulties may be present.',
 };
 
 export default function Page() {
@@ -27,51 +30,72 @@ export default function Page() {
     <ScreenerPage
       crumbs={[
         { label: 'Home', href: '/' },
-        { label: 'Online Screener', href: '/screener' },
+        { label: 'Online Screeners', href: '/screener' },
         { label: 'Dyslexia Screener' },
       ]}
       title="Dyslexia Screener"
-      lede="A quick first step towards understanding how you learn."
-      body="A free, confidential screener exploring reading, spelling, writing and processing — and whether a full dyslexia assessment might be helpful."
+      lede="Clarity. Confidence. A helpful first step."
+      body="Our Dyslexia Screener is a brief online tool designed to help individuals, parents and carers understand whether reading, spelling and written-language difficulties may be present and whether a fuller assessment could be helpful."
+      ticks={[
+        'Gain early insight into possible dyslexia traits',
+        'Understand possible next steps',
+        'Confidential and secure online screening',
+      ]}
+      startLabel="Start Dyslexia Screener"
+      secondaryCta={{ label: 'Learn More', href: '/assessments/dyslexia' }}
       image={{ src: img.heroDyslexia, alt: 'A person reading at a desk' }}
       features={[
-        { icon: Laptop, title: 'Online & Convenient', desc: 'Complete it whenever and wherever suits you.', accent: 'teal' },
-        { icon: Lock, title: 'Secure & Confidential', desc: 'Your answers are private and never shared.', accent: 'coral' },
-        { icon: Sparkle, title: 'Around 10 Minutes', desc: 'Short, clear questions in plain English.', accent: 'orange' },
-        { icon: Signpost, title: 'Supportive Next Steps', desc: 'Clear guidance on what your result means.', accent: 'teal' },
+        { icon: Laptop, title: 'Online & Convenient', desc: 'Complete from anywhere in just a few minutes.', accent: 'teal' },
+        { icon: Lock, title: 'Secure & Confidential', desc: 'Your information is protected and never shared.', accent: 'coral' },
+        { icon: Brain, title: 'Evidence-Based', desc: 'Built on trusted screening methods and best practice.', accent: 'orange' },
+        { icon: HeartHand, title: 'Supportive Next Steps', desc: 'Expert guidance to help you move forward.', accent: 'teal' },
       ]}
       what={{
-        heading: 'What is the dyslexia screener?',
-        body: 'A short, evidence-informed questionnaire covering the everyday signs associated with dyslexia. It is not a diagnosis — a full diagnostic assessment is needed for that — but it is a useful indicator of whether one is worth pursuing.',
-        checksHeading: 'What can this screener help explore?',
+        heading: 'What is the Dyslexia Screener?',
+        body: [
+          'The Dyslexia Screener is a brief online tool designed to identify traits commonly associated with dyslexia in children, young people and adults.',
+          'It is not a diagnosis, but it can help you understand whether further assessment may be helpful.',
+          'Early insight can support better understanding, appropriate support, and informed next steps.',
+        ],
+        checksHeading: 'Common difficulties this screener may explore:',
         checks: [
-          'Reading that takes more time or effort than expected',
-          'Inconsistent spelling despite knowing the words',
-          'Losing your place or rereading to take information in',
-          'Difficulty getting ideas down on paper',
-          'Trouble with sequences, directions or remembering instructions',
-          'A mismatch between your ability and your written work',
+          'Reading accuracy and fluency',
+          'Spelling difficulties',
+          'Written expression and composition',
+          'Processing written information',
+          'Sequencing or working memory',
+          'Feeling that reading or writing takes more effort than expected',
         ],
       }}
       who={{
-        heading: 'Who can use this screener?',
+        heading: 'Who can use the Dyslexia Screener?',
         items: [
-          { icon: Person, title: 'Adults', desc: 'For adults exploring their own experiences, at any age.', accent: 'teal' },
-          { icon: People, title: 'Parents & Carers', desc: 'For parents wondering whether to explore an assessment for their child.', accent: 'coral' },
-          { icon: HeartHand, title: 'Young People', desc: 'For teenagers, with a parent or carer alongside them.', accent: 'orange' },
-          { icon: GradCap, title: 'Students', desc: 'For students considering study support or exam adjustments.', accent: 'teal' },
+          { icon: People, title: 'Children & Young People', desc: 'A helpful first step for children and young people showing signs of dyslexia traits.', accent: 'teal' },
+          { icon: HeartHand, title: 'Parents & Carers', desc: 'Gain insight and understand whether further support or assessment may be helpful.', accent: 'coral' },
+          { icon: Person, title: 'Adults', desc: 'Explore whether dyslexia traits may be impacting your daily life or wellbeing.', accent: 'orange' },
+          { icon: GradCap, title: 'Students', desc: 'Support for students seeking clarity about their strengths and challenges.', accent: 'purple' },
         ],
+      }}
+      invite={{
+        title: 'Take the Dyslexia Screener today',
+        body: 'A small step today can lead to greater understanding and the right support.',
       }}
       how={{
-        heading: 'How the screener works',
+        heading: 'How the Dyslexia Screener works',
         steps: [
-          { icon: ClipboardCheck, title: 'Answer the questions', desc: 'Around ten minutes of clear, plain-English questions.', accent: 'teal' },
-          { icon: Document, title: 'Get your result', desc: 'An immediate, easy-to-understand summary.', accent: 'coral' },
-          { icon: Chat, title: 'Understand what it means', desc: 'We explain clearly what a screener can and cannot tell you.', accent: 'orange' },
-          { icon: Calendar, title: 'Book if you want to', desc: 'A free consultation is available whenever you are ready.', accent: 'teal' },
-          { icon: Star, title: 'Move forward with clarity', desc: 'Either way, you leave knowing more than you did.', accent: 'coral' },
+          { icon: Laptop, title: 'Complete the screener', desc: 'Answer a series of simple, research-backed questions.', accent: 'teal' },
+          { icon: ClipboardCheck, title: 'Receive your insights', desc: 'Get an instant overview of possible dyslexia traits present.', accent: 'coral' },
+          { icon: Signpost, title: 'Explore next steps', desc: 'Understand whether further assessment could be right for you or your child.', accent: 'orange' },
+          { icon: Chat, title: 'Speak with our team', desc: 'Book a free consultation to discuss your results and options.', accent: 'teal' },
+          { icon: Star, title: 'Move forward with clarity', desc: 'Get the right support to build confidence and achieve goals.', accent: 'coral' },
         ],
       }}
+      trust={[
+        { icon: ShieldLock, title: 'Trusted & Secure', desc: 'Your information is confidential and handled with care.', accent: 'coral' },
+        { icon: People, title: 'For Children & Adults', desc: 'Suitable for all ages and life stages.', accent: 'teal' },
+        { icon: Brain, title: 'Expert-Led', desc: 'Designed by neurodevelopmental specialists.', accent: 'orange' },
+        { icon: Signpost, title: 'A Clear Next Step', desc: 'Gain insight and move forward with confidence.', accent: 'teal' },
+      ]}
       ctaTitle="Wondering whether dyslexia explains how you learn?"
     />
   );

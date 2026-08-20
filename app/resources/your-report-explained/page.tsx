@@ -1,21 +1,25 @@
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, SplitBand } from '@/components/sections/Bands';
-import { CardGrid } from '@/components/sections/CardGrid';
+import { CardGrid, IconColumns } from '@/components/sections/CardGrid';
 import { ProcessRow } from '@/components/sections/Steps';
 import { img } from '@/lib/images';
 import {
   Book,
-  Briefcase,
+  Brain,
   Bulb,
-  Chart,
   Chat,
+  ClipboardCheck,
   Document,
   GradCap,
   HeartHand,
-  Leaf,
+  Lock,
+  People,
+  Person,
   Search,
+  ShieldCheck,
   Signpost,
   Star,
+  Target,
 } from '@/components/icons';
 
 export const metadata = {
@@ -34,10 +38,18 @@ export default function Page() {
           { label: 'Your Report Explained' },
         ]}
         title="Your Report Explained"
-        lede="Written to be understood, not decoded."
-        body="Your report is the document that unlocks support at work, in education and in healthcare. Here is what each section means and how to make the most of it."
-        secondaryCta={{ label: 'Explore Support', href: '/support' }}
+        lede="Understand what your report includes and what happens next."
+        body="Your report is designed to give you clarity, explain our findings in a way that's easy to understand, and guide you towards the right next steps."
+        secondaryCta={{ label: 'Start Your Assessment', href: '/assessments' }}
         image={{ src: img.heroResources, alt: 'A person reading their assessment report' }}
+      />
+
+      <SplitBand
+        title="Your report is designed to be clear, practical and helpful."
+        body="We use plain language and focus on what matters most to you."
+        cta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}
+        icon={ShieldCheck}
+        background="white"
       />
 
       <CardGrid
@@ -46,12 +58,12 @@ export default function Page() {
         background="white"
         cardAlign="left"
         items={[
-          { icon: Search, title: 'Background & Referral Information', desc: 'A summary of your history, the reason for assessment and the information you provided.', accent: 'teal' },
-          { icon: Chart, title: 'Assessment Results', desc: 'The measures used, your scores where relevant, and what those scores actually indicate.', accent: 'coral' },
-          { icon: Document, title: 'Clinical Formulation', desc: 'Your assessor drawing everything together into one coherent explanation.', accent: 'orange' },
-          { icon: Star, title: 'Strengths & Challenges', desc: 'A balanced picture — what comes easily as well as what does not.', accent: 'teal' },
-          { icon: Bulb, title: 'Recommendations', desc: 'Practical, prioritised suggestions for home, study, work and healthcare.', accent: 'purple' },
-          { icon: Signpost, title: 'Next Steps', desc: 'What to do with your report and who to share it with.', accent: 'coral' },
+          { icon: ClipboardCheck, title: 'Assessment summary', desc: 'An overview of the assessment process and information considered.', accent: 'coral' },
+          { icon: Target, title: 'Diagnostic outcome', desc: 'Our conclusion, including whether diagnostic criteria are met.', accent: 'coral' },
+          { icon: Search, title: 'Key findings', desc: 'Detailed information about the areas we assessed and what we found.', accent: 'coral' },
+          { icon: Brain, title: 'Strengths and challenges', desc: 'A balanced view of your strengths and the challenges you may experience.', accent: 'coral' },
+          { icon: Star, title: 'Recommendations', desc: 'Personalised suggestions to support you in daily life and goals.', accent: 'coral' },
+          { icon: Signpost, title: 'Next steps', desc: 'Practical guidance on support options and what to do next.', accent: 'coral' },
         ]}
       />
 
@@ -61,10 +73,10 @@ export default function Page() {
         background="ivory"
         cardAlign="left"
         items={[
-          { icon: Briefcase, title: 'At work', desc: 'Evidence for reasonable adjustments and occupational health conversations.', accent: 'teal' },
-          { icon: GradCap, title: 'In education', desc: 'Supporting exam access arrangements and study support applications.', accent: 'coral' },
-          { icon: Book, title: 'In healthcare', desc: 'A clear record to share with your GP or other clinicians, with your consent.', accent: 'orange' },
-          { icon: HeartHand, title: 'For yourself', desc: 'Language and framing that helps you explain your needs to others.', accent: 'teal' },
+          { icon: Person, title: 'Understand your profile', desc: 'Gain clarity about how you think, learn, communicate and navigate the world.', accent: 'teal' },
+          { icon: GradCap, title: 'Access the right support', desc: 'Use your report to help at work, university or in other areas of your life.', accent: 'teal' },
+          { icon: Bulb, title: 'Practical recommendations', desc: 'Actionable strategies tailored to you, to help build on strengths and reduce challenges.', accent: 'teal' },
+          { icon: People, title: 'Share with professionals (where appropriate)', desc: 'Share your report with those supporting you, to ensure better understanding.', accent: 'teal' },
         ]}
       />
 
@@ -72,20 +84,31 @@ export default function Page() {
         title="What happens after your report"
         background="white"
         steps={[
-          { icon: Document, title: 'You receive your report', desc: 'Delivered securely, usually within 10–15 working days.', accent: 'teal' },
-          { icon: Chat, title: 'Feedback session', desc: 'We walk through it together and answer every question.', accent: 'coral' },
-          { icon: Bulb, title: 'Agree your priorities', desc: 'We help you decide which recommendations to act on first.', accent: 'orange' },
-          { icon: Leaf, title: 'Access support', desc: 'Coaching, therapy, workplace or education support as needed.', accent: 'teal' },
-          { icon: Chart, title: 'Review progress', desc: 'Check back in as circumstances change over time.', accent: 'coral' },
+          { icon: Document, title: 'Receive your report', desc: "We'll send your report securely when it's ready.", accent: 'coral' },
+          { icon: Book, title: 'Review your outcome', desc: 'Read through at your own pace and take time to reflect.', accent: 'coral' },
+          { icon: Chat, title: 'Ask questions', desc: "Book a free consultation to discuss anything you'd like clarity on.", accent: 'coral' },
+          { icon: HeartHand, title: 'Explore support', desc: "We'll help you explore strategies, adjustments and support options.", accent: 'coral' },
+          { icon: Signpost, title: 'Move forward with confidence', desc: 'Use your report to make informed decisions and take positive action.', accent: 'coral' },
         ]}
       />
 
       <SplitBand
         title="We're here to help you make sense of your report."
-        body="If anything in your report is unclear, just ask. That is exactly what your feedback session is for."
-        cta={{ label: 'Talk to Our Team', href: '/contact' }}
+        body="If you'd like support understanding your findings or deciding on next steps, our compassionate team is here for you."
+        cta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}
         icon={HeartHand}
         background="white"
+      />
+
+      <IconColumns
+        compact
+        background="white"
+        items={[
+          { icon: Chat, title: 'Clear language', desc: 'We use plain, jargon-free language you can understand.', accent: 'coral' },
+          { icon: Lock, title: 'Confidential', desc: 'Your information is handled securely and privately.', accent: 'teal' },
+          { icon: Person, title: 'Personalised recommendations', desc: 'Guidance tailored to your unique profile and goals.', accent: 'orange' },
+          { icon: HeartHand, title: 'Ongoing support', desc: "We're with you beyond your report, every step of the way.", accent: 'purple' },
+        ]}
       />
 
       <CtaBand

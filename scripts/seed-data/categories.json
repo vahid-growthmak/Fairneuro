@@ -1,0 +1,50 @@
+[
+  {
+    "title": "ADHD",
+    "slug": "adhd",
+    "description": "Understanding ADHD, traits, assessment and strategies that can help.",
+    "accent": "teal"
+  },
+  {
+    "title": "Autism",
+    "slug": "autism",
+    "description": "Guides on autism, assessments, strengths and everyday support.",
+    "accent": "coral"
+  },
+  {
+    "title": "Dyslexia",
+    "slug": "dyslexia",
+    "description": "Information on dyslexia, learning differences and practical support.",
+    "accent": "orange"
+  },
+  {
+    "title": "Parents & Families",
+    "slug": "parents-families",
+    "description": "Support, guidance and tools for parents, carers and loved ones.",
+    "accent": "purple"
+  },
+  {
+    "title": "Education",
+    "slug": "education",
+    "description": "Resources for students, educators and schools to support learning.",
+    "accent": "teal"
+  },
+  {
+    "title": "Workplace",
+    "slug": "workplace",
+    "description": "Advice on working, disclosure, accommodations and career growth.",
+    "accent": "blue"
+  },
+  {
+    "title": "After Diagnosis",
+    "slug": "after-diagnosis",
+    "description": "Next steps, coping strategies and building a plan that works for you.",
+    "accent": "coral"
+  },
+  {
+    "title": "General Neurodiversity",
+    "slug": "general-neurodiversity",
+    "description": "Broader insights on neurodiversity, inclusion and wellbeing.",
+    "accent": "green"
+  }
+]

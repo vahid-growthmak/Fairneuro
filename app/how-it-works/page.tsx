@@ -2,11 +2,11 @@ import { Hero } from '@/components/sections/Hero';
 import { CtaBand, PromptBand } from '@/components/sections/Bands';
 import { IconColumns } from '@/components/sections/CardGrid';
 import { StepCards } from '@/components/sections/Steps';
-import { SplitFeatureBand } from '@/components/sections/Panels';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { IconBadge } from '@/components/ui/IconBadge';
-import { Check, Chat, Globe, Heart, Lock, People, ShieldCheck, Person } from '@/components/icons';
+import { Check, Chat, Globe, Heart, Lock, People, ShieldCheck } from '@/components/icons';
 import { journey } from '@/lib/journey';
+import { withDescs } from '@/lib/shared';
 import { cycle, solidStep, stepCycle } from '@/lib/accents';
 import { cn } from '@/lib/cn';
 import { img } from '@/lib/images';
@@ -16,6 +16,16 @@ export const metadata = {
   description:
     'A clear, supportive journey from first step to lasting support. Six simple stages: talk, screen, match, assess, understand and thrive.',
 };
+
+/** The journey row on this page states each stage more fully than the shared set. */
+const journeySteps = withDescs(journey, [
+  'Free consultation with our team to understand your needs and answer your questions.',
+  'Complete our online screener to help us understand your experiences better.',
+  'We match you with the most appropriate assessor for your needs.',
+  'Your comprehensive assessment is completed in a supportive environment.',
+  'Receive a detailed report and feedback explaining your results.',
+  'Access personalised support and recommendations to help you thrive.',
+]);
 
 const detailedJourney = [
   {
@@ -58,21 +68,22 @@ export default function Page() {
         title="How It Works"
         lede="A clear, supportive journey from first step to lasting support."
         body="Our proven process ensures you receive the right assessment, clear answers and the support you need to thrive."
-        secondaryCta={{ label: 'Explore Assessments', href: '/assessments' }}
+        secondaryCta={{ label: 'Watch Overview', href: '#journey' }}
         ticks={['Free consultation', 'No obligation', 'Confidential', 'Here to help']}
         image={{ src: img.heroHowItWorks, alt: 'A person smiling thoughtfully' }}
       />
 
       <StepCards
+        id="journey"
         title="Your journey with Fairneuro"
         subtitle="We guide you every step of the way."
-        steps={journey}
+        steps={journeySteps}
         background="white"
       />
 
       {/* What you can expect at each stage */}
       <section className="bg-ivory">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading title="What you can expect at each stage" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {detailedJourney.map((step, i) => {
@@ -83,12 +94,12 @@ export default function Page() {
                   className="flex flex-col rounded-xl border border-navy/[0.07] bg-white p-5 shadow-card"
                 >
                   <IconBadge icon={step.icon} accent={accent} size="sm" />
-                  <h3 className="mt-3 font-heading text-[13.5px] font-semibold text-navy">
+                  <h3 className="mt-3 font-heading text-[15px] font-semibold text-navy">
                     {i + 1}. {step.title}
                   </h3>
                   <ul className="mt-3 flex-1 space-y-2">
                     {step.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-[11.5px] text-navy/68">
+                      <li key={b} className="flex items-start gap-2 text-[12.5px] text-navy/68">
                         <Check className="mt-0.5 h-3 w-3 shrink-0 text-teal" strokeWidth={3} />
                         {b}
                       </li>
@@ -115,18 +126,6 @@ export default function Page() {
           { icon: Lock, title: 'Confidential & secure', desc: 'Your information is protected at every step of the journey.', accent: 'orange' },
           { icon: Heart, title: 'Support beyond diagnosis', desc: 'We provide guidance and support long after your assessment.', accent: 'teal' },
           { icon: Globe, title: 'Global experience', desc: 'Supporting individuals in 40+ countries worldwide.', accent: 'coral' },
-        ]}
-      />
-
-      <SplitFeatureBand
-        title="Designed around you"
-        body="We know that every individual is different. That's why our process is flexible, respectful and focused on what matters most to you."
-        cta={{ label: 'Why Fairneuro? →', href: '/why-fairneuro' }}
-        items={[
-          { icon: Lock, title: 'Safe & Confidential', desc: 'Your information is always protected and confidential.', accent: 'teal' },
-          { icon: Person, title: 'Person-Centred', desc: 'We tailor every step to your needs and circumstances.', accent: 'coral' },
-          { icon: Globe, title: 'Global Experience', desc: 'Supporting individuals and families in 40+ countries.', accent: 'orange' },
-          { icon: Heart, title: 'Support Beyond', desc: "Assessment is just the beginning — we're with you afterwards.", accent: 'navy' },
         ]}
       />
 

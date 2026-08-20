@@ -1,5 +1,6 @@
 import { AssessmentPage } from '@/components/templates/AssessmentPage';
-import { adultTrust, includedSteps } from '@/lib/shared';
+import { adultTrust, withDescs } from '@/lib/shared';
+import { journey } from '@/lib/journey';
 import { img } from '@/lib/images';
 import {
   Battery,
@@ -7,10 +8,12 @@ import {
   Calendar,
   Chats,
   Clipboard,
+  Document,
   GradCap,
   Head,
   People,
   Person,
+  Signpost,
   Star,
   Target,
   Waves,
@@ -32,8 +35,14 @@ export default function Page() {
       ]}
       title="Adult ADHD + Autism Combined Assessment"
       lede="Expert assessment for clearer answers."
-      body="Many adults experience traits of both ADHD and autism. A combined assessment considers them together, so you get one coherent explanation rather than two partial ones."
+      body="Explore how ADHD and autism may work together in your life. Our combined assessment helps you understand overlapping experiences, strengths and challenges—so you can move forward with clarity and confidence."
       image={{ src: img.heroCombined, alt: 'An adult looking ahead confidently' }}
+      ticks={[
+        'Clinician-led assessment',
+        'Compassionate & respectful',
+        'Evidence based',
+        'Support for your journey',
+      ]}
       signals={{
         heading: 'Why a combined assessment may help',
         items: [
@@ -49,34 +58,50 @@ export default function Page() {
       }}
       includes={{
         heading: 'What the combined assessment includes',
-        steps: includedSteps({
-          interviewDesc: 'A detailed conversation exploring your experiences, challenges and strengths.',
-          second: {
-            title: 'Developmental History',
-            desc: 'Exploring your early development, learning, relationships and milestones.',
-          },
-          third: {
-            title: 'Questionnaires & Information Gathering',
-            desc: 'Standardised tools plus, where appropriate, input from others who know you well.',
-          },
-          fourth: {
-            title: 'Combined Clinical Analysis',
-            desc: 'Both profiles are considered together rather than in isolation.',
-          },
-          reportDesc: 'A single detailed report covering both profiles with personalised recommendations.',
-          nextDesc: 'Guidance on supports, strategies and therapeutic options to help you thrive.',
-        }),
+        steps: [
+          { icon: People, title: 'Background discussion', desc: 'We hear about your history, experiences and current concerns.' },
+          { icon: Target, title: 'ADHD exploration', desc: 'We explore attention, activity, impulsivity and executive functioning.' },
+          { icon: Chats, title: 'Autism exploration', desc: 'We explore social communication, sensory processing and routines.' },
+          { icon: Clipboard, title: 'Professional interpretation', desc: 'Our clinicians analyse the results with care and expertise.' },
+          { icon: Document, title: 'Comprehensive report', desc: 'A detailed report explaining findings, strengths and needs.' },
+          { icon: Signpost, title: 'Recommendations & next steps', desc: 'Practical strategies, supports and referrals tailored to you.' },
+        ],
       }}
       audience={{
         heading: 'Who this assessment is for',
         items: [
-          { icon: Briefcase, title: 'Working professionals', desc: 'Balancing demanding roles alongside focus, energy and sensory needs.', href: '/support/workplace-support', accent: 'teal' },
-          { icon: GradCap, title: 'University students', desc: 'Navigating independence, deadlines and social life at the same time.', href: '/support/education-support', accent: 'coral' },
-          { icon: Person, title: 'Adults seeking answers later in life', desc: 'For those who have long suspected something but never had it explored properly.', href: '/adults', accent: 'orange' },
-          { icon: People, title: 'Adults with overlapping experiences', desc: 'When a single-condition assessment has never quite explained the whole picture.', href: '/assessments/adhd-autism', accent: 'teal' },
+          { icon: Briefcase, title: 'Working professionals', desc: 'Seeking clarity to improve focus, wellbeing and performance.', href: '/support/workplace-support', accent: 'teal' },
+          { icon: GradCap, title: 'University students', desc: 'Wanting to understand your brain and access the right support.', href: '/support/education-support', accent: 'coral' },
+          { icon: Person, title: 'Adults seeking answers later in life', desc: 'Finally making sense of lifelong patterns and experiences.', href: '/adults', accent: 'orange' },
+          { icon: People, title: 'Adults with overlapping experiences', desc: 'When ADHD and autism traits both feel relevant.', href: '/assessments/adhd-autism', accent: 'teal' },
         ],
       }}
       trust={adultTrust}
+      promptTitle="Not sure if a combined assessment is right for you?"
+      promptBody="Book a free consultation and we'll help you choose the best path forward."
+      journey={{
+        heading: 'The Fairneuro Assessment Journey',
+        steps: withDescs(journey, [
+          'Share your concerns and ask questions with our team.',
+          'A short screen helps us understand the best next step.',
+          'We meet you with the right clinician for your needs.',
+          'A collaborative, evidence-informed assessment.',
+          'We explain findings and answer questions in simple terms.',
+          'Practical strategies and support to help you move forward.',
+        ]).map((step, i) => (i === 2 ? { ...step, title: 'Meet' } : step)),
+      }}
+      receive={{
+        heading: 'What you receive',
+        items: [
+          { icon: Head, title: 'Clear understanding', desc: 'Clarity about your traits, strengths and challenges.', accent: 'teal' },
+          { icon: Document, title: 'Detailed written report', desc: 'Easy-to-read report with explanations and insights.', accent: 'orange' },
+          { icon: Signpost, title: 'Next steps & support', desc: 'Practical strategies, referrals and guidance tailored to you.', accent: 'coral' },
+          { icon: Star, title: 'Support beyond assessment', desc: 'Guidance and resources for families and educators when needed.', accent: 'teal' },
+        ],
+      }}
+      fair={{ title: 'Why choose Fairneuro?' }}
+      ctaTitle="You don't have to figure this out alone."
+      ctaBody="Book a free consultation and we'll help you find the answers and support that fit you."
     />
   );
 }

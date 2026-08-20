@@ -41,11 +41,12 @@ export default function Page() {
       ]}
       title={
         <>
-          Dyspraxia /<br />
+          Dyspraxia /{' '}
+          <br />
           DCD Assessment
         </>
       }
-      body="FairNeuro offers comprehensive assessments to help identify difficulties with coordination, motor planning, organisation and related developmental differences, with clear, personalised recommendations to support learning, daily life, work and confidence."
+      body="Fairneuro offers comprehensive assessments to help identify difficulties with coordination, motor planning, organisation and related developmental differences, with clear, personalised recommendations to support learning, daily life, work and confidence."
       image={{ src: img.heroDyspraxia, alt: 'A young person concentrating on written work' }}
       features={[
         { icon: ClipboardCheck, title: 'Comprehensive Assessment', desc: 'In-depth evaluation of motor coordination, planning, organisation and daily functioning.', accent: 'teal' },

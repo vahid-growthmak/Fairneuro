@@ -1,0 +1,25 @@
+{
+  "tagline": "Assessment is only the beginning.",
+  "phone": "+44 7395335182",
+  "email": "management@fairneurodiagnostics.com",
+  "hours": "Mon\u2013Fri 9am\u20136pm",
+  "location": "Locations & Online \u00b7 UK-wide",
+  "stats": [
+    {
+      "value": "10,000+",
+      "label": "Assessments completed"
+    },
+    {
+      "value": "40+",
+      "label": "Countries supported"
+    },
+    {
+      "value": "4.9/5",
+      "label": "Average rating"
+    },
+    {
+      "value": "98%",
+      "label": "Would recommend"
+    }
+  ]
+}

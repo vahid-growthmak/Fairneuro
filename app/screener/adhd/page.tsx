@@ -65,13 +65,14 @@ export default function Page() {
       how={{
         heading: 'How the screener works',
         steps: [
-          { icon: ClipboardCheck, title: 'Answer the questions', desc: 'Around ten minutes of clear, plain-English questions.', accent: 'teal' },
+          { icon: ClipboardCheck, title: 'Answer the questions', desc: 'About three minutes of clear, plain-English questions.', accent: 'teal' },
           { icon: Document, title: 'Get your result', desc: 'An immediate, easy-to-understand summary.', accent: 'coral' },
           { icon: Chat, title: 'Understand what it means', desc: 'We explain clearly what a screener can and cannot tell you.', accent: 'orange' },
           { icon: Calendar, title: 'Book if you want to', desc: 'A free consultation is available whenever you are ready.', accent: 'teal' },
           { icon: Star, title: 'Move forward with clarity', desc: 'Either way, you leave knowing more than you did.', accent: 'coral' },
         ],
       }}
+      quizHref="/adhd-quiz"
       ctaTitle="Wondering whether ADHD explains what you experience?"
     />
   );

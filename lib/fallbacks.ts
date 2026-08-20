@@ -1,5 +1,6 @@
 import type { Testimonial } from '@/components/sections/Testimonials';
 import type { FaqItem } from '@/components/sections/Accordion';
+import { img } from '@/lib/images';
 
 /**
  * Built-in content used when Sanity is not configured, or when a query
@@ -31,49 +32,49 @@ export const aboutTestimonials: Testimonial[] = [
       'From the first conversation I felt heard. The assessment was thorough and the report finally made sense of things I had wondered about for years.',
     name: 'Alex, 28',
     role: 'ADHD Assessment',
-    avatar: '/images/avatar-alex.svg',
+    avatar: img.avatarAlex,
   },
   {
     quote:
       'What stood out was that the support did not stop when the report arrived. That made all the difference for our family.',
     name: 'Parent of a 9-year-old',
     role: 'Child Autism Assessment',
-    avatar: '/images/avatar-parent.svg',
+    avatar: img.avatarParent,
   },
 ];
 
 export const faqs: FaqItem[] = [
   {
-    q: 'How long does an assessment take?',
-    a: 'Most assessments involve a clinical interview of 90 minutes to three hours, plus questionnaires you complete beforehand. Your written report usually follows within 10 to 15 working days.',
+    q: 'How do I know which assessment I need?',
+    a: "Our team can help you choose the most appropriate assessment based on your needs and goals. During your free consultation, we'll ask a few questions about what you're looking for and guide you towards the right option.",
   },
   {
-    q: 'Do I need a GP referral?',
-    a: 'No. You can self-refer directly to Fairneuro. If you would like us to share your report with your GP afterwards, we can do so with your consent.',
+    q: 'What happens during a free consultation?',
+    a: 'A friendly member of our team listens to your concerns, explains how our assessments work and answers your questions. There is no obligation and no pressure to book anything afterwards.',
   },
   {
-    q: 'Are assessments carried out online or in person?',
-    a: 'Both are available. Online assessments are conducted over secure video and are equally valid; in-person appointments are available in selected locations.',
+    q: 'Are Fairneuro assessments completed online?',
+    a: 'Most assessments are completed online using secure video consultation, which suits the majority of people. In-person appointments are available where they are clinically appropriate.',
   },
   {
-    q: 'Is the free consultation really free?',
-    a: 'Yes. It is a 15–20 minute conversation with no cost and no obligation. Its purpose is to help you understand your options — not to sell you an assessment.',
+    q: 'What does the online screener do?',
+    a: 'Our online screeners are quick, research-based questionnaires designed to identify patterns and highlight whether a full assessment may be helpful. They are not diagnostic, but a valuable starting point.',
   },
   {
-    q: 'What qualifications do your assessors hold?',
-    a: 'All of our assessors are qualified clinical professionals registered with the relevant professional bodies, with specialist experience in neurodevelopmental assessment.',
+    q: 'Will I receive a report after my assessment?',
+    a: 'Yes. You receive a detailed written report explaining the findings, whether diagnostic criteria are met, your strengths and challenges, and personalised recommendations for what comes next.',
   },
   {
-    q: 'Will my diagnosis be recognised by my school, university or employer?',
-    a: 'Yes. Our reports are written to the standards expected by educational institutions and employers, including for exam access arrangements and workplace adjustments.',
+    q: 'What happens if I receive a diagnosis?',
+    a: 'We talk you through what the diagnosis means in practical terms, and help you decide which recommendations to act on first. A diagnosis is the beginning of support, not the end of the process.',
   },
   {
-    q: 'What happens after I receive my report?',
-    a: 'You have a feedback session to talk it through, and you can access our post-diagnostic support, coaching and workplace or education services whenever you are ready.',
+    q: 'Do you offer support after diagnosis?',
+    a: 'We do. Coaching, education, workplace and wellbeing support are all available, and our post-diagnostic support helps you turn understanding into practical everyday strategies.',
   },
   {
-    q: 'How is my information kept confidential?',
-    a: 'All records are stored securely and handled in line with UK GDPR. Nothing is shared with anyone — including your GP — without your explicit consent.',
+    q: 'Can parents enquire about assessments for children?',
+    a: 'Absolutely. Parents and carers are welcome to get in touch at any point. We will explain the process, what your child can expect, and how we involve families throughout.',
   },
 ];
 

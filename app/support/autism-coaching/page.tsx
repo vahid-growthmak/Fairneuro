@@ -1,19 +1,7 @@
 import { SupportServicePage } from '@/components/templates/SupportServicePage';
 import { coachingTrust, supportSteps } from '@/lib/support';
 import { img } from '@/lib/images';
-import {
-  Alarm,
-  Briefcase,
-  Chats,
-  GradCap,
-  Head,
-  HeartHand,
-  People,
-  Person,
-  Star,
-  Target,
-  Waves,
-} from '@/components/icons';
+import { Alarm, Briefcase, Chats, GradCap, Head, Person, Star, Waves } from '@/components/icons';
 
 export const metadata = {
   title: 'Autism Coaching',
@@ -29,6 +17,7 @@ export default function Page() {
         { label: 'Support', href: '/support' },
         { label: 'Autism Coaching' },
       ]}
+      layout="coaching"
       title="Autism Coaching"
       lede="Practical support to help you understand yourself and move forward with confidence."
       body="Autism coaching helps you better understand your autistic profile, build routines, support communication, manage sensory needs, and strengthen confidence in everyday life—through personalised support."
@@ -45,34 +34,26 @@ export default function Page() {
         ],
       }}
       audience={{
-        heading: 'Who is autism coaching for?',
+        heading: 'Who is Autism Coaching for?',
         items: [
-          { icon: Person, title: 'Autistic Individuals', desc: 'For children, teens and adults seeking personalised support to thrive in daily life.', accent: 'teal' },
-          { icon: People, title: 'Parents & Families', desc: 'For parents who want guidance, strategies and support to better understand and help their loved one.', accent: 'coral' },
-          { icon: GradCap, title: 'Students', desc: 'For students who need support with organisation, study skills, transitions and independence.', accent: 'orange' },
-          { icon: Briefcase, title: 'Working Professionals', desc: 'For adults seeking support with workplace challenges, routines and wellbeing.', accent: 'teal' },
-          { icon: HeartHand, title: 'Anyone Seeking Support', desc: 'For anyone who would benefit from practical strategies and ongoing encouragement.', accent: 'coral' },
-        ],
-      }}
-      helps={{
-        heading: 'How autism coaching can help',
-        items: [
-          { icon: Target, title: 'Build confidence and self-awareness', accent: 'teal' },
-          { icon: Head, title: 'Develop practical life skills', accent: 'coral' },
-          { icon: Alarm, title: 'Improve organisation and routines', accent: 'orange' },
-          { icon: Chats, title: 'Strengthen communication and relationships', accent: 'teal' },
-          { icon: HeartHand, title: 'Manage stress and emotions more effectively', accent: 'coral' },
+          { icon: Person, title: 'Adults', desc: "If you're navigating work, relationships or day-to-day life, coaching can help you build strategies that fit your goals.", href: '/adults', accent: 'teal' },
+          { icon: GradCap, title: 'Students & Young Adults', desc: 'Support for studying, time management, organisation and building confidence during education and beyond.', href: '/support/education-support', accent: 'coral' },
+          { icon: Briefcase, title: 'Professionals', desc: 'Enhance productivity, manage workload and create sustainable routines that support your career.', href: '/support/workplace-support', accent: 'orange' },
         ],
       }}
       includes={{
         heading: "What's included in Autism Coaching?",
         steps: supportSteps({
+          consultTitle: 'Initial goals conversation',
+          trackingTitle: 'Regular 1-to-1 sessions',
+          toolsTitle: 'Reflection and progress',
+          ongoingTitle: 'Ongoing support and next steps',
           consultDesc: "We get to know you, your goals and what you'd like support with.",
           planTitle: 'Exploring strengths and challenges',
           planDesc: 'We explore your experiences, strengths and areas for support.',
           sessionTitle: 'Personalised strategy building',
           sessionDesc: 'Together we create practical strategies and action steps.',
-          trackingDesc: 'Focused 1-to-1 sessions tailored to your goals and real life.',
+          trackingDesc: 'Focused sessions tailored to your goals and real life.',
           toolsDesc: 'We review progress, adjust strategies and celebrate wins.',
           ongoingDesc: 'Sustainable habits and support as you keep moving forward.',
         }),

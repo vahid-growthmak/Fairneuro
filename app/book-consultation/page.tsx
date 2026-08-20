@@ -37,8 +37,8 @@ export default function Page() {
         steps={[
           { icon: Chat, title: 'Tell us about you', desc: 'Share a few details about yourself or your loved one and your concerns.', accent: 'teal' },
           { icon: Person, title: 'Speak with our team', desc: 'A friendly specialist will listen, answer your questions and understand your needs.', accent: 'coral' },
-          { icon: Bulb, title: 'Get personalised recommendations', desc: 'We recommend the most appropriate assessment or support for you.', accent: 'orange' },
-          { icon: CheckCircle, title: 'Next steps', desc: 'We guide you through the next steps with clarity and confidence.', accent: 'teal' },
+          { icon: Bulb, title: 'Get personalised recommendations', desc: "We'll recommend the most appropriate assessment or support for you.", accent: 'orange' },
+          { icon: CheckCircle, title: 'Next steps', desc: "We'll guide you through the next steps with clarity and confidence.", accent: 'teal' },
         ]}
       />
 

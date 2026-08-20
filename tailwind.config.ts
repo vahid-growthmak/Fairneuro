@@ -10,11 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         navy: '#113A61',
-        teal: '#53ABB3',
-        'soft-teal': '#E7F4F3',
-        ivory: '#F9F5F2',
-        coral: '#E9728A',
-        blush: '#FCECEF',
+        teal: '#45AEB6',
+        'soft-teal': '#E7F5F6',
+        ivory: '#FBF7F8',
+        coral: '#E8447E',
+        blush: '#FDEFF4',
         orange: '#F5A623',
         purple: '#8B7DD8',
         'soft-purple': '#EFECFB',

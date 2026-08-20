@@ -11,21 +11,21 @@ import { imageUrl } from '@/sanity/image';
 const components: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <h2 className="mt-10 font-display text-[24px] font-semibold text-navy sm:text-[27px]">
+      <h2 className="mt-10 font-heading text-[26px] font-semibold text-navy sm:text-[29px]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mt-8 font-heading text-[18px] font-semibold text-navy">{children}</h3>
+      <h3 className="mt-8 font-heading text-[19.5px] font-semibold text-navy">{children}</h3>
     ),
     h4: ({ children }) => (
-      <h4 className="mt-6 font-heading text-[15.5px] font-semibold text-navy">{children}</h4>
+      <h4 className="mt-6 font-heading text-[17px] font-semibold text-navy">{children}</h4>
     ),
     normal: ({ children }) => (
-      <p className="mt-4 text-[14.5px] leading-[1.75] text-navy/75">{children}</p>
+      <p className="mt-4 text-[16px] leading-[1.75] text-navy/75">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="mt-6 rounded-r-xl border-l-[3px] border-teal bg-soft-teal/40 px-6 py-4 text-[14.5px] italic leading-relaxed text-navy/80">
+      <blockquote className="mt-6 rounded-r-xl border-l-[3px] border-teal bg-soft-teal/40 px-6 py-4 text-[16px] italic leading-relaxed text-navy/80">
         {children}
       </blockquote>
     ),
@@ -40,12 +40,12 @@ const components: PortableTextComponents = {
   },
   listItem: {
     bullet: ({ children }) => (
-      <li className="relative pl-6 text-[14.5px] leading-relaxed text-navy/75 before:absolute before:left-0 before:top-[9px] before:h-[7px] before:w-[7px] before:rounded-full before:bg-teal">
+      <li className="relative pl-6 text-[16px] leading-relaxed text-navy/75 before:absolute before:left-0 before:top-[9px] before:h-[7px] before:w-[7px] before:rounded-full before:bg-teal">
         {children}
       </li>
     ),
     number: ({ children }) => (
-      <li className="text-[14.5px] leading-relaxed text-navy/75">{children}</li>
+      <li className="text-[16px] leading-relaxed text-navy/75">{children}</li>
     ),
   },
   marks: {
@@ -86,7 +86,7 @@ const components: PortableTextComponents = {
             />
           </div>
           {value?.alt && (
-            <figcaption className="mt-2.5 text-center text-[12px] text-navy/55">
+            <figcaption className="mt-2.5 text-center text-[13px] text-navy/55">
               {value.alt}
             </figcaption>
           )}

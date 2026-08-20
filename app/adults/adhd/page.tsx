@@ -1,5 +1,5 @@
 import { AssessmentPage } from '@/components/templates/AssessmentPage';
-import { adultAudience, adultTrust, includedSteps } from '@/lib/shared';
+import { adultAudience, adultTrust, includedSteps, withDescs } from '@/lib/shared';
 import { Brain, Chats, Clipboard, Clock, Star, TrendUp } from '@/components/icons';
 import { img } from '@/lib/images';
 
@@ -48,7 +48,11 @@ export default function Page() {
           nextDesc: 'Guidance and ongoing support so you can thrive beyond the diagnosis.',
         }),
       }}
-      audience={{ heading: 'Who is this assessment for?', items: adultAudience('ADHD') }}
+      audience={{ heading: 'Who is this assessment for?', items: withDescs(adultAudience('ADHD'), [
+        'For adults seeking answers about concentration, motivation, organisation, impulsivity and more.',
+        'For university students or young adults navigating focus, productivity and daily life.',
+        null,
+      ]) }}
       trust={adultTrust}
     />
   );

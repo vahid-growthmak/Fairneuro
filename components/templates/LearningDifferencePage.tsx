@@ -64,12 +64,12 @@ export function LearningDifferencePage({
 
       {/* What is …? */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading title={what.heading} align="left" />
           <div className="grid items-center gap-8 rounded-2xl border border-navy/[0.06] bg-ivory/70 p-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,2fr)] lg:p-10">
             <div className="flex items-start gap-5">
               <IconBadge icon={what.icon} accent="teal" size="lg" className="shrink-0" />
-              <p className="text-[13.5px] leading-relaxed text-navy/72">{what.lead}</p>
+              <p className="text-[15px] leading-relaxed text-navy/72">{what.lead}</p>
             </div>
             <ul className="grid gap-6 sm:grid-cols-3">
               {what.points.map((p, i) => (
@@ -82,7 +82,7 @@ export function LearningDifferencePage({
                     accent={(['coral', 'orange', 'teal'] as const)[i % 3]}
                     size="sm"
                   />
-                  <p className="text-[12px] leading-relaxed text-navy/68">{p.text}</p>
+                  <p className="text-[13px] leading-relaxed text-navy/68">{p.text}</p>
                 </li>
               ))}
             </ul>

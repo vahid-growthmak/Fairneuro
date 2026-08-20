@@ -23,25 +23,25 @@ export function LegalPage({
   return (
     <>
       <section className="bg-ivory">
-        <div className="shell pb-14 pt-8 lg:pb-16">
+        <div className="shell pb-14 pt-8 lg:pb-11">
           <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: title }]} />
-          <h1 className="max-w-3xl font-display text-[36px] font-semibold leading-tight text-navy sm:text-[42px]">
+          <h1 className="max-w-3xl font-heading text-[38px] font-semibold leading-tight text-navy sm:text-[44px]">
             {title}
           </h1>
-          <p className="mt-4 max-w-2xl text-[14.5px] leading-relaxed text-navy/70">{lede}</p>
-          <p className="mt-5 text-[12.5px] text-navy/55">Last updated: {updated}</p>
+          <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-navy/70">{lede}</p>
+          <p className="mt-5 text-[13.5px] text-navy/55">Last updated: {updated}</p>
         </div>
       </section>
 
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="max-w-3xl space-y-10">
             {sections.map((s) => (
               <div key={s.heading}>
-                <h2 className="font-heading text-[19px] font-semibold text-navy">{s.heading}</h2>
+                <h2 className="font-heading text-[20.5px] font-semibold text-navy">{s.heading}</h2>
                 <div className="mt-3 space-y-3.5">
                   {s.body.map((p, i) => (
-                    <p key={i} className="text-[14px] leading-relaxed text-navy/72">
+                    <p key={i} className="text-[15.5px] leading-relaxed text-navy/72">
                       {p}
                     </p>
                   ))}

@@ -30,7 +30,7 @@ export function PromptBand({
   return (
     <section className={bg}>
       <div className="shell pb-4">
-        <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-7 py-7 sm:flex-row sm:items-center lg:px-9">
+        <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-6 py-7 sm:flex-row sm:items-center sm:px-8 lg:px-9">
           <div className="flex items-center gap-4">
             {variant === 'outline' ? (
               <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.6px] border-navy/25 sm:flex">
@@ -42,8 +42,8 @@ export function PromptBand({
               </span>
             )}
             <div>
-              <h2 className="font-heading text-[16.5px] font-semibold text-navy">{title}</h2>
-              {body && <p className="mt-1.5 max-w-lg text-[13.5px] leading-relaxed text-navy/68">{body}</p>}
+              <h2 className="font-heading text-[18px] font-semibold text-navy">{title}</h2>
+              {body && <p className="mt-1.5 max-w-lg text-[15px] leading-relaxed text-navy/68">{body}</p>}
             </div>
           </div>
           <Button href={cta.href} variant={buttonVariant} icon={<Calendar />} className="shrink-0">
@@ -102,10 +102,10 @@ export function CtaBand({
 
   return (
     <section className={bg}>
-      <div className="shell py-12">
+      <div className="shell py-9">
         <div
           className={cn(
-            'relative overflow-hidden rounded-2xl px-6 py-10 sm:px-10 lg:px-14',
+            'relative overflow-hidden rounded-2xl px-6 py-10 sm:px-8 lg:px-9',
             tone === 'navy' ? 'bg-navy' : 'bg-teal',
           )}
         >
@@ -114,24 +114,24 @@ export function CtaBand({
 
           <div
             className={cn(
-              'relative flex flex-col items-center gap-7 text-center lg:flex-row lg:text-left',
+              'relative flex flex-col items-center gap-7 text-center lg:flex-row lg:gap-4 lg:text-left',
               layout === 'split' ? 'lg:justify-between' : 'lg:justify-center',
             )}
           >
             {medallion && (
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white">
-                <Calendar className="h-8 w-8 text-navy" />
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white">
+                <Calendar className="h-7 w-7 text-navy" />
               </span>
             )}
 
             <div className="lg:mr-auto">
-              <h2 className="font-heading text-[25px] font-semibold text-white sm:text-[28px]">
+              <h2 className="font-heading text-[27px] font-semibold text-white sm:text-[30px]">
                 {title}
               </h2>
-              {body && <p className="mt-2 max-w-xl text-[14px] text-white/75">{body}</p>}
+              {body && <p className="mt-2 max-w-xl text-[15.5px] text-white/75">{body}</p>}
               {layout === 'split' && (
                 <div className="mt-6">
-                  <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
+                  <Button href={cta.href} icon={<Calendar />} size="lg">
                     {cta.label}
                   </Button>
                 </div>
@@ -140,13 +140,13 @@ export function CtaBand({
 
             {layout === 'inline' && (
               <div className="shrink-0">
-                <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
+                <Button href={cta.href} icon={<Calendar />} size="lg">
                   {cta.label}
                 </Button>
                 {ticks && (
                   <ul className="mt-3.5 flex flex-wrap justify-center gap-x-5 gap-y-1.5">
                     {ticks.map((t) => (
-                      <li key={t} className="flex items-center gap-1.5 text-[12px] text-white/70">
+                      <li key={t} className="flex items-center gap-1.5 text-[13px] text-white/70">
                         <Check className="h-3 w-3 text-teal" strokeWidth={3} />
                         {t}
                       </li>
@@ -159,7 +159,7 @@ export function CtaBand({
             {ticks && layout === 'split' && (
               <ul className="shrink-0 space-y-3.5 self-center border-white/25 lg:border-l lg:pl-14">
                 {ticks.map((t) => (
-                  <li key={t} className="flex items-center gap-3 text-[13.5px] text-white/80">
+                  <li key={t} className="flex items-center gap-3 text-[15px] text-white/80">
                     <Check className="h-4 w-4 shrink-0 text-teal" strokeWidth={2.6} />
                     {t}
                   </li>
@@ -197,7 +197,7 @@ export function SplitBand({
       <div className="shell pb-5">
         <div
           className={cn(
-            'flex flex-col items-start justify-between gap-5 rounded-2xl px-6 py-7 sm:flex-row sm:items-center lg:px-9',
+            'flex flex-col items-start justify-between gap-5 rounded-2xl px-6 py-7 sm:flex-row sm:items-center sm:px-8 lg:px-9',
             navy ? 'bg-navy' : 'border border-teal/25 bg-soft-teal/55',
           )}
         >
@@ -213,14 +213,14 @@ export function SplitBand({
             <div>
               <h2
                 className={cn(
-                  'font-display text-[19px] font-semibold sm:text-[21px]',
+                  'font-heading text-[20.5px] font-semibold sm:text-[22.5px]',
                   navy ? 'text-white' : 'text-navy',
                 )}
               >
                 {title}
               </h2>
               {body && (
-                <p className={cn('mt-1.5 max-w-2xl text-[13px]', navy ? 'text-white/72' : 'text-navy/68')}>
+                <p className={cn('mt-1.5 max-w-2xl text-[14px]', navy ? 'text-white/72' : 'text-navy/68')}>
                   {body}
                 </p>
               )}
@@ -228,7 +228,6 @@ export function SplitBand({
           </div>
           <Button
             href={cta.href}
-            variant={navy ? 'secondary' : 'primary'}
             iconAfter={<ArrowRight />}
             className="shrink-0"
           >
@@ -264,10 +263,10 @@ export function StatsBar({
                 size="lg"
               />
               <div>
-                <p className="font-heading text-[21px] font-semibold leading-tight text-navy">
+                <p className="font-heading text-[22.5px] font-semibold leading-tight text-navy">
                   {item.value}
                 </p>
-                <p className="mt-1 max-w-[9rem] text-[12.5px] leading-[1.35] text-navy/62">
+                <p className="mt-1 max-w-[9rem] text-[13.5px] leading-[1.35] text-navy/62">
                   {item.label}
                 </p>
               </div>

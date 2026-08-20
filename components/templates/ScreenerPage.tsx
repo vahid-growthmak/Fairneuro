@@ -1,11 +1,12 @@
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, SplitBand } from '@/components/sections/Bands';
 import { HeroFeatureCards, type HeroFeature } from '@/components/sections/Hero';
-import { CardGrid, type CardItem } from '@/components/sections/CardGrid';
+import { CardGrid, IconColumns, type CardItem } from '@/components/sections/CardGrid';
 import { ProcessRow, type Step } from '@/components/sections/Steps';
 import { TickList } from '@/components/ui/TickList';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Brain } from '@/components/icons';
+import { Button } from '@/components/ui/Button';
+import { ArrowRight, Brain, Calendar } from '@/components/icons';
 import type { Crumb } from '@/components/ui/Breadcrumb';
 
 export interface ScreenerPageProps {
@@ -15,10 +16,22 @@ export interface ScreenerPageProps {
   body: string;
   image: { src: string; alt: string };
   features: HeroFeature[];
-  what: { heading: string; body: string; checksHeading: string; checks: string[] };
+  /** Reassurances under the hero CTAs. */
+  ticks?: string[];
+  /** Hero and band CTA label, e.g. "Start Dyslexia Screener". */
+  startLabel?: string;
+  /** Hero secondary CTA. */
+  secondaryCta?: { label: string; href: string };
+  what: { heading: string; body: string | string[]; checksHeading: string; checks: string[] };
   who: { heading: string; items: CardItem[] };
   how: { heading: string; steps: Step[] };
+  /** Band above the CTA inviting people to start. */
+  invite?: { title?: string; body?: string };
+  /** Reassurance strip at the foot of the page. */
+  trust?: CardItem[];
   ctaTitle: string;
+  /** Where the working screener lives. Falls back to the integration placeholder. */
+  quizHref?: string;
 }
 
 /**
@@ -31,11 +44,18 @@ export function ScreenerPage({
   body,
   image,
   features,
+  ticks,
+  startLabel = 'Start the Screener',
+  secondaryCta = { label: 'Book a Free Consultation', href: '/book-consultation' },
   what,
   who,
   how,
+  invite,
+  trust,
   ctaTitle,
+  quizHref,
 }: ScreenerPageProps) {
+  const whatBody = Array.isArray(what.body) ? what.body : [what.body];
   return (
     <>
       <Hero
@@ -43,8 +63,9 @@ export function ScreenerPage({
         title={title}
         lede={lede}
         body={body}
-        primaryCta={{ label: 'Start the Screener', href: '#screener' }}
-        secondaryCta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}
+        primaryCta={{ label: startLabel, href: quizHref ?? '#screener' }}
+        secondaryCta={secondaryCta}
+        ticks={ticks}
         image={image}
       />
 
@@ -52,14 +73,18 @@ export function ScreenerPage({
 
       {/* What is …? / What can it explore? */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="grid gap-4 lg:grid-cols-2">
             <div className="rounded-2xl bg-blush/55 p-8 lg:p-10">
-              <h2 className="font-display text-[22px] font-semibold text-navy">{what.heading}</h2>
-              <p className="mt-4 text-[13.5px] leading-relaxed text-navy/72">{what.body}</p>
+              <h2 className="font-heading text-[24px] font-semibold text-navy">{what.heading}</h2>
+              {whatBody.map((para) => (
+                <p key={para} className="mt-4 text-[15px] leading-relaxed text-navy/72">
+                  {para}
+                </p>
+              ))}
             </div>
             <div className="rounded-2xl bg-soft-teal/60 p-8 lg:p-10">
-              <h2 className="font-display text-[22px] font-semibold text-navy">
+              <h2 className="font-heading text-[24px] font-semibold text-navy">
                 {what.checksHeading}
               </h2>
               <TickList className="mt-5" items={what.checks} />
@@ -77,9 +102,14 @@ export function ScreenerPage({
       />
 
       <SplitBand
-        title={`Take the ${title.toLowerCase()} today`}
-        body="It is completely free, takes around ten minutes, and there is no obligation to go any further."
-        cta={{ label: 'Start the Screener', href: '#screener' }}
+        title={invite?.title ?? `Take the ${title} today`}
+        body={
+          invite?.body ??
+          (quizHref
+            ? 'It is completely free, takes about three minutes, and there is no obligation to go any further.'
+            : 'It is completely free, takes around ten minutes, and there is no obligation to go any further.')
+        }
+        cta={{ label: startLabel, href: quizHref ?? '#screener' }}
         icon={Brain}
         background="white"
       />
@@ -87,18 +117,51 @@ export function ScreenerPage({
       <ProcessRow title={how.heading} steps={how.steps} background="white" />
 
       <section id="screener" className="scroll-mt-24 bg-ivory">
-        <div className="shell py-16 lg:py-20">
-          <SectionHeading
-            title="Start your screener"
-            subtitle="The screener form will appear here once connected to your screening platform."
-          />
-          <div className="mx-auto max-w-2xl rounded-2xl border border-dashed border-teal/40 bg-white p-12 text-center">
-            <p className="text-[13.5px] text-navy/60">
-              Screener integration point — connect your assessment provider or form backend here.
-            </p>
-          </div>
+        <div className="shell py-11 lg:py-14">
+          {quizHref ? (
+            <>
+              <SectionHeading
+                title="Start your screener"
+                subtitle="Free, confidential and about three minutes. Your answers never leave your browser."
+              />
+              <div className="mx-auto max-w-2xl rounded-2xl border border-navy/[0.07] bg-white p-10 text-center shadow-card">
+                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-soft-teal text-teal">
+                  <Brain className="h-7 w-7" />
+                </span>
+                <p className="mt-5 text-[15px] leading-relaxed text-navy/70">
+                  You will answer a short set of questions one at a time, then see your score
+                  straight away with a plain-English explanation of what it means.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <Button href={quizHref} icon={<ArrowRight />}>
+                    Start the Screener
+                  </Button>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <SectionHeading
+                title="Start your screener"
+                subtitle="This screener is being finalised. In the meantime our team can talk you through what it covers."
+              />
+              <div className="mx-auto max-w-2xl rounded-2xl border border-navy/[0.07] bg-white p-10 text-center shadow-card">
+                <p className="text-[15px] leading-relaxed text-navy/70">
+                  Book a free consultation and we will help you decide whether a full assessment is
+                  the right next step — no screener required.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <Button href="/book-consultation" icon={<Calendar />}>
+                    Book a Free Consultation
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </section>
+
+      {trust && <IconColumns boxed compact background="ivory" items={trust} />}
 
       <CtaBand
         title={ctaTitle}

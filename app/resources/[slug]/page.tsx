@@ -101,7 +101,7 @@ export default async function ResourceArticlePage({
                   <li key={c.slug}>
                     <Link
                       href={`/resources?topic=${c.slug}`}
-                      className="inline-flex rounded-full bg-soft-teal px-3.5 py-1.5 text-[12px] font-medium text-teal transition-colors hover:bg-teal hover:text-white"
+                      className="inline-flex rounded-full bg-soft-teal px-3.5 py-1.5 text-[13px] font-medium text-teal transition-colors hover:bg-teal hover:text-white"
                     >
                       {c.title}
                     </Link>
@@ -110,15 +110,15 @@ export default async function ResourceArticlePage({
               </ul>
             )}
 
-            <h1 className="max-w-3xl font-display text-[34px] font-semibold leading-[1.12] text-navy sm:text-[42px]">
+            <h1 className="max-w-3xl font-heading text-[36px] font-semibold leading-[1.12] text-navy sm:text-[44px]">
               {post.title}
             </h1>
 
-            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy/70">
+            <p className="mt-5 max-w-2xl text-[16.5px] leading-relaxed text-navy/70">
               {post.excerpt}
             </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] text-navy/60">
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-[14px] text-navy/60">
               {post.author && (
                 <span className="flex items-center gap-2.5">
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-soft-teal">
@@ -166,10 +166,10 @@ export default async function ResourceArticlePage({
 
               {post.author?.bio && (
                 <aside className="mt-14 rounded-2xl bg-soft-teal/45 p-7">
-                  <h2 className="font-heading text-[14px] font-semibold text-navy">
+                  <h2 className="font-heading text-[15.5px] font-semibold text-navy">
                     About {post.author.name}
                   </h2>
-                  <p className="mt-2.5 text-[13.5px] leading-relaxed text-navy/70">
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-navy/70">
                     {post.author.bio}
                   </p>
                 </aside>
@@ -177,7 +177,7 @@ export default async function ResourceArticlePage({
 
               <Link
                 href="/resources"
-                className="mt-12 inline-flex items-center gap-2 text-[13.5px] font-medium text-teal hover:text-navy"
+                className="mt-12 inline-flex items-center gap-2 text-[15px] font-medium text-teal hover:text-navy"
               >
                 <ArrowRight className="h-4 w-4 rotate-180" />
                 Back to all resources

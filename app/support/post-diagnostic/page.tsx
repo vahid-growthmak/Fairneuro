@@ -1,17 +1,22 @@
-import { SupportServicePage } from '@/components/templates/SupportServicePage';
-import { supportSteps } from '@/lib/support';
+import { Hero } from '@/components/sections/Hero';
+import { CtaBand } from '@/components/sections/Bands';
+import { CardGrid, IconColumns } from '@/components/sections/CardGrid';
+import { ProcessRow } from '@/components/sections/Steps';
+import { BenefitsPanel } from '@/components/sections/Panels';
 import { img } from '@/lib/images';
 import {
   Book,
   Brain,
+  Calendar,
+  CalendarCheck,
   Chart,
-  Document,
+  ClipboardCheck,
   GradCap,
-  Heart,
   HeartHand,
+  Lock,
   People,
   Person,
-  Signpost,
+  Rosette,
   Target,
   TrendUp,
 } from '@/components/icons';
@@ -19,68 +24,87 @@ import {
 export const metadata = {
   title: 'Post-Diagnostic Support',
   description:
-    'Guidance, resources and coaching after diagnosis — so you can take confident next steps and build practical everyday strategies.',
+    'Turn understanding into action with practical strategies, tools and ongoing guidance after your diagnosis.',
 };
 
 export default function Page() {
   return (
-    <SupportServicePage
-      crumbs={[
-        { label: 'Home', href: '/' },
-        { label: 'Support', href: '/support' },
-        { label: 'Post-Diagnostic Support' },
-      ]}
-      title="Post-Diagnostic Support That Empowers"
-      lede="Guidance today. Confidence for tomorrow."
-      body="A diagnosis answers one question and opens several more. Our post-diagnostic support helps you understand what it means for you, and turn insight into practical everyday change."
-      ticks={['Personalised', 'Practical', 'Ongoing', 'Empowering']}
-      image={{ src: img.heroConsultation, alt: 'A person reading their report' }}
-      benefits={{
-        heading: 'How we support you after your diagnosis',
-        items: [
-          { icon: Document, title: 'Understanding Your Diagnosis', desc: 'We walk through your report and answer every question.', accent: 'teal' },
-          { icon: Target, title: 'Personalised Action Plan', desc: 'Clear, prioritised next steps built around your life.', accent: 'coral' },
-          { icon: Book, title: 'Education & Resources', desc: 'Trusted guides, tools and reading tailored to you.', accent: 'orange' },
-          { icon: Brain, title: 'Coaching & Skills Development', desc: 'Build practical strategies with a specialist coach.', accent: 'teal' },
-          { icon: Heart, title: 'Emotional Wellbeing', desc: 'Support for processing what your diagnosis means.', accent: 'coral' },
-          { icon: Chart, title: 'Review & Progress', desc: 'Regular check-ins to keep momentum going.', accent: 'teal' },
-        ],
-      }}
-      audience={{
-        heading: 'Who is post-diagnostic support for?',
-        items: [
-          { icon: Person, title: 'Recently Diagnosed Adults', desc: 'For adults wanting to make sense of a new diagnosis.', accent: 'teal' },
-          { icon: People, title: 'Parents & Families', desc: "For families supporting a child after their assessment.", accent: 'coral' },
-          { icon: GradCap, title: 'Students', desc: 'For students accessing study support and adjustments.', accent: 'orange' },
-          { icon: Signpost, title: 'Anyone Assessed Elsewhere', desc: 'Support is available even if you were assessed by another provider.', accent: 'teal' },
-          { icon: HeartHand, title: 'Anyone Seeking Direction', desc: 'For anyone who has a report but is unsure what to do next.', accent: 'coral' },
-        ],
-      }}
-      helps={{
-        heading: 'How post-diagnostic support can help',
-        items: [
-          { icon: TrendUp, title: 'Greater confidence', accent: 'teal' },
-          { icon: Target, title: 'Better daily functioning', accent: 'coral' },
-          { icon: People, title: 'Stronger relationships', accent: 'orange' },
-          { icon: Heart, title: 'Reduced stress', accent: 'teal' },
-          { icon: Chart, title: 'Long-term growth', accent: 'coral' },
-        ],
-      }}
-      includes={{
-        heading: "What's included in post-diagnostic support?",
-        steps: supportSteps({
-          consultDesc: 'We review your results together and answer your questions.',
-          planTitle: 'Create Your Plan',
-          planDesc: 'A prioritised plan of practical next steps built around your goals.',
-          sessionTitle: 'Access Support',
-          sessionDesc: 'Coaching, therapy, workplace or education support as needed.',
-          trackingDesc: 'Take action with structured guidance and accountability.',
-          toolsDesc: 'Resources, tools and templates for everyday life.',
-          ongoingDesc: 'Regular reviews so your support evolves as you do.',
-        }),
-      }}
-      promptTitle="Not sure what your next step should be?"
-      ctaTitle="You don't have to navigate this journey alone."
-    />
+    <>
+      <Hero
+        crumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Support', href: '/support' },
+          { label: 'Post-Diagnostic Support' },
+        ]}
+        title="Post-Diagnostic Support That Empowers."
+        lede="Guidance today. Confidence for tomorrow."
+        body="A diagnosis is an important step, but it's just the beginning. Our post-diagnostic support helps you turn understanding into action with practical strategies, tools and ongoing guidance tailored to you."
+        secondaryCta={{ label: 'How It Works', href: '/how-it-works' }}
+        image={{ src: img.heroSupport, alt: 'A person writing in a notebook' }}
+        features={[
+          { icon: Person, title: 'Personalised', desc: 'Support tailored to your strengths, challenges and goals.', accent: 'teal' },
+          { icon: Target, title: 'Practical', desc: 'Actionable strategies you can use in daily life.', accent: 'teal' },
+          { icon: People, title: 'Ongoing', desc: 'Continued support whenever you need it.', accent: 'teal' },
+          { icon: TrendUp, title: 'Empowering', desc: 'Build confidence, independence and long-term success.', accent: 'teal' },
+        ]}
+      />
+
+      <CardGrid
+        title="How we support you after your diagnosis"
+        columns={6}
+        background="white"
+        cardAlign="left"
+        items={[
+          { icon: Person, title: 'Understanding Your Diagnosis', desc: 'We help you make sense of your results and what they mean for you.', href: '/book-consultation', accent: 'teal' },
+          { icon: Brain, title: 'Personalised Action Plan', desc: 'A tailored plan with practical strategies and clear goals.', href: '/book-consultation', accent: 'purple' },
+          { icon: GradCap, title: 'Education & Resources', desc: 'Access to expert resources to help you learn, adapt and grow.', href: '/resources', accent: 'orange' },
+          { icon: People, title: 'Coaching & Skills Development', desc: 'Build skills in organisation, focus, communication and more.', href: '/support/adhd-coaching', accent: 'green' },
+          { icon: HeartHand, title: 'Emotional Wellbeing', desc: 'Support for your mental health, self-esteem and overall wellbeing.', href: '/support/therapy-wellbeing', accent: 'coral' },
+          { icon: CalendarCheck, title: 'Review & Progress', desc: 'Regular check-ins to review progress and adjust your plan.', href: '/book-consultation', accent: 'blue' },
+        ]}
+      />
+
+      <BenefitsPanel
+        title="The benefits of ongoing support"
+        items={[
+          { title: 'Greater Confidence', desc: 'Feel more confident in your abilities and decisions.' },
+          { title: 'Better Daily Functioning', desc: 'Practical tools to improve focus, routines and productivity.' },
+          { title: 'Stronger Relationships', desc: 'Improve communication and understanding with others.' },
+          { title: 'Reduced Stress', desc: 'Develop coping strategies to manage challenges more effectively.' },
+          { title: 'Long-Term Growth', desc: 'Build resilience and create a future you feel positive about.' },
+        ]}
+      />
+
+      <ProcessRow
+        title="How it works"
+        background="white"
+        steps={[
+          { icon: ClipboardCheck, title: 'Review Your Results', desc: 'We go through your diagnosis and answer your questions.', accent: 'teal' },
+          { icon: Book, title: 'Create Your Plan', desc: 'We create a personalised plan based on your needs and goals.', accent: 'purple' },
+          { icon: People, title: 'Access Support', desc: 'Connect with the right support, coaching and resources.', accent: 'orange' },
+          { icon: Target, title: 'Take Action', desc: 'Use practical strategies in your daily life.', accent: 'green' },
+          { icon: Chart, title: 'Review & Thrive', desc: 'We review progress and celebrate your growth.', accent: 'blue' },
+        ]}
+      />
+
+      <CtaBand
+        title="You don't have to navigate this journey alone."
+        body="Book a free consultation today and let us help you take the next step with confidence."
+        ticks={null}
+        background="white"
+      />
+
+      <IconColumns
+        boxed
+        compact
+        background="ivory"
+        items={[
+          { icon: Lock, title: 'Your privacy is our priority', desc: 'All information is confidential and handled with care.', accent: 'teal' },
+          { icon: Rosette, title: 'Expert Support', desc: 'Our team has extensive experience in neurodiversity care and support.', accent: 'purple' },
+          { icon: Book, title: 'Evidence-Based', desc: 'Our support is built on the latest research and best clinical practice.', accent: 'coral' },
+          { icon: People, title: 'Trusted by Thousands', desc: "We're proud to support individuals and families every day.", accent: 'blue' },
+        ]}
+      />
+    </>
   );
 }

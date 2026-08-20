@@ -30,9 +30,11 @@ export interface HeroProps {
   features?: HeroFeature[];
   /** Inner pages sit on warm ivory; some sit on white. */
   background?: 'ivory' | 'white';
-  /** Homepage uses the Poppins heading face; inner pages use the display serif. */
+  /** Headings are Poppins site-wide; `serif` opts a single hero into Fraunces. */
   titleFont?: 'serif' | 'sans';
   titleClassName?: string;
+  /** Extra content under the body copy, e.g. the FAIR Standard badge. */
+  children?: ReactNode;
 }
 
 export function Hero({
@@ -47,25 +49,29 @@ export function Hero({
   image,
   features,
   background = 'ivory',
-  titleFont = 'serif',
+  titleFont = 'sans',
   titleClassName,
+  children,
 }: HeroProps) {
+  // Four features sit as 2x2 in the narrow hero column; two or three fit a row.
+  const featureCols = !features ? 1 : features.length >= 4 ? 2 : Math.max(features.length, 1);
+
   return (
     <section className={cn('relative overflow-hidden', background === 'ivory' ? 'bg-ivory' : 'bg-white')}>
       <div className="shell pb-10 pt-8 lg:pb-12 lg:pt-9">
         {crumbs && <Breadcrumb items={crumbs} />}
 
         <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10">
-          <div>
+          <div data-reveal>
             {eyebrow && (
-              <p className="mb-4 font-heading text-[11.5px] font-semibold uppercase tracking-[0.18em] text-teal">
+              <p className="mb-4 font-heading text-[12.5px] font-semibold uppercase tracking-[0.18em] text-teal">
                 {eyebrow}
               </p>
             )}
 
             <h1
               className={cn(
-                'text-[40px] font-semibold leading-[1.06] text-navy sm:text-[50px] lg:text-[57px]',
+                'text-[42px] font-semibold leading-[1.06] text-navy sm:text-[52px] lg:text-[59px]',
                 titleFont === 'serif' ? 'font-display' : 'font-heading tracking-[-0.015em]',
                 titleClassName,
               )}
@@ -74,29 +80,41 @@ export function Hero({
             </h1>
 
             {lede && (
-              <p className="mt-3.5 font-heading text-[18px] font-medium leading-snug text-teal sm:text-[20px]">
+              <p className="mt-3.5 font-heading text-[19.5px] font-medium leading-snug text-coral sm:text-[21.5px]">
                 {lede}
               </p>
             )}
 
             {body && (
-              <p className="mt-5 max-w-[21.5rem] text-[15px] leading-[1.65] text-navy/70">{body}</p>
+              <p className="mt-5 max-w-[36rem] text-[16.5px] leading-[1.65] text-navy/70">{body}</p>
             )}
 
+            {children}
+
             {features && (
-              <ul className="mt-7 flex flex-wrap gap-x-8 gap-y-5">
+              // A flex row wrapped 3 + 1 in the hero column, orphaning the last
+              // feature and leaving its divider at the start of a row. A grid
+              // keeps the columns even and the dividers between them.
+              <ul
+                className={cn(
+                  'mt-7 grid gap-x-6 gap-y-6',
+                  featureCols === 2 && 'grid-cols-2',
+                  featureCols === 3 && 'grid-cols-3',
+                  featureCols === 1 && 'grid-cols-1',
+                )}
+              >
                 {features.map((f, i) => (
                   <li
                     key={f.title}
                     className={cn(
-                      'max-w-[150px]',
-                      i > 0 && 'border-l border-navy/10 pl-8',
+                      'min-w-0',
+                      i % featureCols !== 0 && 'border-l border-navy/10 pl-6',
                     )}
                   >
                     <f.icon className={cn('mb-2 h-6 w-6', accents[f.accent ?? 'teal'].fg)} />
-                    <p className="font-heading text-[13px] font-semibold text-navy">{f.title}</p>
+                    <p className="font-heading text-[14px] font-semibold text-navy">{f.title}</p>
                     {f.desc && (
-                      <p className="mt-1 text-[11.5px] leading-relaxed text-navy/60">{f.desc}</p>
+                      <p className="mt-1 text-[12.5px] leading-relaxed text-navy/60">{f.desc}</p>
                     )}
                   </li>
                 ))}
@@ -142,11 +160,11 @@ export function HeroFeatureCards({ items }: { items: HeroFeature[] }) {
             >
               <IconBadge icon={f.icon} accent={f.accent ?? (['teal', 'coral', 'orange', 'teal'] as const)[i % 4]} size="sm" />
               <div>
-                <p className="font-heading text-[13.5px] font-semibold leading-snug text-navy">
+                <p className="font-heading text-[15px] font-semibold leading-snug text-navy">
                   {f.title}
                 </p>
                 {f.desc && (
-                  <p className="mt-1.5 text-[12px] leading-relaxed text-navy/62">{f.desc}</p>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-navy/62">{f.desc}</p>
                 )}
               </div>
             </div>

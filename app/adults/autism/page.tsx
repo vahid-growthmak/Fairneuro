@@ -1,5 +1,5 @@
 import { AssessmentPage } from '@/components/templates/AssessmentPage';
-import { adultAudience, adultTrust, includedSteps } from '@/lib/shared';
+import { adultAudience, adultTrust, includedSteps, withDescs } from '@/lib/shared';
 import { Brain, Calendar, Chats, People, Star, TrendUp, Waves } from '@/components/icons';
 import { img } from '@/lib/images';
 
@@ -48,7 +48,11 @@ export default function Page() {
           nextDesc: 'Guidance and ongoing support so you can thrive beyond the diagnosis.',
         }),
       }}
-      audience={{ heading: 'Who is this assessment for?', items: adultAudience('autism') }}
+      audience={{ heading: 'Who is this assessment for?', items: withDescs(adultAudience('autism'), [
+        'For adults seeking answers about lifelong challenges, relationships, work, or daily life.',
+        'For university students or young adults navigating independence, relationships and identity.',
+        'For professionals looking to understand their strengths, needs and workplace wellbeing.',
+      ]) }}
       trust={adultTrust}
     />
   );

@@ -7,13 +7,11 @@ import {
   Calendar,
   Chat,
   ClipboardCheck,
-  Document,
   Heart,
   HeartHand,
   Laptop,
   Lock,
   People,
-  Person,
   Star,
 } from '@/components/icons';
 
@@ -33,15 +31,20 @@ export default function Page() {
           { label: 'Preparing for Your Assessment' },
         ]}
         title="Preparing for Your Assessment"
-        lede="A little preparation makes a big difference."
-        body="Knowing what to expect helps you feel calmer and get more from your appointment. Here is everything worth doing before the day."
+        lede="A little preparation can make a big difference."
+        body="Being prepared helps us get to know you (or your child) better and ensures your assessment is as accurate and helpful as possible."
         secondaryCta={{ label: 'How It Works', href: '/how-it-works' }}
+        ticks={[
+          'Feel confident and informed',
+          'Help us understand your experiences',
+          'Make the assessment process smoother',
+        ]}
         image={{ src: img.heroConsultation, alt: 'A person preparing notes' }}
       />
 
       <SplitBand
-        title="It's completely normal to feel nervous."
-        body="Most people do. There are no right or wrong answers, nothing to revise for, and nothing you can fail."
+        title="It's okay to feel nervous."
+        body="Our team is here to support you in a safe, understanding and respectful environment."
         cta={{ label: 'Talk to Our Team', href: '/contact' }}
         icon={Heart}
         background="white"
@@ -49,41 +52,36 @@ export default function Page() {
 
       <CardGrid
         title="How to prepare"
+        subtitle="These simple steps can help you feel more prepared for your assessment."
         columns={3}
         background="white"
         cardAlign="left"
         items={[
-          { icon: Document, title: 'Gather any past reports', desc: 'School reports, previous assessments, occupational health letters or GP correspondence — anything relevant helps build the picture.', accent: 'teal' },
-          { icon: ClipboardCheck, title: 'Complete your questionnaires early', desc: 'Give yourself unhurried time. Answer as you actually are day to day, not how you think you should be.', accent: 'coral' },
-          { icon: Chat, title: 'Write down your examples', desc: 'Specific, everyday examples are far more useful than general statements. Jot them down as they occur to you.', accent: 'orange' },
-          { icon: People, title: 'Ask someone who knows you well', desc: 'A partner, parent or close friend can often add detail you have normalised over the years.', accent: 'teal' },
-          { icon: Laptop, title: 'Check your setup', desc: 'For online appointments, test your camera, microphone and connection, and find a quiet, private space.', accent: 'purple' },
-          { icon: Calendar, title: 'Allow more time than you need', desc: 'Avoid scheduling anything immediately afterwards. Assessments can be tiring and you may want time to decompress.', accent: 'coral' },
+          { icon: Calendar, title: 'Check your appointment details', desc: 'Make sure you know the date, time and whether your assessment is online or in-person.', accent: 'coral' },
+          { icon: ClipboardCheck, title: 'Gather relevant information', desc: 'Think about your developmental history, previous reports, school or work feedback or any supporting documents.', accent: 'coral' },
+          { icon: Chat, title: 'Reflect on key experiences', desc: 'Consider current challenges, strengths and how they impact daily life — this will help guide the conversation.', accent: 'coral' },
+          { icon: People, title: 'Involve someone who knows you', desc: 'A parent, partner, teacher or carer may be asked for their perspective; their insight can be very valuable.', accent: 'coral' },
+          { icon: Laptop, title: 'Plan for the day', desc: 'Choose a quiet space, limit distractions and give yourself plenty of time so you can relax and focus.', accent: 'coral' },
+          { icon: Heart, title: 'Be yourself', desc: "There's no right or wrong way to be. Honesty helps us understand you better and provide the right support.", accent: 'coral' },
         ]}
       />
 
-      <IconColumns
-        title="What to expect on the day"
-        columns={4}
-        background="ivory"
-        items={[
-          { icon: Chat, title: 'A conversation, not a test', desc: 'Your assessor will guide you through, at your pace.', accent: 'teal' },
-          { icon: Book, title: 'Some structured tasks', desc: 'Depending on the assessment, there may be short activities.', accent: 'coral' },
-          { icon: Person, title: 'Breaks whenever you need', desc: 'Just say — breaks are expected and encouraged.', accent: 'orange' },
-          { icon: Lock, title: 'Complete confidentiality', desc: 'Nothing is shared without your explicit consent.', accent: 'teal' },
-        ]}
+      <SplitBand
+        title="Need help preparing?"
+        body="If you have any questions before your assessment, our team is here to help."
+        cta={{ label: 'Book Free Consultation', href: '/book-consultation' }}
+        icon={HeartHand}
+        background="white"
       />
 
       <IconColumns
-        boxed
         compact
-        columns={4}
         background="white"
         items={[
-          { icon: Star, title: 'Be yourself', desc: 'Masking makes results less useful.', accent: 'teal' },
-          { icon: HeartHand, title: 'Ask questions', desc: 'Any time, about anything.', accent: 'coral' },
-          { icon: Heart, title: 'Go easy on yourself', desc: 'This is a supportive process.', accent: 'orange' },
-          { icon: Document, title: 'Keep your notes', desc: 'They help at the feedback session too.', accent: 'teal' },
+          { icon: HeartHand, title: 'Compassionate Support', desc: 'We understand that every journey is unique.', accent: 'coral' },
+          { icon: Lock, title: 'Safe & Confidential', desc: 'Your information is always protected and private.', accent: 'teal' },
+          { icon: People, title: 'Expert Guidance', desc: 'Our specialists are here to support you every step.', accent: 'orange' },
+          { icon: Star, title: 'Personalised Care', desc: 'We tailor the assessment and support to your needs.', accent: 'purple' },
         ]}
       />
 

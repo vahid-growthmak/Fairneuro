@@ -22,6 +22,11 @@ import {
 import type { CardItem } from '@/components/sections/CardGrid';
 import type { Step } from '@/components/sections/Steps';
 
+/** Restate the descriptions of a shared card set, keeping icons, links and accents. */
+export function withDescs(items: CardItem[], descs: (string | null)[]): CardItem[] {
+  return items.map((item, i) => (descs[i] ? { ...item, desc: descs[i] as string } : item));
+}
+
 /** Trust strip used at the foot of adult assessment pages. */
 export const adultTrust: CardItem[] = [
   { icon: ShieldCheck, title: 'Evidence-based assessment', desc: 'Using gold-standard tools and frameworks.', accent: 'teal' },

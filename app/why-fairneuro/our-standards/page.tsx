@@ -2,20 +2,20 @@ import { Hero } from '@/components/sections/Hero';
 import { CtaBand } from '@/components/sections/Bands';
 import { IconColumns } from '@/components/sections/CardGrid';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Brain, Check, Leaf, Lock, People, Person, Rosette, ShieldCheck } from '@/components/icons';
+import { Brain, Check, Leaf, Lock, People, Person, Rosette, ShieldCheck, ShieldLock } from '@/components/icons';
 import { img } from '@/lib/images';
 
 export const metadata = {
   title: 'Our Standards',
   description:
-    'Clinical excellence, ethical care, always. The FAIR Standard™ guides every Fairneuro assessment: Fair, Accurate, Individualised, Respectful.',
+    'Clinical excellence, ethical care, always. The FAIR Standard™ guides every Fairneuro assessment: Fast, Accessible, Integrated, Reliable.',
 };
 
 const fair = [
-  { word: 'Fair', desc: 'We provide unbiased, equitable and inclusive assessments.' },
-  { word: 'Accurate', desc: 'We use validated tools and expert clinical judgement.' },
-  { word: 'Individualised', desc: "We tailor our approach to each person's unique profile." },
-  { word: 'Respectful', desc: 'We listen, we care and we treat every individual with respect.' },
+  { word: 'Fast', desc: 'Efficient access without unnecessary barriers.' },
+  { word: 'Accessible', desc: 'Straightforward, transparent and designed around real people.' },
+  { word: 'Integrated', desc: 'Assessment connected to the support that can follow.' },
+  { word: 'Reliable', desc: 'Professional assessment and care you can have confidence in.' },
 ];
 
 const accreditations = [
@@ -41,7 +41,24 @@ export default function Page() {
         body="At Fairneuro, we are committed to the highest standards in neurodiversity assessment and support. Our clinical practices are built on evidence, integrity and compassion."
         secondaryCta={{ label: 'How It Works', href: '/how-it-works' }}
         image={{ src: img.heroStandards, alt: 'A clinician at work' }}
-      />
+      >
+        <div className="mt-7 inline-flex items-start gap-3.5 rounded-xl bg-soft-teal/55 px-5 py-4">
+          <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white">
+            <ShieldLock className="h-5 w-5 text-teal" />
+          </span>
+          <div>
+            <p className="font-heading text-[15px] font-semibold text-navy">
+              The FAIR Standard&trade;
+            </p>
+            <p className="mt-1 text-[13.5px] leading-snug text-navy/70">
+              A framework that guides everything we do.
+            </p>
+            <p className="mt-1 font-heading text-[13.5px] font-medium text-teal">
+              Fast. Accessible. Integrated. Reliable.
+            </p>
+          </div>
+        </div>
+      </Hero>
 
       <IconColumns
         title="Our commitment to high standards"
@@ -89,10 +106,10 @@ export default function Page() {
             </div>
 
             <div>
-              <h2 className="font-display text-[24px] font-semibold text-teal sm:text-[27px]">
+              <h2 className="font-heading text-[26px] font-semibold text-teal sm:text-[29px]">
                 The FAIR Standard™
               </h2>
-              <p className="mt-4 text-[13.5px] leading-relaxed text-navy/70">
+              <p className="mt-4 text-[15px] leading-relaxed text-navy/70">
                 Our proprietary framework ensures every assessment meets the highest standards of
                 care.
               </p>
@@ -105,8 +122,8 @@ export default function Page() {
                     <Check className="h-2.5 w-2.5 text-teal" strokeWidth={3.2} />
                   </span>
                   <div>
-                    <p className="font-heading text-[13.5px] font-semibold text-navy">{f.word}</p>
-                    <p className="mt-1 text-[12px] leading-relaxed text-navy/65">{f.desc}</p>
+                    <p className="font-heading text-[15px] font-semibold text-navy">{f.word}</p>
+                    <p className="mt-1 text-[13px] leading-relaxed text-navy/65">{f.desc}</p>
                   </div>
                 </li>
               ))}
@@ -125,10 +142,10 @@ export default function Page() {
                 key={a.name}
                 className={`px-5 text-center ${i > 0 ? 'lg:border-l lg:border-navy/[0.08]' : ''}`}
               >
-                <p className="font-heading text-[20px] font-semibold lowercase tracking-tight text-navy">
+                <p className="font-heading text-[21.5px] font-semibold lowercase tracking-tight text-navy">
                   {a.name}
                 </p>
-                <p className="mt-1.5 text-[11px] leading-snug text-navy/58">{a.sub}</p>
+                <p className="mt-1.5 text-[12px] leading-snug text-navy/58">{a.sub}</p>
               </li>
             ))}
           </ul>

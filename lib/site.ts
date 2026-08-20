@@ -4,8 +4,8 @@ export const site = {
   tagline: 'Assessment is only the beginning.',
   description:
     'Expert neurodiversity assessment with personalised support for everything that comes next.',
-  phone: '020 3983 9933',
-  email: 'hello@fairneuro.com',
+  phone: '+44 7395335182',
+  email: 'management@fairneurodiagnostics.com',
   hours: 'Mon–Fri 9am–6pm',
   location: 'Locations & Online · UK-wide',
 };
@@ -94,28 +94,6 @@ export interface NavItem {
 export const primaryNav: NavItem[] = [
   { label: 'Assessments', href: '/assessments', mega: 'assessments' },
   {
-    label: 'Adults',
-    href: '/adults',
-    children: [
-      { label: 'Adult ADHD Assessment', href: '/adults/adhd' },
-      { label: 'Adult Autism Assessment', href: '/adults/autism' },
-      { label: 'Adult Dyslexia Assessment', href: '/adults/dyslexia' },
-      { label: 'Adult ADHD + Autism Assessment', href: '/adults/adhd-autism' },
-      { label: 'Support for Adults', href: '/support' },
-    ],
-  },
-  {
-    label: 'Children',
-    href: '/children',
-    children: [
-      { label: 'Child ADHD Assessment', href: '/children/adhd' },
-      { label: 'Child Autism Assessment', href: '/children/autism' },
-      { label: 'Child Dyslexia Assessment', href: '/children/dyslexia' },
-      { label: 'Child ADHD + Autism Assessment', href: '/children/adhd-autism' },
-      { label: 'Parent & Family Support', href: '/support/parent-family' },
-    ],
-  },
-  {
     label: 'Support',
     href: '/support',
     children: [
@@ -139,6 +117,7 @@ export const primaryNav: NavItem[] = [
       { label: 'Why Fairneuro', href: '/why-fairneuro' },
       { label: 'Our Standards', href: '/why-fairneuro/our-standards' },
       { label: 'About Us', href: '/about' },
+      { label: 'Become an Assessor', href: '/become-an-assessor' },
       { label: 'Contact Us', href: '/contact' },
     ],
   },
@@ -147,7 +126,9 @@ export const primaryNav: NavItem[] = [
     href: '/resources',
     children: [
       { label: 'All Resources', href: '/resources' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Free Online Screener', href: '/screener' },
+      { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
       { label: 'Preparing for Your Assessment', href: '/resources/preparing-for-your-assessment' },
       { label: 'Your Report Explained', href: '/resources/your-report-explained' },
       { label: 'FAQs', href: '/faqs' },
@@ -172,6 +153,7 @@ export const footerColumns = [
   {
     title: 'Adults',
     links: [
+      { label: 'Assessments for Adults', href: '/adults' },
       { label: 'Adult ADHD', href: '/adults/adhd' },
       { label: 'Adult Autism', href: '/adults/autism' },
       { label: 'Adult Dyslexia', href: '/adults/dyslexia' },
@@ -180,6 +162,7 @@ export const footerColumns = [
   {
     title: 'Children',
     links: [
+      { label: 'Assessments for Children', href: '/children' },
       { label: 'Child ADHD', href: '/children/adhd' },
       { label: 'Child Autism', href: '/children/autism' },
       { label: 'Child Dyslexia', href: '/children/dyslexia' },
@@ -199,11 +182,14 @@ export const footerColumns = [
       { label: 'Why Fairneuro', href: '/why-fairneuro' },
       { label: 'Our Standards', href: '/why-fairneuro/our-standards' },
       { label: 'How It Works', href: '/how-it-works' },
+      { label: 'Become an Assessor', href: '/become-an-assessor' },
     ],
   },
   {
     title: 'Help',
     links: [
+      { label: 'Blog', href: '/blog' },
+      { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
       { label: 'FAQs', href: '/faqs' },
       { label: 'Contact Us', href: '/contact' },
     ],
