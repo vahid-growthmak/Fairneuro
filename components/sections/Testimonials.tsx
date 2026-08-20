@@ -62,7 +62,7 @@ export function TestimonialCarousel({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} serif={serif} />}
 
         <div className="relative mx-auto max-w-4xl">
@@ -161,7 +161,7 @@ export function TestimonialGrid({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} />}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((t) => (
@@ -206,7 +206,7 @@ export function TestimonialQuote({
 
   return (
     <section className={bg}>
-      <div className="shell py-14 lg:py-16">
+      <div className="shell py-10 lg:py-12">
         <div className="relative mx-auto max-w-4xl px-14 text-center">
           <Quote className="mx-auto h-8 w-8 text-teal/75" />
 

@@ -25,7 +25,7 @@ export function AccreditationStrip({
 
   return (
     <section className={bg}>
-      <div className="shell pb-16">
+      <div className="shell pb-11">
         <div className="grid items-center gap-6 rounded-2xl border border-navy/[0.07] bg-white px-7 py-6 shadow-card lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2fr)]">
           <div className="flex items-start gap-4">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-soft-teal">

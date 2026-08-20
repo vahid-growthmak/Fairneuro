@@ -102,7 +102,7 @@ export function CtaBand({
 
   return (
     <section className={bg}>
-      <div className="shell py-12">
+      <div className="shell py-9">
         <div
           className={cn(
             'relative overflow-hidden rounded-2xl px-6 py-10 sm:px-8 lg:px-9',

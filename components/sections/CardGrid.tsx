@@ -63,7 +63,7 @@ export function CardGrid({
 
   return (
     <section className={cn(bg, className)}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         {title && (
           <SectionHeading
             title={title}
@@ -82,7 +82,7 @@ export function CardGrid({
                 {iconStyle === 'bare' ? (
                   <item.icon
                     className={cn(
-                      'h-11 w-11',
+                      'h-14 w-14',
                       a.fg,
                       cardAlign === 'center' && 'mx-auto',
                     )}
@@ -179,7 +179,7 @@ export function IconColumns({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} serif={serif} />}
         <div
           className={cn(

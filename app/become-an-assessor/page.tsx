@@ -46,7 +46,7 @@ export default function Page() {
 
       {/* Who we are looking for */}
       <section className="bg-white">
-        <div className="shell py-14 lg:py-16">
+        <div className="shell py-10 lg:py-12">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-[16.5px] leading-relaxed text-navy/75">
               We are looking for professionals who combine strong clinical or specialist assessment
@@ -109,7 +109,7 @@ export default function Page() {
 
       {/* The application */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading
             title="Apply to Join FairNeuro"
             subtitle="Please complete the application below."

@@ -5,9 +5,9 @@ import { cn } from '@/lib/cn';
 export type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
 const sizes = {
-  sm: { box: 'h-11 w-11', icon: 'h-[22px] w-[22px]' },
-  md: { box: 'h-14 w-14', icon: 'h-7 w-7' },
-  lg: { box: 'h-16 w-16', icon: 'h-8 w-8' },
+  sm: { box: 'h-12 w-12', icon: 'h-6 w-6' },
+  md: { box: 'h-16 w-16', icon: 'h-8 w-8' },
+  lg: { box: 'h-[72px] w-[72px]', icon: 'h-9 w-9' },
 } as const;
 
 /** Pastel circle with a line icon — the recurring card/feature motif. */

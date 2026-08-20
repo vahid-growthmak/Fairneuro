@@ -23,7 +23,7 @@ export function SectionHeading({
     <div
       data-reveal
       className={cn(
-        'mb-10',
+        'mb-8',
         align === 'center' ? 'text-center' : 'text-left',
         className,
       )}

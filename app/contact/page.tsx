@@ -50,7 +50,7 @@ export default function Page() {
 
       {/* Contact cards */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {contactCards.map((c) => (
               <a
@@ -94,7 +94,7 @@ export default function Page() {
 
       {/* Enquiry form */}
       <section id="enquiry" className="bg-ivory scroll-mt-24">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading
             title="Send us a message"
             subtitle="Fill in the form and a member of our team will be in touch within one working day."

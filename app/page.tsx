@@ -139,7 +139,7 @@ export default async function HomePage() {
 
       {/* Support that goes beyond the diagnosis */}
       <section className="bg-ivory">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="grid gap-10 rounded-2xl bg-white/60 p-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,2fr)] lg:gap-12 lg:p-10">
             <div>
               <h2 className="font-heading text-[26px] font-semibold leading-snug text-navy sm:text-[29px]">

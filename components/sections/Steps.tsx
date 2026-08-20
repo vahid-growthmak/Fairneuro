@@ -32,7 +32,7 @@ export function NumberedSteps({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} serif={serif} />}
 
         <div className="relative">
@@ -100,7 +100,7 @@ export function JourneySteps({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} serif={serif} />}
 
         <div className="relative">
@@ -163,7 +163,7 @@ export function ProcessRow({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         <div className="rounded-2xl bg-white/70 p-8 shadow-card lg:p-10">
           {title && (
             <h2
@@ -223,7 +223,7 @@ export function StepCards({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} serif={serif} />}
         <div data-reveal-stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {steps.map((step, i) => {

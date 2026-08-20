@@ -78,7 +78,7 @@ export default function Page() {
 
       {/* What a quiz can and cannot do */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="grid gap-4 lg:grid-cols-2">
             <div className="rounded-2xl bg-soft-teal/60 p-8 lg:p-10">
               <h2 className="font-heading text-[24px] font-semibold text-navy">
@@ -117,7 +117,7 @@ export default function Page() {
 
       {/* The quiz */}
       <section id="quiz" className="scroll-mt-24 bg-ivory">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading
             title="Take the ADHD quiz"
             subtitle="Answer honestly, based on how things have been for you over the past six months."
@@ -155,7 +155,7 @@ export default function Page() {
 
       {/* FAQs */}
       <section className="bg-ivory">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading title="ADHD quiz questions, answered" />
           <div className="mx-auto max-w-3xl">
             <Accordion items={faqs} />

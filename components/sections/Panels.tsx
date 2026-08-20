@@ -29,7 +29,7 @@ export function SplitFeatureBand({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,2.1fr)] lg:gap-14">
           <div>
             <h2 className="font-heading text-[26px] font-semibold leading-snug text-navy sm:text-[29px]">
@@ -88,7 +88,7 @@ export function BenefitsPanel({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         <div className="relative overflow-hidden rounded-2xl bg-soft-teal/70 px-7 py-10 lg:px-10">
           <h2 className="mb-9 font-heading text-[26px] font-semibold text-navy sm:text-[29px]">
             {title}
@@ -166,7 +166,7 @@ export function TrustSplit({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         <div
           className={cn(
             'grid items-center gap-9 lg:grid-cols-2 lg:gap-14',
@@ -265,7 +265,7 @@ export function FairStandard({
 
   return (
     <section className={bg}>
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-11 lg:py-14">
         <SectionHeading
           title="The FAIR Standard™"
           subtitle="Every Fairneuro journey is built around four principles."

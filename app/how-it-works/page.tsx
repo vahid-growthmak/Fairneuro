@@ -72,7 +72,7 @@ export default function Page() {
 
       {/* What you can expect at each stage */}
       <section className="bg-ivory">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <SectionHeading title="What you can expect at each stage" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {detailedJourney.map((step, i) => {

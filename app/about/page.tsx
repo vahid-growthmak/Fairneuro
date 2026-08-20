@@ -79,7 +79,7 @@ export default function Page() {
 
       {/* Why Fairneuro exists */}
       <section className="bg-white">
-        <div className="shell py-16 lg:py-20">
+        <div className="shell py-11 lg:py-14">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
               <SectionHeading title="Why Fairneuro exists" align="left" />
