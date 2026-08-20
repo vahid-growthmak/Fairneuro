@@ -176,26 +176,26 @@ export function Header() {
       {/* Assessments mega-menu */}
       {open === 'Assessments' && (
         <div className="pointer-events-none absolute inset-x-0 top-full hidden xl:block">
-          <div className="shell pb-6 pt-1">
+          <div className="shell pb-4 pt-1">
             <div
               // The panel is taller than a 720p laptop viewport, so cap it to the
               // space below the header and let it scroll rather than run off-screen.
-              className="pointer-events-auto max-h-[calc(100vh-7rem)] animate-fade-in-up overflow-y-auto overflow-x-hidden overscroll-contain rounded-2xl border border-navy/[0.07] bg-white shadow-mega"
+              className="pointer-events-auto max-h-[calc(100vh-6.5rem)] animate-fade-in-up overflow-y-auto overflow-x-hidden overscroll-contain rounded-2xl border border-navy/[0.07] bg-white shadow-mega"
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
               <div className="grid grid-cols-[300px_1fr]">
                 {/* Left rail */}
-                <div className="relative overflow-hidden bg-soft-teal/70 p-7">
-                  <h2 className="font-heading text-[28px] font-semibold text-navy">Assessments</h2>
-                  <p className="mt-2 font-heading text-[15.5px] font-medium text-teal">
+                <div className="relative overflow-hidden bg-soft-teal/70 p-6">
+                  <h2 className="font-heading text-[25px] font-semibold text-navy">Assessments</h2>
+                  <p className="mt-1.5 font-heading text-[15px] font-medium leading-snug text-teal">
                     Assessment is only the beginning.
                   </p>
-                  <p className="mt-4 text-[14px] leading-relaxed text-navy/70">
+                  <p className="mt-3 text-[13.5px] leading-snug text-navy/70">
                     Comprehensive, personalised neurodevelopmental assessments for adults and
                     children, followed by clear insights and ongoing support that helps you thrive.
                   </p>
-                  <ul className="mt-6 space-y-2.5">
+                  <ul className="mt-4 space-y-2">
                     {['Global experience', 'Carefully matched professionals', 'Support beyond diagnosis'].map(
                       (t) => (
                         <li key={t} className="flex items-center gap-2.5 text-[14px] text-navy/75">
@@ -207,7 +207,7 @@ export function Header() {
                       ),
                     )}
                   </ul>
-                  <div className="relative z-10 mt-7 space-y-2.5">
+                  <div className="relative z-10 mt-5 space-y-2">
                     <Button href="/book-consultation" icon={<Calendar />} className="w-full">
                       Book a Free Consultation
                     </Button>
@@ -233,7 +233,7 @@ export function Header() {
                 </div>
 
                 {/* Columns */}
-                <div className="p-7">
+                <div className="p-5">
                   <div className="grid grid-cols-4 gap-x-5">
                     {assessmentsMega.map((col, i) => {
                       const Icon = megaIcons[col.icon];
@@ -245,19 +245,19 @@ export function Header() {
                             i > 0 && 'border-l border-navy/[0.07] pl-5',
                           )}
                         >
-                          <IconBadge icon={Icon} accent={col.accent} size="md" className="mx-auto mb-3" />
-                          <h3 className="text-center font-heading text-[16.5px] font-semibold text-navy">
+                          <IconBadge icon={Icon} accent={col.accent} size="sm" className="mx-auto mb-2" />
+                          <h3 className="text-center font-heading text-[15.5px] font-semibold leading-snug text-navy">
                             {col.title}
                           </h3>
-                          <p className="mt-2 text-center text-[13.5px] leading-relaxed text-navy/65">
+                          <p className="mt-1.5 text-center text-[13px] leading-snug text-navy/65">
                             {col.desc}
                           </p>
-                          <ul className="mt-4 space-y-0.5 border-t border-navy/[0.07] pt-3">
+                          <ul className="mt-2.5 border-t border-navy/[0.07] pt-1.5">
                             {col.links.map((l) => (
                               <li key={l.label}>
                                 <Link
                                   href={l.href}
-                                  className="group flex items-start justify-between gap-2 rounded-md py-1.5 pr-1 text-[13.5px] text-navy/75 transition-colors hover:text-navy"
+                                  className="group flex items-start justify-between gap-2 rounded-md py-1 pr-1 text-[13px] leading-snug text-navy/75 transition-colors hover:text-navy"
                                 >
                                   <span>{l.label}</span>
                                   <ChevronRight
@@ -279,16 +279,16 @@ export function Header() {
                   </div>
 
                   {/* Other assessments */}
-                  <div className="mt-7 border-t border-navy/[0.07] pt-6">
-                    <h3 className="font-heading text-[16.5px] font-semibold text-navy">
+                  <div className="mt-4 border-t border-navy/[0.07] pt-3">
+                    <h3 className="font-heading text-[15.5px] font-semibold text-navy">
                       Other Assessments
                     </h3>
-                    <div className="mt-4 grid grid-cols-5 gap-3">
+                    <div className="mt-2.5 grid grid-cols-5 gap-2">
                       {otherAssessments.map((a, i) => (
                         <Link
                           key={a.label}
                           href={a.href}
-                          className="flex items-center gap-2.5 rounded-xl border border-navy/[0.08] px-3 py-3 text-[13.5px] font-medium text-navy transition-colors hover:border-teal/40 hover:bg-soft-teal/40"
+                          className="flex items-center gap-2 rounded-xl border border-navy/[0.08] px-2.5 py-2 text-[13px] font-medium leading-snug text-navy transition-colors hover:border-teal/40 hover:bg-soft-teal/40"
                         >
                           <IconBadge
                             icon={[Brain, Person, Book, ShieldCheck][i % 4]}
@@ -300,13 +300,13 @@ export function Header() {
                       ))}
                       <Link
                         href="/assessments"
-                        className="flex items-center justify-between gap-2 rounded-xl border border-teal/45 px-4 py-3 transition-colors hover:bg-soft-teal/40"
+                        className="flex items-center justify-between gap-2 rounded-xl border border-teal/45 px-3 py-2.5 transition-colors hover:bg-soft-teal/40"
                       >
                         <span>
-                          <span className="block text-[13.5px] font-semibold text-teal">
+                          <span className="block text-[13px] font-semibold leading-snug text-teal">
                             View All Assessments
                           </span>
-                          <span className="block text-[12.5px] text-navy/60">
+                          <span className="block text-[12px] leading-snug text-navy/60">
                             Explore our full range
                           </span>
                         </span>
@@ -318,10 +318,10 @@ export function Header() {
               </div>
 
               {/* Footer strip */}
-              <div className="flex items-center justify-between gap-6 border-t border-navy/[0.07] bg-soft-teal/50 px-8 py-5">
+              <div className="flex items-center justify-between gap-6 border-t border-navy/[0.07] bg-soft-teal/50 px-6 py-3.5">
                 <div className="flex items-center gap-4">
-                  <IconBadge icon={ShieldCheck} accent="teal" size="md" />
-                  <p className="max-w-3xl text-[14px] leading-relaxed text-navy/75">
+                  <IconBadge icon={ShieldCheck} accent="teal" size="sm" />
+                  <p className="max-w-3xl text-[13.5px] leading-snug text-navy/75">
                     Every assessment includes a comprehensive report, personalised recommendations
                     and access to ongoing support.
                     <br />
