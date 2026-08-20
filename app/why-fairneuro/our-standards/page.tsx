@@ -8,14 +8,14 @@ import { img } from '@/lib/images';
 export const metadata = {
   title: 'Our Standards',
   description:
-    'Clinical excellence, ethical care, always. The FAIR Standard™ guides every Fairneuro assessment: Fair, Accurate, Individualised, Respectful.',
+    'Clinical excellence, ethical care, always. The FAIR Standard™ guides every Fairneuro assessment: Fast, Accessible, Integrated, Reliable.',
 };
 
 const fair = [
-  { word: 'Fair', desc: 'We provide unbiased, equitable and inclusive assessments.' },
-  { word: 'Accurate', desc: 'We use validated tools and expert clinical judgement.' },
-  { word: 'Individualised', desc: "We tailor our approach to each person's unique profile." },
-  { word: 'Respectful', desc: 'We listen, we care and we treat every individual with respect.' },
+  { word: 'Fast', desc: 'Efficient access without unnecessary barriers.' },
+  { word: 'Accessible', desc: 'Straightforward, transparent and designed around real people.' },
+  { word: 'Integrated', desc: 'Assessment connected to the support that can follow.' },
+  { word: 'Reliable', desc: 'Professional assessment and care you can have confidence in.' },
 ];
 
 const accreditations = [
@@ -54,7 +54,7 @@ export default function Page() {
               A framework that guides everything we do.
             </p>
             <p className="mt-1 font-heading text-[13.5px] font-medium text-teal">
-              Fair. Accurate. Individualised. Respectful.
+              Fast. Accessible. Integrated. Reliable.
             </p>
           </div>
         </div>

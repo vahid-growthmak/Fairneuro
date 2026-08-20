@@ -1,7 +1,9 @@
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, PromptBand } from '@/components/sections/Bands';
 import { CardGrid, IconColumns, type CardItem } from '@/components/sections/CardGrid';
-import { NumberedSteps, type Step } from '@/components/sections/Steps';
+import { JourneySteps, NumberedSteps, type Step } from '@/components/sections/Steps';
+import { FairStandard } from '@/components/sections/Panels';
+import { TestimonialGrid } from '@/components/sections/Testimonials';
 import type { Crumb } from '@/components/ui/Breadcrumb';
 
 export interface AssessmentPageProps {
@@ -19,6 +21,16 @@ export interface AssessmentPageProps {
   audience: { heading: string; items: CardItem[] };
   /** Bottom trust strip. */
   trust: CardItem[];
+  /** Feature strip under the hero. */
+  highlights?: CardItem[];
+  /** "The Fairneuro Assessment Journey" — shown when supplied. */
+  journey?: { heading: string; steps: Step[] };
+  /** "What you receive" — shown when supplied. */
+  receive?: { heading: string; items: CardItem[] };
+  /** FAIR panel — pass true, or a heading to introduce it differently. */
+  fair?: boolean | { title: string };
+  /** Client quotes above the closing CTA. */
+  testimonials?: { quote: string; name: string; role?: string }[];
   promptTitle?: string;
   promptBody?: string;
   ctaTitle?: string;
@@ -40,6 +52,11 @@ export function AssessmentPage({
   includes,
   audience,
   trust,
+  highlights,
+  journey,
+  receive,
+  fair,
+  testimonials,
   promptTitle = 'Not sure if this is the right assessment for you?',
   promptBody = "Book a free consultation with our team and we'll help you find the right pathway.",
   ctaTitle = 'Ready to take the first step?',
@@ -56,6 +73,8 @@ export function AssessmentPage({
         ticks={ticks}
         image={image}
       />
+
+      {highlights && <IconColumns boxed compact items={highlights} background="white" />}
 
       <IconColumns
         title={signals.heading}
@@ -84,6 +103,27 @@ export function AssessmentPage({
         compact
         background="white"
       />
+
+      {journey && <JourneySteps title={journey.heading} steps={journey.steps} background="ivory" />}
+
+      {receive && (
+        <CardGrid
+          title={receive.heading}
+          items={receive.items}
+          columns={5}
+          cardAlign="left"
+          background="white"
+        />
+      )}
+
+      {fair && (
+        <FairStandard
+          title={typeof fair === 'object' ? fair.title : undefined}
+          background="ivory"
+        />
+      )}
+
+      {testimonials && <TestimonialGrid items={testimonials} background="white" />}
 
       <CtaBand title={ctaTitle} body={ctaBody} background="white" />
     </>
