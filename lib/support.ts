@@ -29,6 +29,10 @@ export const coachingTrust: CardItem[] = [
 
 /** The standard six-step support programme (design 17–25). */
 export function supportSteps(opts: {
+  consultTitle?: string;
+  trackingTitle?: string;
+  toolsTitle?: string;
+  ongoingTitle?: string;
   planTitle?: string;
   planDesc?: string;
   sessionTitle?: string;
@@ -41,7 +45,7 @@ export function supportSteps(opts: {
   return [
     {
       icon: Chat,
-      title: 'Initial Consultation',
+      title: opts.consultTitle ?? 'Initial Consultation',
       desc: opts.consultDesc ?? 'We get to know you and understand your goals, challenges and strengths.',
     },
     {
@@ -56,17 +60,17 @@ export function supportSteps(opts: {
     },
     {
       icon: TrendUp,
-      title: 'Progress Tracking',
+      title: opts.trackingTitle ?? 'Progress Tracking',
       desc: opts.trackingDesc ?? 'We review progress together and adjust strategies to keep you moving forward.',
     },
     {
       icon: Chart,
-      title: 'Tools & Resources',
+      title: opts.toolsTitle ?? 'Tools & Resources',
       desc: opts.toolsDesc ?? 'Access helpful tools, resources and exercises to support your journey.',
     },
     {
       icon: Leaf,
-      title: 'Ongoing Support',
+      title: opts.ongoingTitle ?? 'Ongoing Support',
       desc: opts.ongoingDesc ?? 'Continued encouragement and guidance as you grow and achieve your goals.',
     },
   ];

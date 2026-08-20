@@ -1,19 +1,7 @@
 import { SupportServicePage } from '@/components/templates/SupportServicePage';
 import { coachingTrust, supportSteps } from '@/lib/support';
 import { img } from '@/lib/images';
-import {
-  Alarm,
-  Brain,
-  Briefcase,
-  Calendar,
-  Cloud,
-  GradCap,
-  Head,
-  HeartHand,
-  People,
-  Person,
-  Target,
-} from '@/components/icons';
+import { Alarm, Briefcase, Calendar, Cloud, GradCap, Head, Person, Target } from '@/components/icons';
 
 export const metadata = {
   title: 'ADHD Coaching',
@@ -47,26 +35,18 @@ export default function Page() {
       audience={{
         heading: 'Who is ADHD coaching for?',
         items: [
-          { icon: Person, title: 'Adults', desc: "If you're navigating work, relationships or day-to-day life, coaching can help you build strategies that fit your goals.", accent: 'teal' },
-          { icon: GradCap, title: 'Students & Young Adults', desc: 'Support for studying, time management, organisation and building confidence during education and beyond.', accent: 'coral' },
-          { icon: Briefcase, title: 'Professionals', desc: 'Enhance productivity, manage workload and create sustainable routines that support your career.', accent: 'orange' },
-          { icon: People, title: 'Parents & Families', desc: 'Practical guidance for families supporting a child or partner with ADHD.', accent: 'teal' },
-          { icon: HeartHand, title: 'Anyone Seeking Support', desc: 'Coaching is available with or without a formal diagnosis.', accent: 'coral' },
-        ],
-      }}
-      helps={{
-        heading: 'How ADHD coaching can help',
-        items: [
-          { icon: Target, title: 'Build focus and follow-through', accent: 'teal' },
-          { icon: Brain, title: 'Develop practical everyday systems', accent: 'coral' },
-          { icon: Calendar, title: 'Improve organisation and routines', accent: 'orange' },
-          { icon: Briefcase, title: 'Support work and study performance', accent: 'teal' },
-          { icon: HeartHand, title: 'Reduce stress and build confidence', accent: 'coral' },
+          { icon: Person, title: 'Adults', desc: "If you're navigating work, relationships or day-to-day life, coaching can help you build strategies that fit your goals.", href: '/adults', accent: 'teal' },
+          { icon: GradCap, title: 'Students & Young Adults', desc: 'Support for studying, time management, organisation and building confidence during education and beyond.', href: '/support/education-support', accent: 'coral' },
+          { icon: Briefcase, title: 'Professionals', desc: 'Enhance productivity, manage workload and create sustainable routines that support your career.', href: '/support/workplace-support', accent: 'orange' },
         ],
       }}
       includes={{
         heading: "What's included in ADHD coaching?",
         steps: supportSteps({
+          consultTitle: 'Initial goals conversation',
+          trackingTitle: 'Regular 1-to-1 sessions',
+          toolsTitle: 'Progress and accountability',
+          ongoingTitle: 'Ongoing support and next steps',
           consultDesc: "We get to know you, your goals and what you'd like support with.",
           planTitle: 'Personal strengths and challenges review',
           planDesc: 'We explore your strengths, challenges and current strategies.',
