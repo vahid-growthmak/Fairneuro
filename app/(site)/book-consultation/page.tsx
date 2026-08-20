@@ -3,6 +3,8 @@ import { CtaBand } from '@/components/sections/Bands';
 import { ProcessRow } from '@/components/sections/Steps';
 import { TrustSplit } from '@/components/sections/Panels';
 import { AccreditationStrip } from '@/components/sections/Trust';
+import { CalendlyEmbed } from '@/components/sections/CalendlyEmbed';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Bulb, Calendar, CheckCircle, Chat, Lock, People, Person } from '@/components/icons';
 import { img } from '@/lib/images';
 
@@ -60,12 +62,20 @@ export default function Page() {
         }}
       />
 
-      <div id="book" />
+      <section id="book" className="scroll-mt-24 bg-ivory">
+        <div className="shell py-11 lg:py-14">
+          <SectionHeading
+            title="Choose a time that suits you"
+            subtitle="Pick a slot below and we will send a confirmation straight away. Rescheduling is easy if plans change."
+          />
+          <CalendlyEmbed />
+        </div>
+      </section>
 
       <CtaBand
         title="Ready to take the first step?"
         body="Book your free consultation today and let us help you find the right support."
-        cta={{ label: 'Book Your Free Consultation', href: '/contact' }}
+        cta={{ label: 'Book Your Free Consultation', href: '#book' }}
         ticks={null}
         background="white"
       />
