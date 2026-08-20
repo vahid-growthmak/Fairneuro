@@ -55,7 +55,7 @@ export function Footer() {
 
       <div className="border-t border-white/12">
         <div className="shell flex flex-col items-center justify-center gap-x-4 gap-y-2 py-4 text-[12.5px] text-white/55 sm:flex-row">
-          <p>&copy; 2024 Fairneuro Diagnostics. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Fairneuro Diagnostics. All rights reserved.</p>
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             {legalLinks.map((l) => (
               <li key={l.href} className="flex items-center gap-4">

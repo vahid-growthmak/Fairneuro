@@ -24,40 +24,41 @@ CUTOUT_BIN = Path(os.environ.get('CUTOUT_BIN', ROOT / 'scripts' / 'bin' / 'cutou
 API = 'https://api.pexels.com/v1/search'
 
 # kind: 'cutout' = person segmented onto transparency (hero blobs)
+#       'framed' = rectangular photo shown inside a rounded card (heroes)
 #       'crop'   = straight rectangular crop (tiles)
 #       'face'   = square face crop (round testimonial avatars)
 SPECS: dict[str, tuple[str, str, str]] = {
     # key                  query                                              orientation kind
-    'heroHome':          ('happy woman smiling casual',                    'portrait', 'cutout'),
-    'heroAbout':         ('friendly woman smiling casual',             'portrait', 'cutout'),
-    'heroAssessments':   ('professional woman smiling arms crossed',          'portrait', 'cutout'),
-    'heroAdhd':          ('young man smiling casual',                    'portrait', 'cutout'),
-    'heroAutism':        ('young woman smiling casual',                        'portrait', 'cutout'),
-    'heroCombined':      ('young adult smiling casual',                     'portrait', 'cutout'),
-    'heroDyslexia':      ('student holding books smiling',                    'portrait', 'cutout'),
-    'heroDyscalculia':   ('student smiling holding notebook',                   'portrait', 'cutout'),
-    'heroDyspraxia':     ('teenager smiling casual',                        'portrait', 'cutout'),
-    'heroAdults':        ('happy man smiling casual',                    'portrait', 'cutout'),
-    'heroAdultAdhd':     ('man smiling casual shirt',                     'portrait', 'cutout'),
-    'heroAdultAutism':   ('woman smiling casual shirt',                   'portrait', 'cutout'),
-    'heroChildren':      ('happy child smiling school uniform',                             'portrait', 'cutout'),
-    'heroChildAdhd':     ('boy smiling school portrait',                             'portrait', 'cutout'),
-    'heroChildAutism':   ('girl smiling school portrait',                            'portrait', 'cutout'),
-    'heroClinical':      ('friendly doctor smiling',                       'portrait', 'cutout'),
-    'heroCoaching':      ('woman teacher smiling',                    'portrait', 'cutout'),
-    'heroConsultation':  ('woman with laptop smiling',                  'portrait', 'cutout'),
-    'heroContact':       ('call center agent headset smiling',                'portrait', 'cutout'),
-    'heroEmployers':     ('businesswoman smiling office',                    'portrait', 'cutout'),
-    'heroWorkplace':     ('businessman smiling office',                   'portrait', 'cutout'),
-    'heroSchools':       ('teacher smiling classroom',                       'portrait', 'cutout'),
-    'heroReferrals':     ('nurse smiling clipboard',                'portrait', 'cutout'),
-    'heroSupport':       ('friendly woman smiling arms crossed',                     'portrait', 'cutout'),
-    'heroFaqs':          ('woman thinking smiling',                         'portrait', 'cutout'),
-    'heroHowItWorks':    ('man smiling shirt studio',                'portrait', 'cutout'),
-    'heroResources':     ('woman holding book smiling',                           'portrait', 'cutout'),
-    'heroScreener':      ('person using laptop smiling',                     'portrait', 'cutout'),
-    'heroStandards':     ('confident woman smiling professional',                  'portrait', 'cutout'),
-    'heroWhy':           ('happy person smiling natural light',            'portrait', 'cutout'),
+    'heroHome':          ('happy woman smiling casual',                    'landscape', 'framed'),
+    'heroAbout':         ('friendly woman smiling casual',             'landscape', 'framed'),
+    'heroAssessments':   ('professional woman smiling arms crossed',          'landscape', 'framed'),
+    'heroAdhd':          ('young man smiling casual',                    'landscape', 'framed'),
+    'heroAutism':        ('young woman smiling casual',                        'landscape', 'framed'),
+    'heroCombined':      ('young adult smiling casual',                     'landscape', 'framed'),
+    'heroDyslexia':      ('student holding books smiling',                    'landscape', 'framed'),
+    'heroDyscalculia':   ('student smiling holding notebook',                   'landscape', 'framed'),
+    'heroDyspraxia':     ('teenager smiling casual',                        'landscape', 'framed'),
+    'heroAdults':        ('happy man smiling casual',                    'landscape', 'framed'),
+    'heroAdultAdhd':     ('man smiling casual shirt',                     'landscape', 'framed'),
+    'heroAdultAutism':   ('woman smiling casual shirt',                   'landscape', 'framed'),
+    'heroChildren':      ('happy child smiling school uniform',                             'landscape', 'framed'),
+    'heroChildAdhd':     ('boy smiling school portrait',                             'landscape', 'framed'),
+    'heroChildAutism':   ('girl smiling school portrait',                            'landscape', 'framed'),
+    'heroClinical':      ('friendly doctor smiling',                       'landscape', 'framed'),
+    'heroCoaching':      ('woman teacher smiling',                    'landscape', 'framed'),
+    'heroConsultation':  ('woman with laptop smiling',                  'landscape', 'framed'),
+    'heroContact':       ('call center agent headset smiling',                'landscape', 'framed'),
+    'heroEmployers':     ('businesswoman smiling office',                    'landscape', 'framed'),
+    'heroWorkplace':     ('businessman smiling office',                   'landscape', 'framed'),
+    'heroSchools':       ('teacher smiling classroom',                       'landscape', 'framed'),
+    'heroReferrals':     ('nurse smiling clipboard',                'landscape', 'framed'),
+    'heroSupport':       ('friendly woman smiling arms crossed',                     'landscape', 'framed'),
+    'heroFaqs':          ('woman thinking smiling',                         'landscape', 'framed'),
+    'heroHowItWorks':    ('man smiling shirt studio',                'landscape', 'framed'),
+    'heroResources':     ('woman holding book smiling',                           'landscape', 'framed'),
+    'heroScreener':      ('person using laptop smiling',                     'landscape', 'framed'),
+    'heroStandards':     ('confident woman smiling professional',                  'landscape', 'framed'),
+    'heroWhy':           ('happy person smiling natural light',            'landscape', 'framed'),
     'tileAdults':        ('adults talking together happy',                          'landscape','crop'),
     'tileChildren':      ('children playing outdoors happy',                        'landscape','crop'),
     'avatarAlex':        ('smiling man casual outdoors',                            'square',   'face'),
@@ -71,7 +72,7 @@ SPECS: dict[str, tuple[str, str, str]] = {
 # tall leaves plenty of headroom on 2x displays without bloating the repo.
 MAX_TRIES = 12  # candidates to try per image before giving up
 
-TARGET = {'cutout': (None, 1200), 'crop': (1200, 800), 'face': (400, 400)}
+TARGET = {'cutout': (None, 1200), 'framed': (1280, 1000), 'crop': (1200, 800), 'face': (400, 400)}
 
 
 def slug(key: str) -> str:
@@ -191,7 +192,7 @@ def process(src: Path, dest: Path, kind: str) -> None:
         im.save(dest, 'WEBP', quality=86, method=6)
         return
 
-    if kind == 'face':
+    if kind in ('face', 'framed'):
         probe_png = src.with_suffix('.probe.png')
         r = subprocess.run([str(CUTOUT_BIN), str(src), str(probe_png)], capture_output=True, text=True)
         if r.returncode != 0:
@@ -200,23 +201,24 @@ def process(src: Path, dest: Path, kind: str) -> None:
             probe = json.loads(r.stdout.strip())
         except json.JSONDecodeError:
             probe = {}
-        if probe.get('faces', 0) != 1:
-            raise Rejected(f"{probe.get('faces', 0)} faces — a headshot needs exactly one")
-        if probe.get('faceHeight', 0) < 0.16:
-            raise Rejected(f"face too small for an avatar ({probe.get('faceHeight', 0):.0%})")
-        if probe.get('faceInset', 0) < 0.03:
+        min_face = 0.16 if kind == 'face' else 0.07
+        max_faces = 1 if kind == 'face' else 2
+        if not 1 <= probe.get('faces', 0) <= max_faces:
+            raise Rejected(f"{probe.get('faces', 0)} faces — needs 1 to {max_faces}")
+        if probe.get('faceHeight', 0) < min_face:
+            raise Rejected(f"face too small ({probe.get('faceHeight', 0):.0%})")
+        if probe.get('faceInset', 0) < 0.02:
             raise Rejected('face too close to the frame edge')
 
     im = Image.open(src).convert('RGB')
     check_colour(im)
-    if kind == 'face':
-        check_bright(im)
+    check_bright(im, floor=96 if kind == 'face' else 82)
     tw, th = TARGET[kind]
     scale = max(tw / im.width, th / im.height)
     im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
     left = (im.width - tw) // 2
     # faces sit high in a portrait crop; bias upward rather than centring
-    top = (im.height - th) // 8 if kind == 'face' else (im.height - th) // 2
+    top = (im.height - th) // 8 if kind in ('face', 'framed') else (im.height - th) // 2
     im.crop((left, top, left + tw, top + th)).save(dest, 'WEBP', quality=86, method=6)
 
 
