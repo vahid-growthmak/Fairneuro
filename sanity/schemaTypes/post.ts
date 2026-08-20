@@ -68,19 +68,69 @@ export const postType = defineType({
     defineField({
       name: 'body',
       type: 'array',
+      description:
+        'Body copy: paragraphs, headings, bullet and numbered lists, quotes, links and images.',
       of: [
-        defineArrayMember({ type: 'block' }),
+        // Declared explicitly rather than left to Sanity's defaults, which
+        // offer H1/H5/H6 and code/strike marks the article layout does not
+        // style — an editor could pick them and get unstyled output.
+        defineArrayMember({
+          type: 'block',
+          styles: [
+            { title: 'Paragraph', value: 'normal' },
+            { title: 'Heading', value: 'h2' },
+            { title: 'Subheading', value: 'h3' },
+            { title: 'Small heading', value: 'h4' },
+            { title: 'Quote', value: 'blockquote' },
+          ],
+          lists: [
+            { title: 'Bullet list', value: 'bullet' },
+            { title: 'Numbered list', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+              { title: 'Underline', value: 'underline' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    description: 'An external URL, or an internal path such as /assessments/adhd',
+                    validation: (r) => r.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
         defineArrayMember({
           type: 'image',
+          title: 'Image',
           options: { hotspot: true },
           fields: [
             defineField({
               name: 'alt',
               type: 'string',
               title: 'Alt text',
+              description: 'Describes the image for screen readers. Not shown on the page.',
               validation: (r) => r.required(),
             }),
+            defineField({
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional. Shown beneath the image.',
+            }),
           ],
+          preview: { select: { title: 'caption', subtitle: 'alt', media: 'asset' } },
         }),
       ],
     }),

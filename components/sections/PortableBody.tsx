@@ -51,6 +51,7 @@ const components: PortableTextComponents = {
   marks: {
     strong: ({ children }) => <strong className="font-semibold text-navy">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
+    underline: ({ children }) => <span className="underline underline-offset-2">{children}</span>,
     link: ({ children, value }) => {
       const href = String(value?.href ?? '');
       const external = /^https?:\/\//.test(href);
@@ -85,9 +86,9 @@ const components: PortableTextComponents = {
               className="object-cover"
             />
           </div>
-          {value?.alt && (
+          {value?.caption && (
             <figcaption className="mt-2.5 text-center text-[13px] text-navy/55">
-              {value.alt}
+              {value.caption}
             </figcaption>
           )}
         </figure>

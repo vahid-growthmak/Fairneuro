@@ -1,8 +1,11 @@
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Sanity Studio ships its own React usage; let it resolve the real react
-  // from node_modules instead of Next's vendored copy.
-  serverExternalPackages: ['sanity', '@sanity/vision'],
+  // A stray package.json in the home directory makes Next infer the wrong
+  // workspace root, which sends build tracing over the whole home folder.
+  outputFileTracingRoot: dirname(fileURLToPath(import.meta.url)),
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

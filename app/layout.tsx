@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import { Fraunces, Inter, Poppins } from 'next/font/google';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 import { RevealProvider } from '@/components/ui/RevealProvider';
 import './globals.css';
 
@@ -45,16 +43,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-GB" className={`${poppins.variable} ${inter.variable} ${fraunces.variable}`}>
       <body>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white"
-        >
-          Skip to content
-        </a>
         <RevealProvider />
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
