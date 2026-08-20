@@ -7,14 +7,12 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { IconBadge } from '@/components/ui/IconBadge';
 import {
   Brain,
-  Briefcase,
   Calendar,
   Chat,
   Chats,
   CheckCircle,
-  GradCap,
+  HeartHand,
   Mail,
-  People,
   Person,
   Phone,
   Signpost,
@@ -42,8 +40,8 @@ export default function Page() {
       <Hero
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact Us' }]}
         title="Contact Us"
-        lede="We're here to help you find the right pathway."
-        body="Whether you have a question about assessment, want to explore support, or simply are not sure where to begin — our team is here to talk it through."
+        lede="We're here to help you take the next step with confidence."
+        body="Whether you have a question about our assessments, want to book a free consultation, or need guidance on support pathways – our friendly team is here to help."
         secondaryCta={{ label: 'How It Works', href: '/how-it-works' }}
         image={{ src: img.heroContact, alt: 'A member of the Fairneuro team on a call' }}
       />
@@ -73,11 +71,12 @@ export default function Page() {
         background="ivory"
         cardAlign="left"
         items={[
-          { icon: Brain, title: 'Assessments', desc: 'Questions about ADHD, autism, dyslexia or combined assessments.', href: '/assessments', linkLabel: 'Find out more', accent: 'teal' },
-          { icon: People, title: 'Support Services', desc: 'Coaching, therapy, education and workplace support.', href: '/support', linkLabel: 'Find out more', accent: 'coral' },
+          { icon: Calendar, title: 'Free Consultation', desc: 'Chat with our team to explore your concerns and next steps.', href: '/book-consultation', linkLabel: 'Find out more', accent: 'coral' },
+          { icon: Brain, title: 'Assessment Enquiries', desc: 'Questions about our assessments, processes and what to expect.', href: '/assessments', linkLabel: 'Find out more', accent: 'teal' },
+          { icon: HeartHand, title: 'Support & Aftercare', desc: 'Information on support pathways and aftercare options.', href: '/support', linkLabel: 'Find out more', accent: 'orange' },
+          { icon: Person, title: 'Existing Clients', desc: 'Get in touch if you need updates, reports or ongoing support.', href: '#enquiry', linkLabel: 'Find out more', accent: 'coral' },
           { icon: Stethoscope, title: 'Professional Referrals', desc: 'For GPs, therapists and other professionals.', href: '/professional-referrals', linkLabel: 'Find out more', accent: 'orange' },
-          { icon: GradCap, title: 'Schools & Education', desc: 'Partnership enquiries from schools and colleges.', href: '/schools', linkLabel: 'Find out more', accent: 'teal' },
-          { icon: Briefcase, title: 'Employers', desc: 'Workplace assessments, training and consultancy.', href: '/employers', linkLabel: 'Find out more', accent: 'coral' },
+          
         ]}
       />
 

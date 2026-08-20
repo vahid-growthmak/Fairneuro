@@ -68,7 +68,7 @@ export default async function Page() {
       <Hero
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Resources' }]}
         title="Resources"
-        lede="Practical guidance, whenever you need it."
+        lede="Helpful guidance, insights and practical support for every stage of the journey."
         body="Guides, articles and tools written by our clinicians — covering everything from preparing for an assessment to thriving at work and school afterwards."
         secondaryCta={{ label: 'Free Online Screener', href: '/screener' }}
         image={{ src: img.heroResources, alt: 'A person reading a guide' }}
@@ -102,7 +102,7 @@ export default async function Page() {
       </section>
 
       <CardGrid
-        title="Featured guides"
+        title="Featured articles and guides"
         columns={3}
         background="ivory"
         cardAlign="left"

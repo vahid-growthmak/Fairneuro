@@ -19,6 +19,7 @@ import {
   People,
   Person,
   Question,
+  ShieldCheck,
   Star,
 } from '@/components/icons';
 
@@ -53,10 +54,18 @@ export default async function Page() {
       <Hero
         crumbs={[{ label: 'Home', href: '/' }, { label: 'FAQs' }]}
         title="Frequently Asked Questions"
-        lede="Clear answers. Straightforward guidance. Support when you need it."
-        body="Everything you might want to know about assessments, screeners, reports and the support that follows. If your question is not here, just ask us."
+        lede="Answers to the most common questions about Fairneuro assessments, screening and support."
+        body="We know that taking the first step can bring up lots of questions. This page is here to help you understand our process, what to expect and how we can support you or your loved one."
         secondaryCta={{ label: 'Contact Us', href: '/contact' }}
         image={{ src: img.heroFaqs, alt: 'A person reading on a laptop' }}
+      />
+
+      <SplitBand
+        title="Clear answers. Straightforward guidance. Support when you need it."
+        body="We make complex information simple, so you can feel confident at every step."
+        cta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}
+        icon={ShieldCheck}
+        background="white"
       />
 
       <CardGrid

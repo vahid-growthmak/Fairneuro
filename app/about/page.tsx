@@ -7,14 +7,14 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TickList } from '@/components/ui/TickList';
 import { img } from '@/lib/images';
 import {
+  Chat,
+  ClipboardCheck,
+  Document,
   Globe,
-  Handshake,
   Heart,
   HeartHand,
   People,
-  Person,
   Rosette,
-  ShieldCheck,
   Sparkle,
   Star,
   Target,
@@ -39,7 +39,7 @@ export default function Page() {
       />
 
       <CardGrid
-        title="Who we are"
+        title="Who We Are"
         columns={3}
         background="white"
         cardAlign="left"
@@ -82,7 +82,7 @@ export default function Page() {
         <div className="shell py-11 lg:py-14">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <SectionHeading title="Why Fairneuro exists" align="left" />
+              <SectionHeading title="Why Fairneuro Exists" align="left" />
               <p className="text-[15px] leading-relaxed text-navy/70">
                 Too many people wait years for an assessment, then receive a report and no clear
                 idea what to do next. We were founded to close both gaps at once — shortening the
@@ -100,15 +100,15 @@ export default function Page() {
             </div>
 
             <div>
-              <SectionHeading title="What makes Fairneuro different" align="left" />
+              <SectionHeading title="What Makes Fairneuro Different" align="left" />
               <ul className="grid gap-3 sm:grid-cols-2">
                 {[
-                  { icon: Rosette, title: 'Specialist expertise', accent: 'teal' as const },
-                  { icon: ShieldCheck, title: 'Evidence-based practice', accent: 'coral' as const },
-                  { icon: Person, title: 'Personalised approach', accent: 'orange' as const },
-                  { icon: Star, title: 'Clear, actionable reports', accent: 'teal' as const },
-                  { icon: Heart, title: 'Compassionate, human care', accent: 'coral' as const },
-                  { icon: Handshake, title: 'Long-term partnership', accent: 'purple' as const },
+                  { icon: Chat, title: 'Free Consultation', accent: 'teal' as const },
+                  { icon: ClipboardCheck, title: 'Online Screening', accent: 'coral' as const },
+                  { icon: People, title: 'Assessor Matching', accent: 'orange' as const },
+                  { icon: Document, title: 'Comprehensive Reports', accent: 'teal' as const },
+                  { icon: Heart, title: 'Ongoing Support', accent: 'coral' as const },
+                  { icon: Star, title: 'Coaching & Practical Help', accent: 'purple' as const },
                 ].map((m) => (
                   <li
                     key={m.title}
@@ -127,7 +127,7 @@ export default function Page() {
       </section>
 
       <IconColumns
-        title="Global reach. Trusted support."
+        title="Global Reach. Trusted Support."
         columns={4}
         background="ivory"
         items={[
