@@ -126,6 +126,7 @@ export const primaryNav: NavItem[] = [
     href: '/resources',
     children: [
       { label: 'All Resources', href: '/resources' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Free Online Screener', href: '/screener' },
       { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
       { label: 'Preparing for Your Assessment', href: '/resources/preparing-for-your-assessment' },
@@ -187,6 +188,7 @@ export const footerColumns = [
   {
     title: 'Help',
     links: [
+      { label: 'Blog', href: '/blog' },
       { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
       { label: 'FAQs', href: '/faqs' },
       { label: 'Contact Us', href: '/contact' },
