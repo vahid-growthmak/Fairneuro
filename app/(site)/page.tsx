@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, PromptBand, StatsBar } from '@/components/sections/Bands';
 import { CardGrid } from '@/components/sections/CardGrid';
+import { FairStandard } from '@/components/sections/Panels';
 import { JourneySteps } from '@/components/sections/Steps';
 import { TestimonialQuote, type Testimonial } from '@/components/sections/Testimonials';
 import { homeTestimonials } from '@/lib/fallbacks';
@@ -171,6 +172,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <FairStandard background="ivory" />
 
       <TestimonialQuote background="white" items={testimonials} />
 
