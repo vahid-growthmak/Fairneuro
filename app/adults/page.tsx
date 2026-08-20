@@ -11,9 +11,11 @@ import {
   Calendar,
   Chart,
   Chat,
+  ClipboardCheck,
   Document,
   Globe,
   HeartHand,
+  Leaf,
   Lock,
   Numbers,
   People,
@@ -21,6 +23,7 @@ import {
   ShieldCheck,
   Target,
   TwoHeads,
+  Infinity as InfinityIcon,
 } from '@/components/icons';
 
 export const metadata = {
@@ -35,11 +38,16 @@ export default function Page() {
       <Hero
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Adults' }]}
         eyebrow="Adults"
-        title="Assessment and Support for Adults"
+        title="Assessment and Support for Adults."
         lede="Understand yourself. Unlock your potential."
-        body="Comprehensive, evidence-based assessments designed around adult life — followed by practical support for work, study, relationships and everyday wellbeing."
+        body="Whether you're seeking answers, a diagnosis, or ongoing support, we're here to help you thrive. Our adult services are designed to provide clarity, strategies and support at every stage of your neurodiversity journey."
         secondaryCta={{ label: 'Explore Assessments', href: '/assessments' }}
-        ticks={['Comprehensive', 'Personalised', 'Evidence-based', 'Empowering']}
+        features={[
+          { icon: Brain, title: 'Comprehensive', desc: 'Specialist assessments for ADHD, autism, dyslexia and more.', accent: 'teal' },
+          { icon: People, title: 'Personalised', desc: 'Tailored support that fits your unique strengths and goals.', accent: 'coral' },
+          { icon: ShieldCheck, title: 'Evidence-Based', desc: 'Our services are grounded in the latest research and best practice.', accent: 'purple' },
+          { icon: Leaf, title: 'Empowering', desc: 'Practical tools and strategies to help you succeed in life and work.', accent: 'green' },
+        ]}
         image={{ src: img.heroAdults, alt: 'An adult smiling confidently' }}
       />
 
@@ -48,11 +56,11 @@ export default function Page() {
         columns={5}
         background="white"
         items={[
-          { icon: Brain, title: 'Adult ADHD', desc: 'Assessment of attention, focus, organisation and impulsivity.', href: '/adults/adhd', accent: 'teal' },
-          { icon: Person, title: 'Adult Autism', desc: 'Assessment of communication, sensory experiences and social connection.', href: '/adults/autism', accent: 'coral' },
-          { icon: Book, title: 'Adult Dyslexia', desc: 'Assessment of reading, writing, spelling and processing.', href: '/adults/dyslexia', accent: 'orange' },
-          { icon: Numbers, title: 'Dyscalculia', desc: 'Assessment of number sense and maths processing.', href: '/assessments/dyscalculia', accent: 'teal' },
-          { icon: TwoHeads, title: 'ADHD + Autism', desc: 'A combined assessment for overlapping experiences.', href: '/adults/adhd-autism', accent: 'purple' },
+          { icon: Brain, title: 'Adult ADHD Assessment', desc: 'A thorough assessment to help you understand your attention, focus and executive functioning.', href: '/adults/adhd', accent: 'teal' },
+          { icon: InfinityIcon, title: 'Adult Autism Assessment', desc: 'Gain clarity and support with a comprehensive autism assessment for adults.', href: '/adults/autism', accent: 'coral' },
+          { icon: Book, title: 'Adult Dyslexia Assessment', desc: 'Identify your strengths and challenges with a specialist dyslexia assessment.', href: '/adults/dyslexia', accent: 'orange' },
+          { icon: Numbers, title: 'Dyscalculia Assessment', desc: 'Assessment and support for difficulties with numbers and maths processing.', href: '/assessments/dyscalculia', accent: 'teal' },
+          { icon: ClipboardCheck, title: 'Other Assessments', desc: 'Dyspraxia (DCD) and other specific learning differences assessments available.', href: '/assessments', accent: 'green' },
         ]}
       />
 

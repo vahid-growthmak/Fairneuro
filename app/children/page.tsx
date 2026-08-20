@@ -10,8 +10,11 @@ import {
   Calendar,
   Chart,
   Chat,
+  ClipboardCheck,
   Document,
+  Heart,
   HeartHand,
+  Leaf,
   Lock,
   Numbers,
   People,
@@ -19,6 +22,7 @@ import {
   ShieldCheck,
   Target,
   TwoHeads,
+  Infinity as InfinityIcon,
 } from '@/components/icons';
 
 export const metadata = {
@@ -35,9 +39,14 @@ export default function Page() {
         eyebrow="Children"
         title="Every Child is Unique. We're Here to Help."
         lede="Assessment and support that helps children shine."
-        body="Child-centred, evidence-based assessments with families involved at every stage — and clear, practical recommendations for home, school and everyday life."
+        body="Our specialist assessments and personalised support help children overcome challenges, build confidence and reach their full potential."
         secondaryCta={{ label: 'Explore Assessments', href: '/assessments' }}
-        ticks={['Child-centred', 'Evidence-based', 'Family involved', 'Empowering']}
+        features={[
+          { icon: Heart, title: 'Child-Centred', desc: 'We create a safe, friendly space where every child is heard.', accent: 'teal' },
+          { icon: ShieldCheck, title: 'Evidence-Based', desc: 'Assessments and strategies grounded in the latest research.', accent: 'purple' },
+          { icon: People, title: 'Family Involved', desc: 'We work closely with parents and carers every step of the way.', accent: 'coral' },
+          { icon: Leaf, title: 'Empowering', desc: 'Practical support to help your child grow, thrive and succeed.', accent: 'green' },
+        ]}
         image={{ src: img.heroChildren, alt: 'A child smiling' }}
       />
 
@@ -46,16 +55,16 @@ export default function Page() {
         columns={5}
         background="white"
         items={[
-          { icon: Brain, title: 'Child ADHD', desc: 'Assessment of attention, behaviour and executive functioning.', href: '/children/adhd', accent: 'teal' },
-          { icon: Person, title: 'Child Autism', desc: 'Assessment of communication, sensory needs and routines.', href: '/children/autism', accent: 'coral' },
-          { icon: Book, title: 'Child Dyslexia', desc: 'Assessment of reading, spelling and related processing skills.', href: '/children/dyslexia', accent: 'orange' },
-          { icon: Numbers, title: 'Dyscalculia', desc: 'Assessment of number sense and maths processing.', href: '/assessments/dyscalculia', accent: 'teal' },
-          { icon: TwoHeads, title: 'ADHD + Autism', desc: 'A combined assessment for overlapping traits.', href: '/children/adhd-autism', accent: 'purple' },
+          { icon: Brain, title: 'Child ADHD Assessment', desc: 'Understand attention, behaviour and executive functioning challenges.', href: '/children/adhd', accent: 'teal' },
+          { icon: InfinityIcon, title: 'Child Autism Assessment', desc: 'Comprehensive assessment to understand social communication and behaviour.', href: '/children/autism', accent: 'coral' },
+          { icon: Book, title: 'Child Dyslexia Assessment', desc: 'Identify strengths and challenges with reading, spelling and learning.', href: '/children/dyslexia', accent: 'orange' },
+          { icon: Numbers, title: 'Dyscalculia Assessment', desc: 'Assessment for difficulties with numbers, maths concepts and reasoning.', href: '/assessments/dyscalculia', accent: 'teal' },
+          { icon: ClipboardCheck, title: 'Other Assessments', desc: 'Dyspraxia (DCD), anxiety, specific learning differences and more.', href: '/assessments', accent: 'green' },
         ]}
       />
 
       <BenefitsPanel
-        title="Support that grows with your child"
+        title="Support that grows with your child."
         columns={4}
         items={[
           { title: 'Personalised Support Plans', desc: 'Clear strategies matched to your child’s profile.' },
