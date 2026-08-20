@@ -4,8 +4,8 @@ export const site = {
   tagline: 'Assessment is only the beginning.',
   description:
     'Expert neurodiversity assessment with personalised support for everything that comes next.',
-  phone: '020 3983 9933',
-  email: 'hello@fairneuro.com',
+  phone: '+44 7395335182',
+  email: 'management@fairneurodiagnostics.com',
   hours: 'Mon–Fri 9am–6pm',
   location: 'Locations & Online · UK-wide',
 };
@@ -94,28 +94,6 @@ export interface NavItem {
 export const primaryNav: NavItem[] = [
   { label: 'Assessments', href: '/assessments', mega: 'assessments' },
   {
-    label: 'Adults',
-    href: '/adults',
-    children: [
-      { label: 'Adult ADHD Assessment', href: '/adults/adhd' },
-      { label: 'Adult Autism Assessment', href: '/adults/autism' },
-      { label: 'Adult Dyslexia Assessment', href: '/adults/dyslexia' },
-      { label: 'Adult ADHD + Autism Assessment', href: '/adults/adhd-autism' },
-      { label: 'Support for Adults', href: '/support' },
-    ],
-  },
-  {
-    label: 'Children',
-    href: '/children',
-    children: [
-      { label: 'Child ADHD Assessment', href: '/children/adhd' },
-      { label: 'Child Autism Assessment', href: '/children/autism' },
-      { label: 'Child Dyslexia Assessment', href: '/children/dyslexia' },
-      { label: 'Child ADHD + Autism Assessment', href: '/children/adhd-autism' },
-      { label: 'Parent & Family Support', href: '/support/parent-family' },
-    ],
-  },
-  {
     label: 'Support',
     href: '/support',
     children: [
@@ -174,6 +152,7 @@ export const footerColumns = [
   {
     title: 'Adults',
     links: [
+      { label: 'Assessments for Adults', href: '/adults' },
       { label: 'Adult ADHD', href: '/adults/adhd' },
       { label: 'Adult Autism', href: '/adults/autism' },
       { label: 'Adult Dyslexia', href: '/adults/dyslexia' },
@@ -182,6 +161,7 @@ export const footerColumns = [
   {
     title: 'Children',
     links: [
+      { label: 'Assessments for Children', href: '/children' },
       { label: 'Child ADHD', href: '/children/adhd' },
       { label: 'Child Autism', href: '/children/autism' },
       { label: 'Child Dyslexia', href: '/children/dyslexia' },

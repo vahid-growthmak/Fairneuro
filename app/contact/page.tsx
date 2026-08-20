@@ -1,5 +1,5 @@
 import { Hero } from '@/components/sections/Hero';
-import { CtaBand } from '@/components/sections/Bands';
+import { CtaBand, PromptBand } from '@/components/sections/Bands';
 import { CardGrid } from '@/components/sections/CardGrid';
 import { ProcessRow } from '@/components/sections/Steps';
 import { ContactForm } from '@/components/sections/ContactForm';
@@ -30,8 +30,8 @@ export const metadata = {
 const contactCards = [
   { icon: Phone, title: 'Phone', value: site.phone, href: `tel:${site.phone.replace(/\s/g, '')}`, accent: 'teal' as const },
   { icon: Mail, title: 'Email', value: site.email, href: `mailto:${site.email}`, accent: 'coral' as const },
-  { icon: Calendar, title: 'Free Consultation', value: 'Book online in minutes', href: '/book-consultation', accent: 'orange' as const },
-  { icon: Chats, title: 'General Enquiries', value: site.hours, href: '#enquiry', accent: 'teal' as const },
+  { icon: Calendar, title: 'Free Consultation', value: 'Book a free, no-obligation conversation with our team.', href: '/book-consultation', accent: 'orange' as const },
+  { icon: Chats, title: 'General Enquiries', value: "We're here to answer your questions and help.", href: '#enquiry', accent: 'teal' as const },
 ];
 
 export default function Page() {
@@ -91,12 +91,21 @@ export default function Page() {
         ]}
       />
 
+      <PromptBand
+        title="Assessment is only the beginning."
+        body="Understand. Support. Thrive."
+        cta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}
+        icon={Brain}
+        variant="filled"
+        background="white"
+      />
+
       {/* Enquiry form */}
       <section id="enquiry" className="bg-ivory scroll-mt-24">
         <div className="shell py-11 lg:py-14">
           <SectionHeading
             title="Send us a message"
-            subtitle="Fill in the form and a member of our team will be in touch within one working day."
+            subtitle="Complete the form and our team will get back to you as soon as possible."
           />
           <div className="mx-auto max-w-3xl">
             <ContactForm />
@@ -106,7 +115,7 @@ export default function Page() {
 
       <CtaBand
         title="Ready to take the next step?"
-        body="Book a free, no-obligation consultation with our team."
+        body="Book a free consultation with our team and find the right pathway for you or your loved one."
         ticks={null}
         background="white"
       />
