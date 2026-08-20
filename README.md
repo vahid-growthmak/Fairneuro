@@ -89,6 +89,23 @@ draft mode so unpublished changes render; `/api/draft-mode/disable` exits.
 Draft reads bypass the cache and use a token-authenticated client, so drafts
 never leak into the published site.
 
+### Environment
+
+The public Sanity connection (`NEXT_PUBLIC_SANITY_*`) is committed in `.env`,
+so any deployment reaches the CMS without dashboard configuration — those
+values are inlined into the browser bundle regardless, and the dataset is
+world-readable.
+
+Two secrets are not committed and must be set in the host's environment:
+
+| variable | needed for |
+| --- | --- |
+| `SANITY_API_READ_TOKEN` | draft previews (a Viewer token) |
+| `SANITY_REVALIDATE_SECRET` | the publish webhook |
+
+Without them the site still builds and serves published content; only draft
+mode and instant revalidation are unavailable.
+
 ### Seeding the CMS
 
 The dataset is populated from the site's own content, so the CMS mirrors what
