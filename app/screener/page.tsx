@@ -1,7 +1,8 @@
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand, SplitBand } from '@/components/sections/Bands';
 import { HeroFeatureCards } from '@/components/sections/Hero';
-import { CardGrid } from '@/components/sections/CardGrid';
+import { CardGrid, IconColumns } from '@/components/sections/CardGrid';
+import { TestimonialQuote } from '@/components/sections/Testimonials';
 import { ProcessRow } from '@/components/sections/Steps';
 import { img } from '@/lib/images';
 import {
@@ -11,13 +12,16 @@ import {
   Chat,
   ClipboardCheck,
   Document,
+  Headset,
   HeartHand,
   Lock,
+  People,
   Person,
   Question,
   Signpost,
   Sparkle,
   Star,
+  Target,
 } from '@/components/icons';
 
 export const metadata = {
@@ -36,20 +40,25 @@ export default function Page() {
           { label: 'Online Screener' },
         ]}
         title="Free Online Screener"
-        lede="A helpful first step. Clarity before your next move."
-        body="You don't need to know where to start. Our free, confidential screeners take around ten minutes and help you understand whether a full assessment might be useful."
+        lede="A simple way to explore whether ADHD, autism, dyslexia or another neurodiversity pathway may be worth exploring further."
+        body="Our online screener helps you understand which pathway may be most suitable for you or your child. It does not provide a diagnosis, but offers clear guidance on your next step."
         primaryCta={{ label: 'Start the Screener', href: '#choose' }}
         secondaryCta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}
-        ticks={['Completely free', 'Around 10 minutes', 'Secure & confidential', 'No obligation']}
+        ticks={[
+          'Takes just a few minutes',
+          'Suitable for adults and parents',
+          'Helpful if you are unsure where to start',
+          'No diagnosis, just guidance on your next step',
+        ]}
         image={{ src: img.heroScreener, alt: 'A person completing an online form' }}
       />
 
       <HeroFeatureCards
         items={[
-          { icon: Sparkle, title: 'Fast and simple', desc: 'A short set of clear, plain-English questions.', accent: 'teal' },
-          { icon: HeartHand, title: 'No pressure', desc: 'There is no obligation to book anything afterwards.', accent: 'coral' },
-          { icon: Signpost, title: 'Clear guidance', desc: 'Your result explains what it does — and does not — mean.', accent: 'orange' },
-          { icon: Chat, title: 'Friendly support', desc: 'A real person to talk to if you want to go further.', accent: 'teal' },
+          { icon: Sparkle, title: 'Fast and simple', desc: 'Complete in just a few minutes online.', accent: 'teal' },
+          { icon: HeartHand, title: 'No pressure', desc: 'A private, judgment-free experience.', accent: 'coral' },
+          { icon: Signpost, title: 'Clear guidance', desc: 'Understand what your results mean.', accent: 'orange' },
+          { icon: Chat, title: 'Friendly support', desc: "We're here if you have questions at any time.", accent: 'teal' },
         ]}
       />
 
@@ -60,10 +69,10 @@ export default function Page() {
         columns={4}
         background="white"
         items={[
-          { icon: Brain, title: 'ADHD', desc: 'Attention, focus, restlessness and organisation.', href: '/screener/adhd', linkLabel: 'Start screener', accent: 'teal' },
-          { icon: Person, title: 'Autism', desc: 'Communication, sensory experiences and routines.', href: '/screener/autism', linkLabel: 'Start screener', accent: 'coral' },
-          { icon: Book, title: 'Dyslexia', desc: 'Reading, spelling, writing and processing.', href: '/screener/dyslexia', linkLabel: 'Start screener', accent: 'orange' },
-          { icon: Question, title: 'Not sure?', desc: 'A broader screener across several neurodivergent traits.', href: '/screener/general', linkLabel: 'Start screener', accent: 'purple' },
+          { icon: Brain, title: 'ADHD', desc: 'Explore signs of attention, impulsivity and activity challenges.', href: '/screener/adhd', linkLabel: 'Start screener', accent: 'teal' },
+          { icon: Person, title: 'Autism', desc: 'Look at social communication, sensory differences and repetitive behaviours.', href: '/screener/autism', linkLabel: 'Start screener', accent: 'coral' },
+          { icon: Book, title: 'Dyslexia', desc: 'Consider reading, spelling and written language differences.', href: '/screener/dyslexia', linkLabel: 'Start screener', accent: 'orange' },
+          { icon: Question, title: 'Not Sure?', desc: "We'll help you figure out which pathway may be most relevant.", href: '/screener/general', linkLabel: 'Start screener', accent: 'purple' },
         ]}
       />
 
@@ -71,12 +80,12 @@ export default function Page() {
         title="How the screener works"
         background="ivory"
         steps={[
-          { icon: ClipboardCheck, title: 'Choose your screener', desc: 'Pick the area that best matches your experience.', accent: 'teal' },
-          { icon: Chat, title: 'Answer simple questions', desc: 'Around ten minutes of clear, plain-English questions.', accent: 'coral' },
-          { icon: Document, title: 'Get your result', desc: 'An immediate, easy-to-understand summary.', accent: 'orange' },
-          { icon: Signpost, title: 'Understand your options', desc: 'We explain what your result does and does not mean.', accent: 'teal' },
-          { icon: Calendar, title: 'Book if you want to', desc: 'A free consultation is available whenever you are ready.', accent: 'coral' },
-          { icon: Star, title: 'Move forward with clarity', desc: 'Either way, you leave knowing more than you did.', accent: 'teal' },
+          { icon: ClipboardCheck, title: 'Choose your screener', desc: 'Select the option that best fits you.', accent: 'teal' },
+          { icon: Chat, title: 'Answer simple questions', desc: 'Quick, straightforward and private.', accent: 'coral' },
+          { icon: Document, title: 'Get your result', desc: 'See which pathway may be relevant.', accent: 'orange' },
+          { icon: Signpost, title: 'Understand your options', desc: 'We explain what your result means.', accent: 'teal' },
+          { icon: Calendar, title: 'Book a consultation if needed', desc: 'Speak with our team for personalised advice.', accent: 'coral' },
+          { icon: Star, title: 'Move forward with clarity', desc: 'Take the next step with confidence.', accent: 'teal' },
         ]}
       />
 
@@ -86,6 +95,28 @@ export default function Page() {
         cta={{ label: 'General Screener', href: '/screener/general' }}
         icon={Lock}
         background="white"
+      />
+
+      <IconColumns
+        title="Why use the Fairneuro screener?"
+        background="white"
+        items={[
+          { icon: Target, title: 'A helpful starting point', desc: "Great if you're unsure where to begin.", accent: 'teal' },
+          { icon: People, title: 'Designed around real people', desc: 'Evidence-informed questions that reflect everyday experiences.', accent: 'coral' },
+          { icon: ClipboardCheck, title: 'Clear next-step guidance', desc: 'Know what your results mean and what to do next.', accent: 'orange' },
+          { icon: Headset, title: 'Connected to Fairneuro support', desc: 'Easy access to expert assessments and care.', accent: 'teal' },
+        ]}
+      />
+
+      <TestimonialQuote
+        background="ivory"
+        items={[
+          {
+            quote:
+              'The screener was quick and easy to complete, and the results gave us real clarity. It helped us understand what might be going on and feel more confident about booking an assessment for our daughter.',
+            name: 'Parent of a 10-year-old',
+          },
+        ]}
       />
 
       <CtaBand

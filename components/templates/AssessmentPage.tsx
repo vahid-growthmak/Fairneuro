@@ -4,6 +4,7 @@ import { CardGrid, IconColumns, type CardItem } from '@/components/sections/Card
 import { JourneySteps, NumberedSteps, type Step } from '@/components/sections/Steps';
 import { FairStandard } from '@/components/sections/Panels';
 import { TestimonialGrid } from '@/components/sections/Testimonials';
+import { TickList } from '@/components/ui/TickList';
 import type { Crumb } from '@/components/ui/Breadcrumb';
 
 export interface AssessmentPageProps {
@@ -14,13 +15,15 @@ export interface AssessmentPageProps {
   image: { src: string; alt: string };
   ticks?: string[];
   /** "Is an ADHD assessment right for you?" */
-  signals: { heading: string; sub?: string; items: CardItem[] };
+  signals?: { heading: string; sub?: string; items: CardItem[] };
+  /** Two-panel explainer with a tick list, used by the combined child pathway. */
+  explainer?: { heading: string; body: string[]; checksHeading: string; checks: string[] };
   /** "What's included in …" */
   includes: { heading: string; steps: Step[] };
   /** "Who is this assessment for?" */
   audience: { heading: string; items: CardItem[] };
   /** Bottom trust strip. */
-  trust: CardItem[];
+  trust?: CardItem[];
   /** Feature strip under the hero. */
   highlights?: CardItem[];
   /** "The Fairneuro Assessment Journey" — shown when supplied. */
@@ -49,6 +52,7 @@ export function AssessmentPage({
   image,
   ticks = ['Free consultation', 'No obligation', 'Confidential', 'Here to help'],
   signals,
+  explainer,
   includes,
   audience,
   trust,
@@ -76,13 +80,40 @@ export function AssessmentPage({
 
       {highlights && <IconColumns boxed compact items={highlights} background="white" />}
 
-      <IconColumns
-        title={signals.heading}
+      {explainer && (
+        <section className="bg-white">
+          <div className="shell py-11 lg:py-14">
+            <div className="grid gap-4 lg:grid-cols-2">
+              <div className="rounded-2xl bg-blush/55 p-8 lg:p-10">
+                <h2 className="font-heading text-[24px] font-semibold text-navy">
+                  {explainer.heading}
+                </h2>
+                {explainer.body.map((para) => (
+                  <p key={para} className="mt-4 text-[15px] leading-relaxed text-navy/72">
+                    {para}
+                  </p>
+                ))}
+              </div>
+              <div className="rounded-2xl bg-soft-teal/60 p-8 lg:p-10">
+                <h2 className="font-heading text-[24px] font-semibold text-navy">
+                  {explainer.checksHeading}
+                </h2>
+                <TickList className="mt-5" items={explainer.checks} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {signals && (
+        <IconColumns
+          title={signals.heading}
         subtitle={signals.sub}
         items={signals.items}
         columns={6}
         background="white"
-      />
+        />
+      )}
 
       <PromptBand title={promptTitle} body={promptBody} background="white" />
 
@@ -96,13 +127,15 @@ export function AssessmentPage({
         background="white"
       />
 
-      <IconColumns
-        items={trust}
-        columns={trust.length >= 6 ? 6 : 5}
-        boxed
-        compact
-        background="white"
-      />
+      {trust && (
+        <IconColumns
+          items={trust}
+          columns={trust.length >= 6 ? 6 : 5}
+          boxed
+          compact
+          background="white"
+        />
+      )}
 
       {journey && <JourneySteps title={journey.heading} steps={journey.steps} background="ivory" />}
 
