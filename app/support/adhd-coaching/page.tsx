@@ -52,7 +52,7 @@ export default function Page() {
           planDesc: 'We explore your strengths, challenges and current strategies.',
           sessionTitle: 'Strategy building',
           sessionDesc: 'Together we create practical strategies and action steps.',
-          trackingDesc: 'Focused 1-to-1 sessions tailored to your goals and real life.',
+          trackingDesc: 'Focused sessions tailored to your goals and real life.',
           toolsDesc: 'Track progress, adjust strategies and stay on track.',
           ongoingDesc: 'Sustainable habits and support as you keep moving forward.',
         }),

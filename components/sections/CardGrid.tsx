@@ -190,14 +190,13 @@ export function IconColumns({
         >
           {items.map((item, i) => {
             const accent = item.accent ?? cycle(accentCycle, i);
-            return (
-              <div
-                key={item.title}
-                className={cn(
-                  'px-5 text-center',
-                  i > 0 && 'lg:border-l lg:border-navy/[0.09]',
-                )}
-              >
+            const cellClass = cn(
+              'px-5 text-center',
+              i > 0 && 'lg:border-l lg:border-navy/[0.09]',
+              item.href && 'group rounded-xl py-2 transition-colors hover:bg-soft-teal/25',
+            );
+            const cell = (
+              <>
                 <IconBadge icon={item.icon} accent={accent} size="md" className="mx-auto" />
                 <p
                   className={cn(
@@ -212,6 +211,17 @@ export function IconColumns({
                     {item.desc}
                   </p>
                 )}
+              </>
+            );
+
+            // "Helpful quick links" style rows are navigable; trust strips are not.
+            return item.href ? (
+              <Link key={item.title} href={item.href} className={cellClass}>
+                {cell}
+              </Link>
+            ) : (
+              <div key={item.title} className={cellClass}>
+                {cell}
               </div>
             );
           })}
