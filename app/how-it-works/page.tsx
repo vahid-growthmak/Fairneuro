@@ -2,10 +2,9 @@ import { Hero } from '@/components/sections/Hero';
 import { CtaBand, PromptBand } from '@/components/sections/Bands';
 import { IconColumns } from '@/components/sections/CardGrid';
 import { StepCards } from '@/components/sections/Steps';
-import { SplitFeatureBand } from '@/components/sections/Panels';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { IconBadge } from '@/components/ui/IconBadge';
-import { Check, Chat, Globe, Heart, Lock, People, ShieldCheck, Person } from '@/components/icons';
+import { Check, Chat, Globe, Heart, Lock, People, ShieldCheck } from '@/components/icons';
 import { journey } from '@/lib/journey';
 import { withDescs } from '@/lib/shared';
 import { cycle, solidStep, stepCycle } from '@/lib/accents';
@@ -69,12 +68,13 @@ export default function Page() {
         title="How It Works"
         lede="A clear, supportive journey from first step to lasting support."
         body="Our proven process ensures you receive the right assessment, clear answers and the support you need to thrive."
-        secondaryCta={{ label: 'Explore Assessments', href: '/assessments' }}
+        secondaryCta={{ label: 'Watch Overview', href: '#journey' }}
         ticks={['Free consultation', 'No obligation', 'Confidential', 'Here to help']}
         image={{ src: img.heroHowItWorks, alt: 'A person smiling thoughtfully' }}
       />
 
       <StepCards
+        id="journey"
         title="Your journey with Fairneuro"
         subtitle="We guide you every step of the way."
         steps={journeySteps}
@@ -126,18 +126,6 @@ export default function Page() {
           { icon: Lock, title: 'Confidential & secure', desc: 'Your information is protected at every step of the journey.', accent: 'orange' },
           { icon: Heart, title: 'Support beyond diagnosis', desc: 'We provide guidance and support long after your assessment.', accent: 'teal' },
           { icon: Globe, title: 'Global experience', desc: 'Supporting individuals in 40+ countries worldwide.', accent: 'coral' },
-        ]}
-      />
-
-      <SplitFeatureBand
-        title="Designed around you"
-        body="We know that every individual is different. That's why our process is flexible, respectful and focused on what matters most to you."
-        cta={{ label: 'Why Fairneuro? →', href: '/why-fairneuro' }}
-        items={[
-          { icon: Lock, title: 'Safe & Confidential', desc: 'Your information is always protected and confidential.', accent: 'teal' },
-          { icon: Person, title: 'Person-Centred', desc: 'We tailor every step to your needs and circumstances.', accent: 'coral' },
-          { icon: Globe, title: 'Global Experience', desc: 'Supporting individuals and families in 40+ countries.', accent: 'orange' },
-          { icon: Heart, title: 'Ongoing Support', desc: "Assessment is just the beginning — we're with you afterwards.", accent: 'navy' },
         ]}
       />
 

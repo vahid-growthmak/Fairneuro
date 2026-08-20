@@ -207,12 +207,15 @@ export function ProcessRow({
 
 /** Tall step cards with numbered badge + illustration foot (design page 8). */
 export function StepCards({
+  id,
   title,
   subtitle,
   steps,
   background = 'white',
   serif = false,
 }: {
+  /** Anchor target, for in-page links. */
+  id?: string;
   title?: string;
   subtitle?: string;
   steps: Step[];
@@ -222,7 +225,7 @@ export function StepCards({
   const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
 
   return (
-    <section className={bg}>
+    <section id={id} className={cn('scroll-mt-24', bg)}>
       <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} serif={serif} />}
         <div data-reveal-stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
