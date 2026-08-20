@@ -36,7 +36,7 @@ export default function Page() {
         { label: 'Dyscalculia Assessment' },
       ]}
       title="Dyscalculia Assessment"
-      body="FairNeuro offers comprehensive assessments to help identify difficulties with number sense, maths processing and related learning differences, with clear, personalised recommendations to support learning, study, work and everyday life."
+      body="Fairneuro offers comprehensive assessments to help identify difficulties with number sense, maths processing and related learning differences, with clear, personalised recommendations to support learning, study, work and everyday life."
       image={{ src: img.heroDyscalculia, alt: 'A student working through maths problems' }}
       features={[
         { icon: ClipboardCheck, title: 'Comprehensive Assessment', desc: 'In-depth evaluation of number sense, maths processing and related cognitive skills.', accent: 'teal' },
