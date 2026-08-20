@@ -173,9 +173,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <FairStandard background="ivory" />
+      <FairStandard background="white" />
 
-      <TestimonialQuote background="white" items={testimonials} />
+      <TestimonialQuote background="ivory" items={testimonials} />
 
       <CtaBand
         title="Ready for answers?"

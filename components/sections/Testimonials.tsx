@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ArrowRight, Quote, StarFilled } from '@/components/icons';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { cn } from '@/lib/cn';
@@ -193,21 +193,52 @@ export function TestimonialGrid({
 export function TestimonialQuote({
   items,
   background = 'ivory',
+  /** Seconds between slides. Autoplay is off entirely for reduced motion. */
+  interval = 7,
 }: {
   items: Testimonial[];
   background?: 'white' | 'ivory' | 'soft-teal';
+  interval?: number;
 }) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const total = items.length;
   const current = items[index];
   const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
 
   const go = (dir: 1 | -1) => setIndex((i) => (i + dir + total) % total);
 
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+
+  // Quotes rotate on their own, but never for readers who asked for less
+  // motion, and never while someone is reading or tabbing through the card.
+  useEffect(() => {
+    if (total < 2 || paused || reducedMotion) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % total), interval * 1000);
+    return () => window.clearInterval(id);
+  }, [total, paused, reducedMotion, interval]);
+
+  const autoplaying = total > 1 && !reducedMotion && !paused;
+
   return (
     <section className={bg}>
-      <div className="shell py-10 lg:py-12">
-        <div className="relative mx-auto max-w-4xl px-14 text-center">
+      <div className="shell py-11 lg:py-14">
+        <div
+          className="relative mx-auto max-w-4xl rounded-2xl border border-navy/[0.07] bg-white px-14 py-10 text-center shadow-card lg:px-16 lg:py-12"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
+          aria-roledescription="carousel"
+          aria-label="What our clients say"
+        >
           <Quote className="mx-auto h-8 w-8 text-teal/75" />
 
           <blockquote className="mx-auto mt-4 max-w-2xl text-[17px] leading-[1.75] text-navy/80">
@@ -224,7 +255,7 @@ export function TestimonialQuote({
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous testimonial"
-                className="absolute left-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-navy/70 transition-colors hover:bg-white hover:text-teal"
+                className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-navy/60 transition-colors hover:bg-soft-teal/60 hover:text-teal lg:left-3"
               >
                 <ArrowRight className="h-4 w-4 rotate-180" />
               </button>
@@ -232,10 +263,40 @@ export function TestimonialQuote({
                 type="button"
                 onClick={() => go(1)}
                 aria-label="Next testimonial"
-                className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-navy/70 transition-colors hover:bg-white hover:text-teal"
+                className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-navy/60 transition-colors hover:bg-soft-teal/60 hover:text-teal lg:right-3"
               >
                 <ArrowRight className="h-4 w-4" />
               </button>
+
+              <div className="mt-7 flex items-center justify-center gap-3">
+                <div className="flex items-center gap-2">
+                  {items.map((item, i) => (
+                    <button
+                      key={item.name + i}
+                      type="button"
+                      onClick={() => setIndex(i)}
+                      aria-label={`Show testimonial ${i + 1} of ${total}`}
+                      aria-current={i === index}
+                      className={cn(
+                        'h-2 rounded-full transition-all duration-200',
+                        i === index ? 'w-6 bg-teal' : 'w-2 bg-navy/20 hover:bg-navy/35',
+                      )}
+                    />
+                  ))}
+                </div>
+
+                {/* Auto-rotating content needs a way to stop it (WCAG 2.2.2). */}
+                {!reducedMotion && (
+                  <button
+                    type="button"
+                    onClick={() => setPaused((p) => !p)}
+                    aria-label={autoplaying ? 'Pause testimonials' : 'Play testimonials'}
+                    className="ml-1 font-heading text-[12px] font-medium text-navy/45 underline underline-offset-4 transition-colors hover:text-navy"
+                  >
+                    {autoplaying ? 'Pause' : 'Play'}
+                  </button>
+                )}
+              </div>
             </>
           )}
         </div>
