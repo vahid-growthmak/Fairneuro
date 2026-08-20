@@ -145,7 +145,7 @@ export function IconColumns({
   title,
   subtitle,
   items,
-  columns = 6,
+  columns,
   background = 'white',
   boxed = false,
   compact = false,
@@ -154,7 +154,8 @@ export function IconColumns({
   title?: string;
   subtitle?: string;
   items: CardItem[];
-  columns?: 4 | 5 | 6 | 7;
+  /** Defaults to one column per item, so the row never leaves a gap. */
+  columns?: 3 | 4 | 5 | 6 | 7;
   background?: 'white' | 'ivory' | 'soft-teal';
   /** Wrap the row in a rounded panel (used by trust strips). */
   boxed?: boolean;
@@ -162,12 +163,17 @@ export function IconColumns({
   compact?: boolean;
   serif?: boolean;
 }) {
+  // This is a single row of columns, so a count that does not match the number
+  // of items leaves an empty cell rather than wrapping. Derive it by default.
+  const resolved = columns ?? (Math.min(Math.max(items.length, 3), 7) as 3 | 4 | 5 | 6 | 7);
+
   const cols = {
+    3: 'sm:grid-cols-3',
     4: 'sm:grid-cols-2 lg:grid-cols-4',
     5: 'sm:grid-cols-2 lg:grid-cols-5',
     6: 'sm:grid-cols-3 lg:grid-cols-6',
     7: 'sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7',
-  }[columns];
+  }[resolved];
 
   const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
 
