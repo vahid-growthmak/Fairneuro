@@ -17,6 +17,7 @@ export default function Page() {
         { label: 'Support', href: '/support' },
         { label: 'Autism Coaching' },
       ]}
+      layout="coaching"
       title="Autism Coaching"
       lede="Practical support to help you understand yourself and move forward with confidence."
       body="Autism coaching helps you better understand your autistic profile, build routines, support communication, manage sensory needs, and strengthen confidence in everyday life—through personalised support."

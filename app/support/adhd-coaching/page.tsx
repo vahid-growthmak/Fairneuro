@@ -17,6 +17,7 @@ export default function Page() {
         { label: 'Support', href: '/support' },
         { label: 'ADHD Coaching' },
       ]}
+      layout="coaching"
       title="ADHD Coaching"
       lede="Practical support to help you understand, organise and thrive."
       body="Fairneuro ADHD coaching helps you better understand ADHD, build practical strategies, improve organisation, confidence and follow-through, and move forward with personalised support."
