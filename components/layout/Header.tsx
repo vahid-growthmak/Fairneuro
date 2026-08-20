@@ -178,7 +178,9 @@ export function Header() {
         <div className="pointer-events-none absolute inset-x-0 top-full hidden xl:block">
           <div className="shell pb-6 pt-1">
             <div
-              className="pointer-events-auto animate-fade-in-up overflow-hidden rounded-2xl border border-navy/[0.07] bg-white shadow-mega"
+              // The panel is taller than a 720p laptop viewport, so cap it to the
+              // space below the header and let it scroll rather than run off-screen.
+              className="pointer-events-auto max-h-[calc(100vh-7rem)] animate-fade-in-up overflow-y-auto overflow-x-hidden overscroll-contain rounded-2xl border border-navy/[0.07] bg-white shadow-mega"
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
             >
