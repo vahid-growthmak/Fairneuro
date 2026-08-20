@@ -12,7 +12,8 @@ export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production';
 export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? '2024-10-01';
 
 /** Server-only. Used for draft reads; never expose to the browser. */
-export const readToken = process.env.SANITY_API_READ_TOKEN ?? '';
+export const readToken =
+  process.env.SANITY_API_READ_TOKEN ?? process.env.SANITY_API_WRITE_TOKEN ?? '';
 
 /** Shared secret for the publish webhook. Server-only. */
 export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET ?? '';

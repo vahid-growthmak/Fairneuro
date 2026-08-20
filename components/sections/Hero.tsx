@@ -53,6 +53,9 @@ export function Hero({
   titleClassName,
   children,
 }: HeroProps) {
+  // Four features sit as 2x2 in the narrow hero column; two or three fit a row.
+  const featureCols = !features ? 1 : features.length >= 4 ? 2 : Math.max(features.length, 1);
+
   return (
     <section className={cn('relative overflow-hidden', background === 'ivory' ? 'bg-ivory' : 'bg-white')}>
       <div className="shell pb-10 pt-8 lg:pb-12 lg:pt-9">
@@ -89,13 +92,23 @@ export function Hero({
             {children}
 
             {features && (
-              <ul className="mt-7 flex flex-wrap gap-x-8 gap-y-5">
+              // A flex row wrapped 3 + 1 in the hero column, orphaning the last
+              // feature and leaving its divider at the start of a row. A grid
+              // keeps the columns even and the dividers between them.
+              <ul
+                className={cn(
+                  'mt-7 grid gap-x-6 gap-y-6',
+                  featureCols === 2 && 'grid-cols-2',
+                  featureCols === 3 && 'grid-cols-3',
+                  featureCols === 1 && 'grid-cols-1',
+                )}
+              >
                 {features.map((f, i) => (
                   <li
                     key={f.title}
                     className={cn(
-                      'max-w-[150px]',
-                      i > 0 && 'border-l border-navy/10 pl-8',
+                      'min-w-0',
+                      i % featureCols !== 0 && 'border-l border-navy/10 pl-6',
                     )}
                   >
                     <f.icon className={cn('mb-2 h-6 w-6', accents[f.accent ?? 'teal'].fg)} />

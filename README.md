@@ -89,6 +89,28 @@ draft mode so unpublished changes render; `/api/draft-mode/disable` exits.
 Draft reads bypass the cache and use a token-authenticated client, so drafts
 never leak into the published site.
 
+### Seeding the CMS
+
+The dataset is populated from the site's own content, so the CMS mirrors what
+the pages render rather than being filled in by hand:
+
+```bash
+# 1. with the dev server running, capture every route's content
+node scripts/extract-content.js content.json <(node -e "…routes…")
+
+# 2. write it to Sanity (needs SANITY_API_WRITE_TOKEN)
+node scripts/seed-sanity.js content.json --dry-run   # inspect first
+node scripts/seed-sanity.js content.json
+```
+
+`extract-content.js` reads the rendered DOM rather than parsing page source, so
+anything a template composes is captured. `seed-sanity.js` writes with
+deterministic ids via `createOrReplace`, so re-running updates documents rather
+than duplicating them — and re-seeding is how you reset the dataset to match
+the code.
+
+Editable content lives in `scripts/seed-data/`.
+
 ### Revalidation
 
 Published content is cached with ISR (`revalidate = 60`) and tagged `sanity`.

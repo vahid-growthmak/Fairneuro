@@ -13,7 +13,9 @@ export const structure: StructureResolver = (S) =>
         .id('siteSettings')
         .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
       S.divider(),
-      S.documentTypeListItem('post').title('Resource Articles'),
+      S.documentTypeListItem('page').title('Pages'),
+      S.divider(),
+      S.documentTypeListItem('post').title('Articles'),
       S.documentTypeListItem('category').title('Categories'),
       S.documentTypeListItem('author').title('Authors'),
       S.divider(),
