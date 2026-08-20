@@ -30,7 +30,7 @@ export function PromptBand({
   return (
     <section className={bg}>
       <div className="shell pb-4">
-        <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-7 py-7 sm:flex-row sm:items-center lg:px-9">
+        <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-6 py-7 sm:flex-row sm:items-center sm:px-8 lg:px-9">
           <div className="flex items-center gap-4">
             {variant === 'outline' ? (
               <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.6px] border-navy/25 sm:flex">
@@ -105,7 +105,7 @@ export function CtaBand({
       <div className="shell py-12">
         <div
           className={cn(
-            'relative overflow-hidden rounded-2xl px-6 py-10 sm:px-10 lg:px-14',
+            'relative overflow-hidden rounded-2xl px-6 py-10 sm:px-8 lg:px-9',
             tone === 'navy' ? 'bg-navy' : 'bg-teal',
           )}
         >
@@ -114,13 +114,13 @@ export function CtaBand({
 
           <div
             className={cn(
-              'relative flex flex-col items-center gap-7 text-center lg:flex-row lg:text-left',
+              'relative flex flex-col items-center gap-7 text-center lg:flex-row lg:gap-4 lg:text-left',
               layout === 'split' ? 'lg:justify-between' : 'lg:justify-center',
             )}
           >
             {medallion && (
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white">
-                <Calendar className="h-8 w-8 text-navy" />
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white">
+                <Calendar className="h-7 w-7 text-navy" />
               </span>
             )}
 
@@ -131,7 +131,7 @@ export function CtaBand({
               {body && <p className="mt-2 max-w-xl text-[15.5px] text-white/75">{body}</p>}
               {layout === 'split' && (
                 <div className="mt-6">
-                  <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
+                  <Button href={cta.href} icon={<Calendar />} size="lg">
                     {cta.label}
                   </Button>
                 </div>
@@ -140,7 +140,7 @@ export function CtaBand({
 
             {layout === 'inline' && (
               <div className="shrink-0">
-                <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
+                <Button href={cta.href} icon={<Calendar />} size="lg">
                   {cta.label}
                 </Button>
                 {ticks && (
@@ -197,7 +197,7 @@ export function SplitBand({
       <div className="shell pb-5">
         <div
           className={cn(
-            'flex flex-col items-start justify-between gap-5 rounded-2xl px-6 py-7 sm:flex-row sm:items-center lg:px-9',
+            'flex flex-col items-start justify-between gap-5 rounded-2xl px-6 py-7 sm:flex-row sm:items-center sm:px-8 lg:px-9',
             navy ? 'bg-navy' : 'border border-teal/25 bg-soft-teal/55',
           )}
         >
@@ -228,7 +228,6 @@ export function SplitBand({
           </div>
           <Button
             href={cta.href}
-            variant={navy ? 'secondary' : 'primary'}
             iconAfter={<ArrowRight />}
             className="shrink-0"
           >

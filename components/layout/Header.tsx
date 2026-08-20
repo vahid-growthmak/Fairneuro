@@ -127,9 +127,6 @@ export function Header() {
                       )}
                     />
                   )}
-                  {active && (
-                    <span className="absolute inset-x-3 -bottom-[3px] h-[2px] rounded-full bg-teal" />
-                  )}
                 </Link>
 
                 {/* Simple dropdown */}

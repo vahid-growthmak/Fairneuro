@@ -126,7 +126,7 @@ export default function Page() {
           { icon: Lock, title: 'Safe & Confidential', desc: 'Your information is always protected and confidential.', accent: 'teal' },
           { icon: Person, title: 'Person-Centred', desc: 'We tailor every step to your needs and circumstances.', accent: 'coral' },
           { icon: Globe, title: 'Global Experience', desc: 'Supporting individuals and families in 40+ countries.', accent: 'orange' },
-          { icon: Heart, title: 'Support Beyond', desc: "Assessment is just the beginning — we're with you afterwards.", accent: 'navy' },
+          { icon: Heart, title: 'Ongoing Support', desc: "Assessment is just the beginning — we're with you afterwards.", accent: 'navy' },
         ]}
       />
 
