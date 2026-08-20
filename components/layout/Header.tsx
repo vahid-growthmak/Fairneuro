@@ -31,10 +31,19 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Portals need a DOM target, so only render the drawer after hydration.
   useEffect(() => setMounted(true), []);
+
+  // The header lifts off the page once you scroll away from the top.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Close every menu on navigation.
   useEffect(() => {
@@ -77,7 +86,12 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy/[0.07] bg-white/95 backdrop-blur-md">
+    <header
+      className={cn(
+        'sticky top-0 z-50 border-b bg-white/95 backdrop-blur-md transition-[box-shadow,border-color] duration-300',
+        scrolled ? 'border-navy/[0.10] shadow-card' : 'border-navy/[0.07]',
+      )}
+    >
       <div className="shell flex h-[84px] items-center justify-between gap-3">
         <Logo />
 
@@ -96,7 +110,10 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'relative inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 font-heading text-[13.5px] font-medium transition-colors 2xl:px-3.5 2xl:text-[14px]',
+                    'relative inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 font-heading text-[14px] font-medium transition-colors 2xl:px-3.5 2xl:text-[15px]',
+                    // underline grows from the centre on hover and stays put when active
+                    'after:absolute after:bottom-1 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-coral after:transition-[width] after:duration-200 hover:after:w-[calc(100%-1.25rem)]',
+                    (active || open === item.label) && 'after:w-[calc(100%-1.25rem)]',
                     active || open === item.label ? 'text-teal' : 'text-navy hover:text-teal',
                   )}
                   aria-expanded={hasPanel ? open === item.label : undefined}
@@ -123,7 +140,7 @@ export function Header() {
                         <li key={child.href + child.label}>
                           <Link
                             href={child.href}
-                            className="flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-[13.5px] text-navy/80 transition-colors hover:bg-soft-teal/60 hover:text-navy"
+                            className="flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-[15px] text-navy/80 transition-colors hover:bg-soft-teal/60 hover:text-navy"
                           >
                             {child.label}
                             <ChevronRight className="h-3.5 w-3.5 shrink-0 text-teal opacity-0 transition-opacity group-hover:opacity-100" />
@@ -170,18 +187,18 @@ export function Header() {
               <div className="grid grid-cols-[300px_1fr]">
                 {/* Left rail */}
                 <div className="relative overflow-hidden bg-soft-teal/70 p-8">
-                  <h2 className="font-display text-[26px] font-semibold text-navy">Assessments</h2>
-                  <p className="mt-2 font-heading text-[14px] font-medium text-teal">
+                  <h2 className="font-heading text-[28px] font-semibold text-navy">Assessments</h2>
+                  <p className="mt-2 font-heading text-[15.5px] font-medium text-teal">
                     Assessment is only the beginning.
                   </p>
-                  <p className="mt-4 text-[13px] leading-relaxed text-navy/70">
+                  <p className="mt-4 text-[14px] leading-relaxed text-navy/70">
                     Comprehensive, personalised neurodevelopmental assessments for adults and
                     children, followed by clear insights and ongoing support that helps you thrive.
                   </p>
                   <ul className="mt-6 space-y-2.5">
                     {['Global experience', 'Carefully matched professionals', 'Support beyond diagnosis'].map(
                       (t) => (
-                        <li key={t} className="flex items-center gap-2.5 text-[13px] text-navy/75">
+                        <li key={t} className="flex items-center gap-2.5 text-[14px] text-navy/75">
                           <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-[1.4px] border-teal">
                             <Check className="h-2.5 w-2.5 text-teal" strokeWidth={3} />
                           </span>
@@ -197,7 +214,7 @@ export function Header() {
                     <Button href="/contact" variant="tertiary" className="w-full">
                       Not sure which assessment?
                     </Button>
-                    <p className="text-center text-[11.5px] text-navy/55">
+                    <p className="text-center text-[12.5px] text-navy/55">
                       Get guidance from our team.
                     </p>
                   </div>
@@ -221,10 +238,10 @@ export function Header() {
                           )}
                         >
                           <IconBadge icon={Icon} accent={col.accent} size="md" className="mb-3" />
-                          <h3 className="font-heading text-[15px] font-semibold text-navy">
+                          <h3 className="font-heading text-[16.5px] font-semibold text-navy">
                             {col.title}
                           </h3>
-                          <p className="mt-2 text-[12.5px] leading-relaxed text-navy/65">
+                          <p className="mt-2 text-[13.5px] leading-relaxed text-navy/65">
                             {col.desc}
                           </p>
                           <ul className="mt-4 space-y-0.5 border-t border-navy/[0.07] pt-3">
@@ -232,7 +249,7 @@ export function Header() {
                               <li key={l.label}>
                                 <Link
                                   href={l.href}
-                                  className="group flex items-start justify-between gap-2 rounded-md py-1.5 pr-1 text-[12.5px] text-navy/75 transition-colors hover:text-navy"
+                                  className="group flex items-start justify-between gap-2 rounded-md py-1.5 pr-1 text-[13.5px] text-navy/75 transition-colors hover:text-navy"
                                 >
                                   <span>{l.label}</span>
                                   <ChevronRight
@@ -255,7 +272,7 @@ export function Header() {
 
                   {/* Other assessments */}
                   <div className="mt-7 border-t border-navy/[0.07] pt-6">
-                    <h3 className="font-heading text-[15px] font-semibold text-navy">
+                    <h3 className="font-heading text-[16.5px] font-semibold text-navy">
                       Other Assessments
                     </h3>
                     <div className="mt-4 grid grid-cols-5 gap-3">
@@ -263,7 +280,7 @@ export function Header() {
                         <Link
                           key={a.label}
                           href={a.href}
-                          className="flex items-center gap-2.5 rounded-xl border border-navy/[0.08] px-3 py-3 text-[12.5px] font-medium text-navy transition-colors hover:border-teal/40 hover:bg-soft-teal/40"
+                          className="flex items-center gap-2.5 rounded-xl border border-navy/[0.08] px-3 py-3 text-[13.5px] font-medium text-navy transition-colors hover:border-teal/40 hover:bg-soft-teal/40"
                         >
                           <IconBadge
                             icon={[Brain, Person, Book, ShieldCheck][i % 4]}
@@ -278,10 +295,10 @@ export function Header() {
                         className="flex items-center justify-between gap-2 rounded-xl border border-teal/45 px-4 py-3 transition-colors hover:bg-soft-teal/40"
                       >
                         <span>
-                          <span className="block text-[12.5px] font-semibold text-teal">
+                          <span className="block text-[13.5px] font-semibold text-teal">
                             View All Assessments
                           </span>
-                          <span className="block text-[11.5px] text-navy/60">
+                          <span className="block text-[12.5px] text-navy/60">
                             Explore our full range
                           </span>
                         </span>
@@ -296,7 +313,7 @@ export function Header() {
               <div className="flex items-center justify-between gap-6 border-t border-navy/[0.07] bg-soft-teal/50 px-8 py-5">
                 <div className="flex items-center gap-4">
                   <IconBadge icon={ShieldCheck} accent="teal" size="md" />
-                  <p className="max-w-3xl text-[13px] leading-relaxed text-navy/75">
+                  <p className="max-w-3xl text-[14px] leading-relaxed text-navy/75">
                     Every assessment includes a comprehensive report, personalised recommendations
                     and access to ongoing support.
                     <br />
@@ -361,7 +378,7 @@ export function Header() {
                       <div className="flex items-center">
                         <Link
                           href={item.href}
-                          className="flex-1 py-3.5 font-heading text-[15px] font-medium text-navy"
+                          className="flex-1 py-3.5 font-heading text-[16.5px] font-medium text-navy"
                         >
                           {item.label}
                         </Link>
@@ -388,7 +405,7 @@ export function Header() {
                             <li key={c.href + c.label}>
                               <Link
                                 href={c.href}
-                                className="block py-2 text-[13.5px] text-navy/70"
+                                className="block py-2 text-[15px] text-navy/70"
                               >
                                 {c.label}
                               </Link>

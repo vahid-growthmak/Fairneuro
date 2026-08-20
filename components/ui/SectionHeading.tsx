@@ -8,7 +8,7 @@ export function SectionHeading({
   title,
   subtitle,
   align = 'center',
-  serif = true,
+  serif = false,
   underline = false,
   className,
 }: {
@@ -21,6 +21,7 @@ export function SectionHeading({
 }) {
   return (
     <div
+      data-reveal
       className={cn(
         'mb-10',
         align === 'center' ? 'text-center' : 'text-left',
@@ -29,7 +30,7 @@ export function SectionHeading({
     >
       <h2
         className={cn(
-          'text-[26px] leading-tight sm:text-[30px]',
+          'text-[28px] leading-tight sm:text-[32px]',
           serif ? 'font-display font-semibold' : 'font-heading',
         )}
       >
@@ -38,7 +39,7 @@ export function SectionHeading({
       {underline && (
         <span
           className={cn(
-            'mt-3 block h-[3px] w-12 rounded-full bg-teal',
+            'mt-3 block h-[3px] w-12 rounded-full bg-coral',
             align === 'center' && 'mx-auto',
           )}
         />
@@ -46,7 +47,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            'mt-3 text-[14.5px] text-navy/65',
+            'mt-3 text-[16px] text-navy/65',
             align === 'center' && 'mx-auto max-w-2xl',
           )}
         >

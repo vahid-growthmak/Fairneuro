@@ -89,10 +89,10 @@ export default function Page() {
             </div>
 
             <div>
-              <h2 className="font-display text-[24px] font-semibold text-teal sm:text-[27px]">
+              <h2 className="font-heading text-[26px] font-semibold text-teal sm:text-[29px]">
                 The FAIR Standard™
               </h2>
-              <p className="mt-4 text-[13.5px] leading-relaxed text-navy/70">
+              <p className="mt-4 text-[15px] leading-relaxed text-navy/70">
                 Our proprietary framework ensures every assessment meets the highest standards of
                 care.
               </p>
@@ -105,8 +105,8 @@ export default function Page() {
                     <Check className="h-2.5 w-2.5 text-teal" strokeWidth={3.2} />
                   </span>
                   <div>
-                    <p className="font-heading text-[13.5px] font-semibold text-navy">{f.word}</p>
-                    <p className="mt-1 text-[12px] leading-relaxed text-navy/65">{f.desc}</p>
+                    <p className="font-heading text-[15px] font-semibold text-navy">{f.word}</p>
+                    <p className="mt-1 text-[13px] leading-relaxed text-navy/65">{f.desc}</p>
                   </div>
                 </li>
               ))}
@@ -125,10 +125,10 @@ export default function Page() {
                 key={a.name}
                 className={`px-5 text-center ${i > 0 ? 'lg:border-l lg:border-navy/[0.08]' : ''}`}
               >
-                <p className="font-heading text-[20px] font-semibold lowercase tracking-tight text-navy">
+                <p className="font-heading text-[21.5px] font-semibold lowercase tracking-tight text-navy">
                   {a.name}
                 </p>
-                <p className="mt-1.5 text-[11px] leading-snug text-navy/58">{a.sub}</p>
+                <p className="mt-1.5 text-[12px] leading-snug text-navy/58">{a.sub}</p>
               </li>
             ))}
           </ul>

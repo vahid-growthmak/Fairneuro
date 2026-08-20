@@ -139,6 +139,7 @@ export const primaryNav: NavItem[] = [
       { label: 'Why Fairneuro', href: '/why-fairneuro' },
       { label: 'Our Standards', href: '/why-fairneuro/our-standards' },
       { label: 'About Us', href: '/about' },
+      { label: 'Become an Assessor', href: '/become-an-assessor' },
       { label: 'Contact Us', href: '/contact' },
     ],
   },
@@ -148,6 +149,7 @@ export const primaryNav: NavItem[] = [
     children: [
       { label: 'All Resources', href: '/resources' },
       { label: 'Free Online Screener', href: '/screener' },
+      { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
       { label: 'Preparing for Your Assessment', href: '/resources/preparing-for-your-assessment' },
       { label: 'Your Report Explained', href: '/resources/your-report-explained' },
       { label: 'FAQs', href: '/faqs' },
@@ -199,11 +201,13 @@ export const footerColumns = [
       { label: 'Why Fairneuro', href: '/why-fairneuro' },
       { label: 'Our Standards', href: '/why-fairneuro/our-standards' },
       { label: 'How It Works', href: '/how-it-works' },
+      { label: 'Become an Assessor', href: '/become-an-assessor' },
     ],
   },
   {
     title: 'Help',
     links: [
+      { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
       { label: 'FAQs', href: '/faqs' },
       { label: 'Contact Us', href: '/contact' },
     ],

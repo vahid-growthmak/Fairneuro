@@ -32,8 +32,8 @@ export function AccreditationStrip({
               <ShieldLock className="h-5 w-5 text-teal" />
             </span>
             <div>
-              <h2 className="font-heading text-[14px] font-semibold text-navy">{title}</h2>
-              <p className="mt-1 text-[12px] leading-relaxed text-navy/62">{body}</p>
+              <h2 className="font-heading text-[15.5px] font-semibold text-navy">{title}</h2>
+              <p className="mt-1 text-[13px] leading-relaxed text-navy/62">{body}</p>
             </div>
           </div>
 
@@ -43,10 +43,10 @@ export function AccreditationStrip({
                 key={b.name}
                 className={cn('px-4 text-center', i > 0 && 'sm:border-l sm:border-navy/[0.08]')}
               >
-                <p className="font-heading text-[17px] font-semibold lowercase tracking-tight text-navy">
+                <p className="font-heading text-[18.5px] font-semibold lowercase tracking-tight text-navy">
                   {b.name}
                 </p>
-                <p className="mt-1 text-[10.5px] leading-snug text-navy/55">{b.sub}</p>
+                <p className="mt-1 text-[11.5px] leading-snug text-navy/55">{b.sub}</p>
               </li>
             ))}
           </ul>

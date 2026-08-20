@@ -6,8 +6,8 @@ type Variant = 'primary' | 'secondary' | 'tertiary' | 'ghost-light';
 type Size = 'md' | 'lg';
 
 const variants: Record<Variant, string> = {
-  // Primary — navy fill, white text
-  primary: 'bg-navy text-white hover:bg-navy/90 shadow-card',
+  // Primary — pink fill, white text
+  primary: 'bg-coral text-white hover:bg-coral/90 shadow-card',
   // Secondary — teal fill, white text
   secondary: 'bg-teal text-white hover:bg-teal/90 shadow-card',
   // Tertiary — white fill, teal border + teal text
@@ -17,8 +17,8 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  md: 'px-5 py-2.5 text-[13.5px]',
-  lg: 'px-6 py-3.5 text-[14.5px]',
+  md: 'px-5 py-2.5 text-[15px]',
+  lg: 'px-6 py-3.5 text-[16px]',
 };
 
 export interface ButtonProps {
@@ -44,7 +44,9 @@ export function Button({
     <Link
       href={href}
       className={cn(
-        'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-heading font-medium transition-colors duration-200',
+        'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-heading font-medium',
+        'transition-[background-color,border-color,color,box-shadow,transform] duration-200',
+        'hover:-translate-y-px active:translate-y-0 active:scale-[0.985] motion-reduce:transform-none',
         variants[variant],
         sizes[size],
         className,

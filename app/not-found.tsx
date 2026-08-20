@@ -10,10 +10,10 @@ export default function NotFound() {
         <span className="flex h-16 w-16 items-center justify-center rounded-full bg-soft-teal">
           <Search className="h-8 w-8 text-teal" />
         </span>
-        <h1 className="mt-7 font-display text-[38px] font-semibold text-navy sm:text-[44px]">
+        <h1 className="mt-7 font-heading text-[40px] font-semibold text-navy sm:text-[46px]">
           Page not found
         </h1>
-        <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-navy/70">
+        <p className="mt-4 max-w-md text-[16px] leading-relaxed text-navy/70">
           The page you are looking for has moved or no longer exists. Let&apos;s get you back on
           track.
         </p>

@@ -56,11 +56,11 @@ export default function Page() {
               <a
                 key={c.title}
                 href={c.href}
-                className="group flex flex-col items-center rounded-xl border border-navy/[0.07] bg-white p-6 text-center shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+                className="group flex flex-col items-center rounded-xl border border-navy/[0.07] bg-white p-6 text-center shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover motion-reduce:transform-none"
               >
                 <IconBadge icon={c.icon} accent={c.accent} size="md" />
-                <h2 className="mt-4 font-heading text-[14px] font-semibold text-navy">{c.title}</h2>
-                <p className="mt-2 text-[12.5px] text-navy/65">{c.value}</p>
+                <h2 className="mt-4 font-heading text-[15.5px] font-semibold text-navy">{c.title}</h2>
+                <p className="mt-2 text-[13.5px] text-navy/65">{c.value}</p>
               </a>
             ))}
           </div>

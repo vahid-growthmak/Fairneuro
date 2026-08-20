@@ -87,10 +87,10 @@ export default async function Page() {
               >
                 <IconBadge icon={t.icon} accent={t.accent} size="md" />
                 <span className="flex-1">
-                  <span className="block font-heading text-[14px] font-semibold text-navy">
+                  <span className="block font-heading text-[15.5px] font-semibold text-navy">
                     {t.title}
                   </span>
-                  <span className="mt-1 inline-flex items-center gap-1.5 text-[12px] text-teal">
+                  <span className="mt-1 inline-flex items-center gap-1.5 text-[13px] text-teal">
                     Explore
                     <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                   </span>
@@ -134,13 +134,13 @@ export default async function Page() {
                 id="resource-search"
                 type="search"
                 placeholder="Search guides and articles…"
-                className="w-full rounded-full border border-navy/15 bg-white py-3.5 pl-12 pr-5 text-[13.5px] text-navy placeholder:text-navy/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"
+                className="w-full rounded-full border border-navy/15 bg-white py-3.5 pl-12 pr-5 text-[15px] text-navy placeholder:text-navy/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"
               />
             </div>
             <ul className="mt-6 flex flex-wrap justify-center gap-2.5">
               {tags.map((t) => (
                 <li key={t}>
-                  <span className="inline-flex rounded-full border border-navy/12 bg-white px-4 py-1.5 text-[12px] text-navy/70">
+                  <span className="inline-flex rounded-full border border-navy/12 bg-white px-4 py-1.5 text-[13px] text-navy/70">
                     {t}
                   </span>
                 </li>

@@ -1,5 +1,6 @@
 import type { Testimonial } from '@/components/sections/Testimonials';
 import type { FaqItem } from '@/components/sections/Accordion';
+import { img } from '@/lib/images';
 
 /**
  * Built-in content used when Sanity is not configured, or when a query
@@ -31,14 +32,14 @@ export const aboutTestimonials: Testimonial[] = [
       'From the first conversation I felt heard. The assessment was thorough and the report finally made sense of things I had wondered about for years.',
     name: 'Alex, 28',
     role: 'ADHD Assessment',
-    avatar: '/images/avatar-alex.svg',
+    avatar: img.avatarAlex,
   },
   {
     quote:
       'What stood out was that the support did not stop when the report arrived. That made all the difference for our family.',
     name: 'Parent of a 9-year-old',
     role: 'Child Autism Assessment',
-    avatar: '/images/avatar-parent.svg',
+    avatar: img.avatarParent,
   },
 ];
 

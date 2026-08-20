@@ -104,7 +104,6 @@ export default async function HomePage() {
         body="Expert neurodiversity assessment with personalised support for everything that comes next."
         secondaryCta={{ label: 'Explore Assessments', href: '/assessments' }}
         ticks={['Free consultation', 'No obligation', 'Here to help']}
-        titleFont="sans"
         image={{ src: img.heroHome, alt: 'Someone smiling, looking ahead with confidence' }}
       />
 
@@ -122,7 +121,6 @@ export default async function HomePage() {
         items={helpCards}
         columns={4}
         background="white"
-        serif={false}
         iconStyle="bare"
       />
 
@@ -137,7 +135,6 @@ export default async function HomePage() {
         title="Your journey with Fairneuro"
         steps={journey}
         background="white"
-        serif={false}
       />
 
       {/* Support that goes beyond the diagnosis */}
@@ -145,10 +142,10 @@ export default async function HomePage() {
         <div className="shell py-16 lg:py-20">
           <div className="grid gap-10 rounded-2xl bg-white/60 p-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,2fr)] lg:gap-12 lg:p-10">
             <div>
-              <h2 className="font-heading text-[24px] font-semibold leading-snug text-navy sm:text-[27px]">
+              <h2 className="font-heading text-[26px] font-semibold leading-snug text-navy sm:text-[29px]">
                 Support that goes beyond the diagnosis
               </h2>
-              <p className="mt-4 text-[13.5px] leading-relaxed text-navy/68">
+              <p className="mt-4 text-[15px] leading-relaxed text-navy/68">
                 We offer a range of support services to help you understand your diagnosis and build
                 practical strategies for everyday life.
               </p>
@@ -165,7 +162,7 @@ export default async function HomePage() {
                   className="flex flex-col items-center justify-start rounded-xl border border-navy/[0.07] bg-white px-3 py-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
                 >
                   <IconBadge icon={s.icon} accent={s.accent} size="md" />
-                  <p className="mt-3 font-heading text-[12px] font-semibold leading-snug text-navy">
+                  <p className="mt-3 font-heading text-[13px] font-semibold leading-snug text-navy">
                     {s.title}
                   </p>
                 </Link>

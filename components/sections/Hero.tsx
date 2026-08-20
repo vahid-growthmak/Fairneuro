@@ -30,7 +30,7 @@ export interface HeroProps {
   features?: HeroFeature[];
   /** Inner pages sit on warm ivory; some sit on white. */
   background?: 'ivory' | 'white';
-  /** Homepage uses the Poppins heading face; inner pages use the display serif. */
+  /** Headings are Poppins site-wide; `serif` opts a single hero into Fraunces. */
   titleFont?: 'serif' | 'sans';
   titleClassName?: string;
 }
@@ -47,7 +47,7 @@ export function Hero({
   image,
   features,
   background = 'ivory',
-  titleFont = 'serif',
+  titleFont = 'sans',
   titleClassName,
 }: HeroProps) {
   return (
@@ -56,16 +56,16 @@ export function Hero({
         {crumbs && <Breadcrumb items={crumbs} />}
 
         <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10">
-          <div>
+          <div data-reveal>
             {eyebrow && (
-              <p className="mb-4 font-heading text-[11.5px] font-semibold uppercase tracking-[0.18em] text-teal">
+              <p className="mb-4 font-heading text-[12.5px] font-semibold uppercase tracking-[0.18em] text-teal">
                 {eyebrow}
               </p>
             )}
 
             <h1
               className={cn(
-                'text-[40px] font-semibold leading-[1.06] text-navy sm:text-[50px] lg:text-[57px]',
+                'text-[42px] font-semibold leading-[1.06] text-navy sm:text-[52px] lg:text-[59px]',
                 titleFont === 'serif' ? 'font-display' : 'font-heading tracking-[-0.015em]',
                 titleClassName,
               )}
@@ -74,13 +74,13 @@ export function Hero({
             </h1>
 
             {lede && (
-              <p className="mt-3.5 font-heading text-[18px] font-medium leading-snug text-teal sm:text-[20px]">
+              <p className="mt-3.5 font-heading text-[19.5px] font-medium leading-snug text-coral sm:text-[21.5px]">
                 {lede}
               </p>
             )}
 
             {body && (
-              <p className="mt-5 max-w-[21.5rem] text-[15px] leading-[1.65] text-navy/70">{body}</p>
+              <p className="mt-5 max-w-[21.5rem] text-[16.5px] leading-[1.65] text-navy/70">{body}</p>
             )}
 
             {features && (
@@ -94,9 +94,9 @@ export function Hero({
                     )}
                   >
                     <f.icon className={cn('mb-2 h-6 w-6', accents[f.accent ?? 'teal'].fg)} />
-                    <p className="font-heading text-[13px] font-semibold text-navy">{f.title}</p>
+                    <p className="font-heading text-[14px] font-semibold text-navy">{f.title}</p>
                     {f.desc && (
-                      <p className="mt-1 text-[11.5px] leading-relaxed text-navy/60">{f.desc}</p>
+                      <p className="mt-1 text-[12.5px] leading-relaxed text-navy/60">{f.desc}</p>
                     )}
                   </li>
                 ))}
@@ -142,11 +142,11 @@ export function HeroFeatureCards({ items }: { items: HeroFeature[] }) {
             >
               <IconBadge icon={f.icon} accent={f.accent ?? (['teal', 'coral', 'orange', 'teal'] as const)[i % 4]} size="sm" />
               <div>
-                <p className="font-heading text-[13.5px] font-semibold leading-snug text-navy">
+                <p className="font-heading text-[15px] font-semibold leading-snug text-navy">
                   {f.title}
                 </p>
                 {f.desc && (
-                  <p className="mt-1.5 text-[12px] leading-relaxed text-navy/62">{f.desc}</p>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-navy/62">{f.desc}</p>
                 )}
               </div>
             </div>

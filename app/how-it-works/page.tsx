@@ -83,12 +83,12 @@ export default function Page() {
                   className="flex flex-col rounded-xl border border-navy/[0.07] bg-white p-5 shadow-card"
                 >
                   <IconBadge icon={step.icon} accent={accent} size="sm" />
-                  <h3 className="mt-3 font-heading text-[13.5px] font-semibold text-navy">
+                  <h3 className="mt-3 font-heading text-[15px] font-semibold text-navy">
                     {i + 1}. {step.title}
                   </h3>
                   <ul className="mt-3 flex-1 space-y-2">
                     {step.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-[11.5px] text-navy/68">
+                      <li key={b} className="flex items-start gap-2 text-[12.5px] text-navy/68">
                         <Check className="mt-0.5 h-3 w-3 shrink-0 text-teal" strokeWidth={3} />
                         {b}
                       </li>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Fraunces, Inter, Poppins } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { RevealProvider } from '@/components/ui/RevealProvider';
 import './globals.css';
 
 const poppins = Poppins({
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <RevealProvider />
         <Header />
         <main id="main">{children}</main>
         <Footer />

@@ -42,8 +42,8 @@ export function PromptBand({
               </span>
             )}
             <div>
-              <h2 className="font-heading text-[16.5px] font-semibold text-navy">{title}</h2>
-              {body && <p className="mt-1.5 max-w-lg text-[13.5px] leading-relaxed text-navy/68">{body}</p>}
+              <h2 className="font-heading text-[18px] font-semibold text-navy">{title}</h2>
+              {body && <p className="mt-1.5 max-w-lg text-[15px] leading-relaxed text-navy/68">{body}</p>}
             </div>
           </div>
           <Button href={cta.href} variant={buttonVariant} icon={<Calendar />} className="shrink-0">
@@ -125,10 +125,10 @@ export function CtaBand({
             )}
 
             <div className="lg:mr-auto">
-              <h2 className="font-heading text-[25px] font-semibold text-white sm:text-[28px]">
+              <h2 className="font-heading text-[27px] font-semibold text-white sm:text-[30px]">
                 {title}
               </h2>
-              {body && <p className="mt-2 max-w-xl text-[14px] text-white/75">{body}</p>}
+              {body && <p className="mt-2 max-w-xl text-[15.5px] text-white/75">{body}</p>}
               {layout === 'split' && (
                 <div className="mt-6">
                   <Button href={cta.href} variant="secondary" icon={<Calendar />} size="lg">
@@ -146,7 +146,7 @@ export function CtaBand({
                 {ticks && (
                   <ul className="mt-3.5 flex flex-wrap justify-center gap-x-5 gap-y-1.5">
                     {ticks.map((t) => (
-                      <li key={t} className="flex items-center gap-1.5 text-[12px] text-white/70">
+                      <li key={t} className="flex items-center gap-1.5 text-[13px] text-white/70">
                         <Check className="h-3 w-3 text-teal" strokeWidth={3} />
                         {t}
                       </li>
@@ -159,7 +159,7 @@ export function CtaBand({
             {ticks && layout === 'split' && (
               <ul className="shrink-0 space-y-3.5 self-center border-white/25 lg:border-l lg:pl-14">
                 {ticks.map((t) => (
-                  <li key={t} className="flex items-center gap-3 text-[13.5px] text-white/80">
+                  <li key={t} className="flex items-center gap-3 text-[15px] text-white/80">
                     <Check className="h-4 w-4 shrink-0 text-teal" strokeWidth={2.6} />
                     {t}
                   </li>
@@ -213,14 +213,14 @@ export function SplitBand({
             <div>
               <h2
                 className={cn(
-                  'font-display text-[19px] font-semibold sm:text-[21px]',
+                  'font-heading text-[20.5px] font-semibold sm:text-[22.5px]',
                   navy ? 'text-white' : 'text-navy',
                 )}
               >
                 {title}
               </h2>
               {body && (
-                <p className={cn('mt-1.5 max-w-2xl text-[13px]', navy ? 'text-white/72' : 'text-navy/68')}>
+                <p className={cn('mt-1.5 max-w-2xl text-[14px]', navy ? 'text-white/72' : 'text-navy/68')}>
                   {body}
                 </p>
               )}
@@ -264,10 +264,10 @@ export function StatsBar({
                 size="lg"
               />
               <div>
-                <p className="font-heading text-[21px] font-semibold leading-tight text-navy">
+                <p className="font-heading text-[22.5px] font-semibold leading-tight text-navy">
                   {item.value}
                 </p>
-                <p className="mt-1 max-w-[9rem] text-[12.5px] leading-[1.35] text-navy/62">
+                <p className="mt-1 max-w-[9rem] text-[13.5px] leading-[1.35] text-navy/62">
                   {item.label}
                 </p>
               </div>

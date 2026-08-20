@@ -32,10 +32,10 @@ export function SplitFeatureBand({
       <div className="shell py-16 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,2.1fr)] lg:gap-14">
           <div>
-            <h2 className="font-display text-[24px] font-semibold leading-snug text-navy sm:text-[27px]">
+            <h2 className="font-heading text-[26px] font-semibold leading-snug text-navy sm:text-[29px]">
               {title}
             </h2>
-            {body && <p className="mt-4 text-[13.5px] leading-relaxed text-navy/68">{body}</p>}
+            {body && <p className="mt-4 text-[15px] leading-relaxed text-navy/68">{body}</p>}
             {cta && (
               <Button href={cta.href} variant="tertiary" className="mt-6">
                 {cta.label}
@@ -55,11 +55,11 @@ export function SplitFeatureBand({
                   size="md"
                   className="mx-auto"
                 />
-                <h3 className="mt-3.5 font-heading text-[13.5px] font-semibold leading-snug text-navy">
+                <h3 className="mt-3.5 font-heading text-[15px] font-semibold leading-snug text-navy">
                   {item.title}
                 </h3>
                 {item.desc && (
-                  <p className="mt-2 text-[11.5px] leading-relaxed text-navy/62">{item.desc}</p>
+                  <p className="mt-2 text-[12.5px] leading-relaxed text-navy/62">{item.desc}</p>
                 )}
               </div>
             ))}
@@ -90,7 +90,7 @@ export function BenefitsPanel({
     <section className={bg}>
       <div className="shell py-16 lg:py-20">
         <div className="relative overflow-hidden rounded-2xl bg-soft-teal/70 px-7 py-10 lg:px-10">
-          <h2 className="mb-9 font-display text-[24px] font-semibold text-navy sm:text-[27px]">
+          <h2 className="mb-9 font-heading text-[26px] font-semibold text-navy sm:text-[29px]">
             {title}
           </h2>
           <div
@@ -109,11 +109,11 @@ export function BenefitsPanel({
                     <path d="m5 12.6 4.4 4.4L19 7.4" />
                   </svg>
                 </span>
-                <h3 className="mt-3.5 font-heading text-[13px] font-semibold text-navy">
+                <h3 className="mt-3.5 font-heading text-[14px] font-semibold text-navy">
                   {item.title}
                 </h3>
                 {item.desc && (
-                  <p className="mt-2 text-[11.5px] leading-relaxed text-navy/62">{item.desc}</p>
+                  <p className="mt-2 text-[12.5px] leading-relaxed text-navy/62">{item.desc}</p>
                 )}
               </div>
             ))}
@@ -174,20 +174,20 @@ export function TrustSplit({
           )}
         >
           <div>
-            <h2 className="font-display text-[24px] font-semibold leading-snug text-navy sm:text-[27px]">
+            <h2 className="font-heading text-[26px] font-semibold leading-snug text-navy sm:text-[29px]">
               {title}
             </h2>
-            {body && <p className="mt-4 text-[13.5px] leading-relaxed text-navy/68">{body}</p>}
+            {body && <p className="mt-4 text-[15px] leading-relaxed text-navy/68">{body}</p>}
             <TickList items={ticks} className="mt-6" />
           </div>
 
           <figure className="rounded-xl border border-navy/[0.07] bg-white p-7 shadow-card">
             <Quote className="h-7 w-7 text-teal/70" />
-            <blockquote className="mt-4 text-[14.5px] leading-relaxed text-navy/80">
+            <blockquote className="mt-4 text-[16px] leading-relaxed text-navy/80">
               {testimonial.quote}
             </blockquote>
             <Stars count={testimonial.stars ?? 5} className="mt-5" />
-            <figcaption className="mt-3 text-[12px] text-navy/58">
+            <figcaption className="mt-3 text-[13px] text-navy/58">
               {testimonial.role ?? testimonial.name}
             </figcaption>
           </figure>
@@ -217,11 +217,11 @@ export function AudienceCards({
               )}
             >
               <div>
-                <h3 className="font-display text-[20px] font-semibold text-navy">{item.title}</h3>
-                <p className="mt-2.5 text-[13px] leading-relaxed text-navy/68">{item.desc}</p>
+                <h3 className="font-heading text-[21.5px] font-semibold text-navy">{item.title}</h3>
+                <p className="mt-2.5 text-[14px] leading-relaxed text-navy/68">{item.desc}</p>
                 <span
                   className={cn(
-                    'mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-medium',
+                    'mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-medium',
                     item.tone === 'teal' ? 'text-teal' : 'text-coral',
                   )}
                 >
@@ -255,7 +255,7 @@ export function FairStandard({
     { letter: 'I', word: 'Integrated', desc: 'Assessment connected to the support that can follow.', accent: 'orange' as Accent },
     { letter: 'R', word: 'Reliable', desc: 'Professional assessment and care you can have confidence in.', accent: 'navy' as Accent },
   ],
-  serif = true,
+  serif = false,
 }: {
   background?: 'white' | 'ivory' | 'soft-teal';
   letters?: { letter: string; word: string; desc: string; accent: Accent }[];
@@ -277,11 +277,11 @@ export function FairStandard({
               key={l.letter}
               className={cn('px-6 text-center', i > 0 && 'lg:border-l lg:border-navy/[0.1]')}
             >
-              <p className={cn('font-display text-[48px] font-semibold leading-none', accents[l.accent].fg)}>
+              <p className={cn('font-heading text-[50px] font-semibold leading-none', accents[l.accent].fg)}>
                 {l.letter}
               </p>
-              <h3 className="mt-3 font-heading text-[15px] font-semibold text-navy">{l.word}</h3>
-              <p className="mx-auto mt-2 max-w-[15rem] text-[12px] leading-relaxed text-navy/62">
+              <h3 className="mt-3 font-heading text-[16.5px] font-semibold text-navy">{l.word}</h3>
+              <p className="mx-auto mt-2 max-w-[15rem] text-[13px] leading-relaxed text-navy/62">
                 {l.desc}
               </p>
             </div>

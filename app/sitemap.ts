@@ -48,6 +48,8 @@ const routes = [
   '/screener/dyslexia',
   '/screener/general',
   '/professional-referrals',
+  '/become-an-assessor',
+  '/adhd-quiz',
   '/schools',
   '/employers',
   '/clinical-care',

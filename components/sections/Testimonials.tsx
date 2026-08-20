@@ -41,7 +41,7 @@ export function TestimonialCarousel({
   items,
   background = 'white',
   withAvatar = true,
-  serif = true,
+  serif = false,
 }: {
   title?: string;
   items: Testimonial[];
@@ -90,14 +90,14 @@ export function TestimonialCarousel({
                   count={current.stars ?? 5}
                   className={cn('mb-3', !current.avatar && 'justify-center')}
                 />
-                <blockquote className="text-[15px] leading-relaxed text-navy/80">
+                <blockquote className="text-[16.5px] leading-relaxed text-navy/80">
                   &ldquo;{current.quote}&rdquo;
                 </blockquote>
-                <p className="mt-4 font-heading text-[13.5px] font-semibold text-navy">
+                <p className="mt-4 font-heading text-[15px] font-semibold text-navy">
                   {current.name}
                 </p>
                 {current.role && (
-                  <p className="mt-0.5 text-[12px] text-navy/58">{current.role}</p>
+                  <p className="mt-0.5 text-[13px] text-navy/58">{current.role}</p>
                 )}
               </div>
             </div>
@@ -170,12 +170,12 @@ export function TestimonialGrid({
               className="flex flex-col rounded-xl border border-navy/[0.07] bg-white p-6 shadow-card"
             >
               <Stars count={t.stars ?? 5} className="mb-4" />
-              <blockquote className="flex-1 text-[13.5px] leading-relaxed text-navy/75">
+              <blockquote className="flex-1 text-[15px] leading-relaxed text-navy/75">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-5 border-t border-navy/[0.07] pt-4">
-                <p className="font-heading text-[13px] font-semibold text-navy">{t.name}</p>
-                {t.role && <p className="mt-0.5 text-[11.5px] text-navy/55">{t.role}</p>}
+                <p className="font-heading text-[14px] font-semibold text-navy">{t.name}</p>
+                {t.role && <p className="mt-0.5 text-[12.5px] text-navy/55">{t.role}</p>}
               </figcaption>
             </figure>
           ))}
@@ -210,13 +210,13 @@ export function TestimonialQuote({
         <div className="relative mx-auto max-w-4xl px-14 text-center">
           <Quote className="mx-auto h-8 w-8 text-teal/75" />
 
-          <blockquote className="mx-auto mt-4 max-w-2xl text-[15.5px] leading-[1.75] text-navy/80">
+          <blockquote className="mx-auto mt-4 max-w-2xl text-[17px] leading-[1.75] text-navy/80">
             &ldquo;{current.quote}&rdquo;
           </blockquote>
 
           <Stars count={current.stars ?? 5} tone="teal" className="mt-4 justify-center" />
 
-          <p className="mt-2.5 text-[13px] text-navy/65">&ndash; {current.name}</p>
+          <p className="mt-2.5 text-[14px] text-navy/65">&ndash; {current.name}</p>
 
           {total > 1 && (
             <>

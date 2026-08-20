@@ -26,7 +26,7 @@ export function IconBadge({
   return (
     <span
       className={cn(
-        'inline-flex shrink-0 items-center justify-center rounded-full',
+        'inline-flex shrink-0 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-[1.07] motion-reduce:transform-none',
         a.bg,
         sizes[size].box,
         className,

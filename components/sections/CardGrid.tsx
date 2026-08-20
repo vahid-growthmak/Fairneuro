@@ -25,7 +25,7 @@ export function CardGrid({
   items,
   columns = 4,
   align = 'center',
-  serif = true,
+  serif = false,
   underline = false,
   background = 'white',
   cardAlign = 'center',
@@ -73,7 +73,7 @@ export function CardGrid({
             underline={underline}
           />
         )}
-        <div className={cn('grid gap-4', cols)}>
+        <div data-reveal-stagger className={cn('grid gap-4', cols)}>
           {items.map((item, i) => {
             const accent = item.accent ?? cycle(accentCycle, i);
             const a = accents[accent];
@@ -95,16 +95,16 @@ export function CardGrid({
                     className={cardAlign === 'center' ? 'mx-auto' : undefined}
                   />
                 )}
-                <h3 className="mt-4 font-heading text-[16px] font-semibold leading-snug text-navy">
+                <h3 className="mt-4 font-heading text-[17.5px] font-semibold leading-snug text-navy">
                   {item.title}
                 </h3>
                 {item.desc && (
-                  <p className="mt-2.5 text-[13px] leading-relaxed text-navy/65">{item.desc}</p>
+                  <p className="mt-2.5 text-[14px] leading-relaxed text-navy/65">{item.desc}</p>
                 )}
                 {item.href && (
                   <span
                     className={cn(
-                      'mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium',
+                      'mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium',
                       a.link,
                     )}
                   >
@@ -117,16 +117,16 @@ export function CardGrid({
 
             const cls = cn(
               'group flex flex-col rounded-xl border border-navy/[0.07] bg-white p-7 shadow-card transition-all duration-200',
-              item.href && 'hover:-translate-y-0.5 hover:border-navy/[0.12] hover:shadow-card-hover',
+              'hover:-translate-y-1 hover:border-navy/[0.12] hover:shadow-card-hover',
               cardAlign === 'center' && 'text-center items-center',
             );
 
             return item.href ? (
-              <Link key={item.title} href={item.href} className={cls}>
+              <Link key={item.title} data-reveal href={item.href} className={cls}>
                 {inner}
               </Link>
             ) : (
-              <div key={item.title} className={cls}>
+              <div key={item.title} data-reveal className={cls}>
                 {inner}
               </div>
             );
@@ -149,7 +149,7 @@ export function IconColumns({
   background = 'white',
   boxed = false,
   compact = false,
-  serif = true,
+  serif = false,
 }: {
   title?: string;
   subtitle?: string;
@@ -195,14 +195,14 @@ export function IconColumns({
                 <IconBadge icon={item.icon} accent={accent} size="md" className="mx-auto" />
                 <p
                   className={cn(
-                    'mx-auto mt-3.5 max-w-[16rem] font-heading text-[13px] font-semibold leading-snug text-navy',
-                    compact && 'text-[13.5px]',
+                    'mx-auto mt-3.5 max-w-[16rem] font-heading text-[14px] font-semibold leading-snug text-navy',
+                    compact && 'text-[15px]',
                   )}
                 >
                   {item.title}
                 </p>
                 {item.desc && (
-                  <p className="mx-auto mt-2 max-w-[16rem] text-[11.5px] leading-relaxed text-navy/62">
+                  <p className="mx-auto mt-2 max-w-[16rem] text-[12.5px] leading-relaxed text-navy/62">
                     {item.desc}
                   </p>
                 )}
