@@ -33,7 +33,13 @@ export default function Page() {
   return (
     <PartnershipPage
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Clinical Care / Medication Pathway' }]}
-      title="Clinical Care / Medication Pathway"
+      title={
+        <>
+          Clinical Care /{' '}
+          <br />
+          Medication Pathway
+        </>
+      }
       body="Fairneuro offers a structured, clinician-led pathway for people who wish to explore whether ADHD medication may be an appropriate part of their wider support plan. Our pathway includes careful assessment, titration, regular reviews and ongoing follow-up."
       image={{ src: img.heroClinical, alt: 'A clinician in consultation with a patient' }}
       primaryCta={{ label: 'Book a Free Consultation', href: '/book-consultation' }}

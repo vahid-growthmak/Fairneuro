@@ -83,7 +83,7 @@ export function Hero({
             )}
 
             {body && (
-              <p className="mt-5 max-w-[21.5rem] text-[16.5px] leading-[1.65] text-navy/70">{body}</p>
+              <p className="mt-5 max-w-[36rem] text-[16.5px] leading-[1.65] text-navy/70">{body}</p>
             )}
 
             {children}
