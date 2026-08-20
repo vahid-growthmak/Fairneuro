@@ -2,7 +2,7 @@ import { Hero } from '@/components/sections/Hero';
 import { CtaBand } from '@/components/sections/Bands';
 import { ProcessRow } from '@/components/sections/Steps';
 import { TrustSplit } from '@/components/sections/Panels';
-import { AccreditationStrip } from '@/components/sections/Trust';
+import { FeaturedIn } from '@/components/sections/FeaturedIn';
 import { CalendlyEmbed } from '@/components/sections/CalendlyEmbed';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Bulb, Calendar, CheckCircle, Chat, Lock, People, Person } from '@/components/icons';
@@ -80,7 +80,7 @@ export default function Page() {
         background="white"
       />
 
-      <AccreditationStrip />
+      <FeaturedIn />
     </>
   );
 }

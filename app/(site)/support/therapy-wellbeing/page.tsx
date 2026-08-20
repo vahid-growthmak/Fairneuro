@@ -3,7 +3,7 @@ import { CtaBand } from '@/components/sections/Bands';
 import { CardGrid } from '@/components/sections/CardGrid';
 import { ProcessRow } from '@/components/sections/Steps';
 import { BenefitsPanel } from '@/components/sections/Panels';
-import { AccreditationStrip } from '@/components/sections/Trust';
+import { FeaturedIn } from '@/components/sections/FeaturedIn';
 import { img } from '@/lib/images';
 import {
   Calendar,
@@ -95,10 +95,7 @@ export default function Page() {
         background="white"
       />
 
-      <AccreditationStrip
-        title="Your privacy is our priority"
-        body="All therapy services are completely confidential. Your information is safe with us."
-      />
+      <FeaturedIn />
     </>
   );
 }

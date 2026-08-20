@@ -3,7 +3,7 @@ import { CtaBand } from '@/components/sections/Bands';
 import { CardGrid } from '@/components/sections/CardGrid';
 import { ProcessRow } from '@/components/sections/Steps';
 import { BenefitsPanel } from '@/components/sections/Panels';
-import { AccreditationStrip } from '@/components/sections/Trust';
+import { FeaturedIn } from '@/components/sections/FeaturedIn';
 import { img } from '@/lib/images';
 import {
   Calendar,
@@ -93,10 +93,7 @@ export default function Page() {
         background="white"
       />
 
-      <AccreditationStrip
-        title="Your privacy is our priority"
-        body="We handle all enquiries and assessments with the strictest confidentiality and professionalism."
-      />
+      <FeaturedIn />
     </>
   );
 }
