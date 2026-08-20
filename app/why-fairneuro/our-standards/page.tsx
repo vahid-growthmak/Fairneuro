@@ -2,7 +2,7 @@ import { Hero } from '@/components/sections/Hero';
 import { CtaBand } from '@/components/sections/Bands';
 import { IconColumns } from '@/components/sections/CardGrid';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Brain, Check, Leaf, Lock, People, Person, Rosette, ShieldCheck } from '@/components/icons';
+import { Brain, Check, Leaf, Lock, People, Person, Rosette, ShieldCheck, ShieldLock } from '@/components/icons';
 import { img } from '@/lib/images';
 
 export const metadata = {
@@ -41,7 +41,24 @@ export default function Page() {
         body="At Fairneuro, we are committed to the highest standards in neurodiversity assessment and support. Our clinical practices are built on evidence, integrity and compassion."
         secondaryCta={{ label: 'How It Works', href: '/how-it-works' }}
         image={{ src: img.heroStandards, alt: 'A clinician at work' }}
-      />
+      >
+        <div className="mt-7 inline-flex items-start gap-3.5 rounded-xl bg-soft-teal/55 px-5 py-4">
+          <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white">
+            <ShieldLock className="h-5 w-5 text-teal" />
+          </span>
+          <div>
+            <p className="font-heading text-[15px] font-semibold text-navy">
+              The FAIR Standard&trade;
+            </p>
+            <p className="mt-1 text-[13.5px] leading-snug text-navy/70">
+              A framework that guides everything we do.
+            </p>
+            <p className="mt-1 font-heading text-[13.5px] font-medium text-teal">
+              Fair. Accurate. Individualised. Respectful.
+            </p>
+          </div>
+        </div>
+      </Hero>
 
       <IconColumns
         title="Our commitment to high standards"

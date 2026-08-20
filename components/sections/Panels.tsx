@@ -250,10 +250,11 @@ export function AudienceCards({
 export function FairStandard({
   background = 'soft-teal',
   letters = [
-    { letter: 'F', word: 'Fast', desc: 'Efficient access without unnecessary barriers.', accent: 'teal' as Accent },
-    { letter: 'A', word: 'Accessible', desc: 'Straightforward, transparent and designed around real people.', accent: 'coral' as Accent },
-    { letter: 'I', word: 'Integrated', desc: 'Assessment connected to the support that can follow.', accent: 'orange' as Accent },
-    { letter: 'R', word: 'Reliable', desc: 'Professional assessment and care you can have confidence in.', accent: 'navy' as Accent },
+    // Matches /why-fairneuro/our-standards, the page that defines the framework.
+    { letter: 'F', word: 'Fair', desc: 'We provide unbiased, equitable and inclusive assessments.', accent: 'teal' as Accent },
+    { letter: 'A', word: 'Accurate', desc: 'We use validated tools and expert clinical judgement.', accent: 'coral' as Accent },
+    { letter: 'I', word: 'Individualised', desc: "We tailor our approach to each person's unique profile.", accent: 'orange' as Accent },
+    { letter: 'R', word: 'Respectful', desc: 'We listen, we care and we treat every individual with respect.', accent: 'navy' as Accent },
   ],
   serif = false,
 }: {

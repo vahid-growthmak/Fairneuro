@@ -33,6 +33,8 @@ export interface HeroProps {
   /** Headings are Poppins site-wide; `serif` opts a single hero into Fraunces. */
   titleFont?: 'serif' | 'sans';
   titleClassName?: string;
+  /** Extra content under the body copy, e.g. the FAIR Standard badge. */
+  children?: ReactNode;
 }
 
 export function Hero({
@@ -49,6 +51,7 @@ export function Hero({
   background = 'ivory',
   titleFont = 'sans',
   titleClassName,
+  children,
 }: HeroProps) {
   return (
     <section className={cn('relative overflow-hidden', background === 'ivory' ? 'bg-ivory' : 'bg-white')}>
@@ -82,6 +85,8 @@ export function Hero({
             {body && (
               <p className="mt-5 max-w-[21.5rem] text-[16.5px] leading-[1.65] text-navy/70">{body}</p>
             )}
+
+            {children}
 
             {features && (
               <ul className="mt-7 flex flex-wrap gap-x-8 gap-y-5">
