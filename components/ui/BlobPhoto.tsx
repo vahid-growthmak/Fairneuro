@@ -6,18 +6,25 @@ import { cn } from '@/lib/cn';
  * offset behind it and a couple of palette accents breaking the edge.
  *
  * Supply a landscape photograph — it is cropped to fill, so the subject should
- * sit near the centre.
+ * sit near the centre. When it does not, `objectPosition` moves the crop
+ * window; `overlay` washes the top-left corner in brand pink.
  */
 export function BlobPhoto({
   src,
   alt,
   className,
   priority = false,
+  objectPosition,
+  overlay = false,
 }: {
   src: string;
   alt: string;
   className?: string;
   priority?: boolean;
+  /** CSS object-position, e.g. '82% 50%', when the subject is off-centre. */
+  objectPosition?: string;
+  /** Brand-pink wash across the top-left corner of the photograph. */
+  overlay?: boolean;
 }) {
   return (
     <div className={cn('relative isolate w-full', className)}>
@@ -40,7 +47,16 @@ export function BlobPhoto({
             priority={priority}
             sizes="(max-width: 1024px) 92vw, 640px"
             className="object-cover"
+            style={objectPosition ? { objectPosition } : undefined}
           />
+
+          {/* Brand pink — coral, #E8447E — washed across the top-left corner. */}
+          {overlay && (
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(115%_115%_at_0%_0%,rgba(232,68,126,0.82)_0%,rgba(232,68,126,0.55)_22%,rgba(232,68,126,0.18)_42%,rgba(232,68,126,0)_60%)]"
+            />
+          )}
         </div>
 
         {/* palette accents, half on the card and half off it */}

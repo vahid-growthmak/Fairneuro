@@ -105,7 +105,12 @@ export default async function HomePage() {
         body="Expert neurodiversity assessment with personalised support for everything that comes next."
         secondaryCta={{ label: 'Explore Assessments', href: '/assessments' }}
         ticks={['Free consultation', 'No obligation', 'Here to help']}
-        image={{ src: img.heroHome, alt: 'Someone smiling, looking ahead with confidence' }}
+        image={{
+          src: img.heroHome,
+          alt: 'A man at a desk speaking with a Fairneuro clinician over a video call',
+          position: '82% 50%',
+          overlay: true,
+        }}
       />
 
       <StatsBar

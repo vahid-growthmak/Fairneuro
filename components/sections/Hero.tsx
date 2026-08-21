@@ -25,7 +25,14 @@ export interface HeroProps {
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   ticks?: string[];
-  image: { src: string; alt: string };
+  image: {
+    src: string;
+    alt: string;
+    /** CSS object-position, when the subject is not centred in the photo. */
+    position?: string;
+    /** Brand-pink wash across the top-left corner of the photograph. */
+    overlay?: boolean;
+  };
   /** Compact icon strip rendered between the body copy and the CTAs. */
   features?: HeroFeature[];
   /** Inner pages sit on warm ivory; some sit on white. */
@@ -140,7 +147,13 @@ export function Hero({
             {ticks && <TickRow items={ticks} className="mt-5" />}
           </div>
 
-          <BlobPhoto src={image.src} alt={image.alt} priority />
+          <BlobPhoto
+            src={image.src}
+            alt={image.alt}
+            objectPosition={image.position}
+            overlay={image.overlay}
+            priority
+          />
         </div>
       </div>
     </section>
