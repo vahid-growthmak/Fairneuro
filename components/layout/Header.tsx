@@ -11,6 +11,7 @@ import { IconBadge } from '@/components/ui/IconBadge';
 import {
   Brain,
   Book,
+  Briefcase,
   Calendar,
   Check,
   ChevronDown,
@@ -155,12 +156,12 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button
-            href="/book-consultation"
+            href="/become-an-assessor"
             variant="primary"
             size="lg"
             className="hidden md:inline-flex"
           >
-            Book a Free Consultation
+            Become an Assessor
           </Button>
           <button
             type="button"
@@ -428,8 +429,8 @@ export function Header() {
             </nav>
 
             <div className="shrink-0 border-t border-navy/[0.07] p-5">
-              <Button href="/book-consultation" icon={<Calendar />} className="w-full" size="lg">
-                Book a Free Consultation
+              <Button href="/become-an-assessor" icon={<Briefcase />} className="w-full" size="lg">
+                Become an Assessor
               </Button>
             </div>
           </div>
