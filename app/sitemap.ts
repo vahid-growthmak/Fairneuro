@@ -50,6 +50,7 @@ const routes = [
   '/professional-referrals',
   '/become-an-assessor',
   '/adhd-quiz',
+  '/dyslexia-test',
   '/blog',
   '/schools',
   '/employers',

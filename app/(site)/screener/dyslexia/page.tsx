@@ -41,6 +41,7 @@ export default function Page() {
         'Understand possible next steps',
         'Confidential and secure online screening',
       ]}
+      quizHref="/dyslexia-test"
       startLabel="Start Dyslexia Screener"
       secondaryCta={{ label: 'Learn More', href: '/assessments/dyslexia' }}
       image={{ src: img.heroDyslexia, alt: 'A person reading at a desk' }}
