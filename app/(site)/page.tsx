@@ -160,15 +160,20 @@ export default async function HomePage() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {/*
+              `self-center` stops this column stretching to the height of the
+              heading beside it — without it the row grows to match and the
+              cards end up mostly empty space.
+            */}
+            <div className="grid grid-cols-2 gap-3 self-center sm:grid-cols-3 lg:grid-cols-6">
               {supportServices.map((s) => (
                 <Link
                   key={s.title}
                   href={s.href}
-                  className="flex flex-col items-center justify-start rounded-xl border border-navy/[0.07] bg-white px-3 py-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+                  className="flex flex-col items-center justify-center rounded-xl border border-navy/[0.07] bg-white px-3 py-4 text-center shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
                 >
-                  <IconBadge icon={s.icon} accent={s.accent} size="md" />
-                  <p className="mt-3 font-heading text-[13px] font-semibold leading-snug text-navy">
+                  <IconBadge icon={s.icon} accent={s.accent} size="sm" />
+                  <p className="mt-2.5 font-heading text-[12.5px] font-semibold leading-snug text-navy">
                     {s.title}
                   </p>
                 </Link>
