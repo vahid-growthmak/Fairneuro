@@ -71,6 +71,13 @@ export default function Page() {
         <div className="shell pb-16 lg:pb-20">
           <div className="grid items-center gap-9 rounded-2xl bg-soft-teal/55 p-8 lg:grid-cols-[190px_minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:p-12">
             <div className="mx-auto">
+              {/*
+                The shield spans y 6-169, so its centre is 87.5. The wordmark
+                and leaf are placed to sit centred on that: "The" cap-height
+                starts around 41 and the leaf ends at 132, putting the block's
+                middle at ~87. The leaf clears the "Standard™" descenders by
+                7px rather than running into them.
+              */}
               <svg viewBox="0 0 150 175" className="h-[175px] w-[150px]" aria-hidden="true">
                 <path
                   d="M75 6 12 30v66c0 44 30 63 63 73 33-10 63-29 63-73V30Z"
@@ -78,18 +85,18 @@ export default function Page() {
                   stroke="#53ABB3"
                   strokeWidth="2.4"
                 />
-                <text x="75" y="70" textAnchor="middle" className="fill-navy" style={{ font: '500 15px var(--font-fraunces), Georgia, serif' }}>
+                <text x="75" y="52" textAnchor="middle" className="fill-navy" style={{ font: '500 15px var(--font-fraunces), Georgia, serif' }}>
                   The
                 </text>
-                <text x="75" y="103" textAnchor="middle" className="fill-navy" style={{ font: '600 34px var(--font-fraunces), Georgia, serif' }}>
+                <text x="75" y="85" textAnchor="middle" className="fill-navy" style={{ font: '600 34px var(--font-fraunces), Georgia, serif' }}>
                   FAIR
                 </text>
-                <text x="75" y="124" textAnchor="middle" className="fill-navy" style={{ font: '500 14px var(--font-fraunces), Georgia, serif' }}>
+                <text x="75" y="106" textAnchor="middle" className="fill-navy" style={{ font: '500 14px var(--font-fraunces), Georgia, serif' }}>
                   Standard™
                 </text>
                 <path
                   d="M67 138c0-10 6-16 20-16 0 10-6 16-20 16Zm0 0c0-10-6-16-20-16 0 10 6 16 20 16Z"
-                  transform="translate(8,0)"
+                  transform="translate(8,-6)"
                   fill="none"
                   stroke="#53ABB3"
                   strokeWidth="2"
