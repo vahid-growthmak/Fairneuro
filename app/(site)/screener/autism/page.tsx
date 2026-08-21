@@ -37,6 +37,7 @@ export default function Page() {
         'Understand possible next steps',
         'Confidential and secure online screening',
       ]}
+      quizHref="/autism-test"
       startLabel="Start Autism Screener"
       secondaryCta={{ label: 'Learn More', href: '/assessments/autism' }}
       image={{ src: img.heroAutism, alt: 'A young person deep in thought' }}

@@ -129,6 +129,7 @@ export const primaryNav: NavItem[] = [
       { label: 'Blog', href: '/blog' },
       { label: 'Free Online Screener', href: '/screener' },
       { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
+      { label: 'Free Autism Test', href: '/autism-test' },
       { label: 'Free Dyslexia Test', href: '/dyslexia-test' },
       { label: 'Preparing for Your Assessment', href: '/resources/preparing-for-your-assessment' },
       { label: 'Your Report Explained', href: '/resources/your-report-explained' },
