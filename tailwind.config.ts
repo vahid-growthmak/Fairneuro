@@ -42,9 +42,16 @@ const config: Config = {
           from: { opacity: '0', transform: 'translateY(8px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
+        // The track holds two identical copies, so -50% lands the second copy
+        // exactly where the first began and the loop is seamless.
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.22s ease-out both',
+        marquee: 'marquee 38s linear infinite',
       },
     },
   },

@@ -1,12 +1,16 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 /**
- * Press logos are third-party trademarks shown nominatively. `width`/`height`
- * are the asset's intrinsic size (for aspect ratio only) — `className` sets the
- * rendered height so marks of very different proportions sit on one optical
- * baseline. SVGs are served unoptimized because Next refuses to run SVG through
- * the image optimizer unless `dangerouslyAllowSVG` is on, which we don't want
- * enabled for the remote Sanity CDN.
+ * Press logos are third-party trademarks shown nominatively, in their own
+ * colours. `width`/`height` are the asset's intrinsic size (for aspect ratio
+ * only) — `className` sets the rendered height so marks of very different
+ * proportions sit on one optical baseline. SVGs are served unoptimized because
+ * Next refuses to run SVG through the image optimizer unless
+ * `dangerouslyAllowSVG` is on, which we don't want enabled for the remote
+ * Sanity CDN.
  */
 const outlets = [
   { name: 'BMJ', src: '/images/press/bmj.png', width: 284, height: 166, className: 'h-7 lg:h-8' },
@@ -47,9 +51,31 @@ const outlets = [
   },
 ];
 
+/** Gap between marks, matched by the track padding so the loop seam is even. */
+const GAP = 'gap-x-12 lg:gap-x-16';
+const SEAM = 'pr-12 lg:pr-16';
+
+function Logo({ outlet, eager }: { outlet: (typeof outlets)[number]; eager: boolean }) {
+  return (
+    <Image
+      src={outlet.src}
+      alt={outlet.name}
+      width={outlet.width}
+      height={outlet.height}
+      unoptimized={outlet.src.endsWith('.svg')}
+      loading={eager ? 'eager' : 'lazy'}
+      className={`w-auto max-w-none shrink-0 ${outlet.className}`}
+    />
+  );
+}
+
 /**
  * "Featured In" press strip that sits between the CTA band and the footer on
- * consultation, therapy and workplace pages.
+ * consultation, therapy and workplace pages, and mid-page on Our Standards.
+ *
+ * The logos scroll as an infinite marquee. Anything that moves on its own needs
+ * a way to stop it (WCAG 2.2.2), so it pauses on hover and focus and carries an
+ * explicit control; readers who ask for reduced motion get a static row instead.
  */
 export function FeaturedIn({
   title = 'Featured In',
@@ -64,6 +90,17 @@ export function FeaturedIn({
   const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
   const pad = spacing === 'roomy' ? 'pb-16 lg:pb-20' : 'pb-11';
 
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => setReducedMotion(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
+
   return (
     <section className={bg}>
       <div className={`shell ${pad}`}>
@@ -72,20 +109,63 @@ export function FeaturedIn({
             {title}
           </h2>
 
-          <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-7 lg:gap-x-14">
-            {outlets.map((o) => (
-              <li key={o.name} className="flex items-center">
-                <Image
-                  src={o.src}
-                  alt={o.name}
-                  width={o.width}
-                  height={o.height}
-                  unoptimized={o.src.endsWith('.svg')}
-                  className={`w-auto grayscale opacity-60 transition duration-300 ease-out hover:opacity-100 hover:grayscale-0 motion-reduce:transition-none ${o.className}`}
-                />
-              </li>
-            ))}
-          </ul>
+          {reducedMotion ? (
+            <ul className={`mt-7 flex flex-wrap items-center justify-center gap-y-7 ${GAP}`}>
+              {outlets.map((o) => (
+                <li key={o.name} className="flex items-center">
+                  <Logo outlet={o} eager={false} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <>
+              <div
+                className="mt-7 overflow-hidden"
+                style={{
+                  maskImage:
+                    'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
+                  WebkitMaskImage:
+                    'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
+                }}
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
+                onFocusCapture={() => setPaused(true)}
+                onBlurCapture={() => setPaused(false)}
+              >
+                <div
+                  className="flex w-max animate-marquee items-center"
+                  style={{ animationPlayState: paused ? 'paused' : 'running' }}
+                >
+                  <ul className={`flex shrink-0 items-center ${GAP} ${SEAM}`}>
+                    {outlets.map((o) => (
+                      <li key={o.name} className="flex items-center">
+                        <Logo outlet={o} eager />
+                      </li>
+                    ))}
+                  </ul>
+                  {/* Second copy makes the loop seamless; it is decorative. */}
+                  <ul aria-hidden className={`flex shrink-0 items-center ${GAP} ${SEAM}`}>
+                    {outlets.map((o) => (
+                      <li key={o.name} className="flex items-center">
+                        <Logo outlet={o} eager />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-4 text-center">
+                <button
+                  type="button"
+                  onClick={() => setPaused((p) => !p)}
+                  aria-label={paused ? 'Play the press logos' : 'Pause the press logos'}
+                  className="font-heading text-[12px] font-medium text-navy/45 underline underline-offset-4 transition-colors hover:text-navy"
+                >
+                  {paused ? 'Play' : 'Pause'}
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
