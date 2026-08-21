@@ -43,7 +43,7 @@ export function TestimonialCarousel({
   withAvatar = true,
   serif = false,
   /** Seconds between slides. Autoplay is off entirely for reduced motion. */
-  interval = 7,
+  interval = 4,
 }: {
   title?: string;
   items: Testimonial[];
@@ -223,7 +223,7 @@ export function TestimonialQuote({
   items,
   background = 'ivory',
   /** Seconds between slides. Autoplay is off entirely for reduced motion. */
-  interval = 7,
+  interval = 4,
 }: {
   items: Testimonial[];
   background?: 'white' | 'ivory' | 'soft-teal';
