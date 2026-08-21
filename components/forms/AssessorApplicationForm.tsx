@@ -27,6 +27,33 @@ function Required() {
   return <span className="text-coral"> *</span>;
 }
 
+/** Confirmation-page steps, as specified in the application document. */
+const nextSteps = [
+  {
+    title: 'Application Review',
+    desc: 'Our team reviews your application and supporting documents.',
+  },
+  {
+    title: 'Professional Verification',
+    desc: 'Relevant qualifications, professional registrations and accreditation may be verified.',
+  },
+  {
+    title: 'Interview',
+    desc: 'Suitable applicants may be invited to a short online interview.',
+  },
+  {
+    title: 'Assessment Quality Review',
+    desc: 'Where appropriate, we may review an anonymised report or discuss your assessment approach.',
+  },
+  {
+    title: 'Onboarding',
+    desc: 'Successful applicants complete the relevant FairNeuro onboarding, policies and systems process before accepting referrals.',
+  },
+];
+
+/** Sections 6–9 only apply to particular assessment types. */
+const SPECIALIST_SECTIONS = [6, 7, 8, 9];
+
 /**
  * The assessor application. Long, conditional and file-heavy, so it is
  * rendered from `assessorApplication.ts` rather than hand-written markup.
@@ -47,6 +74,12 @@ export function AssessorApplicationForm() {
   const visibleSections = useMemo(
     () => sections.filter((s) => visible(s.showIf, choices)),
     [choices],
+  );
+
+  const hiddenSpecialists = useMemo(
+    () =>
+      SPECIALIST_SECTIONS.filter((n) => !visibleSections.some((s) => s.number === n)),
+    [visibleSections],
   );
 
   function setRadio(name: string, value: string) {
@@ -140,6 +173,23 @@ export function AssessorApplicationForm() {
           next stage.
         </p>
 
+        <div className="mx-auto mt-9 max-w-lg text-left">
+          <h4 className="font-heading text-[16px] font-semibold text-navy">What happens next?</h4>
+          <ol className="mt-4 space-y-4">
+            {nextSteps.map((step, i) => (
+              <li key={step.title} className="flex gap-3.5">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white font-heading text-[13px] font-semibold text-teal">
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="font-heading text-[14.5px] font-semibold text-navy">{step.title}</p>
+                  <p className="mt-0.5 text-[13.5px] leading-relaxed text-navy/70">{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         {tooLarge.length > 0 && (
           <p className="mx-auto mt-5 max-w-lg rounded-lg bg-blush px-5 py-4 text-[13.5px] leading-relaxed text-navy/80">
             <strong className="font-semibold text-navy">One thing to finish.</strong> These files
@@ -160,14 +210,34 @@ export function AssessorApplicationForm() {
   return (
     <form id="application" onSubmit={onSubmit} noValidate={false} className="scroll-mt-24 space-y-6">
       {visibleSections.map((section) => (
-        <SectionCard
-          key={section.number}
-          section={section}
-          choices={choices}
-          missing={missing}
-          setRadio={setRadio}
-          toggleCheck={toggleCheck}
-        />
+        <div key={section.number}>
+          <SectionCard
+            section={section}
+            choices={choices}
+            missing={missing}
+            setRadio={setRadio}
+            toggleCheck={toggleCheck}
+          />
+
+          {/*
+            Sections 6-9 are specific to assessment types and only appear once
+            the matching area is chosen in Section 2, as the application
+            document specifies. Without a word here the numbering jumps from 5
+            to 10 and reads as though the form is broken.
+          */}
+          {section.number === 5 && hiddenSpecialists.length > 0 && (
+            <div className="mt-6 rounded-2xl border border-dashed border-teal/40 bg-soft-teal/30 p-6 text-center">
+              <p className="font-heading text-[14.5px] font-semibold text-navy">
+                Sections 6–9 depend on your answers
+              </p>
+              <p className="mx-auto mt-2 max-w-xl text-[13.5px] leading-relaxed text-navy/70">
+                {hiddenSpecialists.map((n) => `Section ${n}`).join(', ')} cover ADHD, autism,
+                dyslexia and the combined pathway. They appear here as soon as you tick the matching
+                assessment areas in Section 2, so you only answer the ones relevant to you.
+              </p>
+            </div>
+          )}
+        </div>
       ))}
 
       {/* SECTION 17 — Declaration */}
