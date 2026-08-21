@@ -191,7 +191,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await transport().sendMail({
+    const info = await transport().sendMail({
       from: `FairNeuro Website <${APPLICATIONS_FROM}>`,
       to: APPLICATIONS_TO,
       replyTo: email ? `${name} <${email}>` : undefined,
@@ -199,6 +199,14 @@ export async function POST(request: Request) {
       text,
       html,
       attachments,
+    });
+    // Logged so a delivery problem can be traced without reproducing it.
+    console.info('[assessor-application] sent', {
+      messageId: info.messageId,
+      accepted: info.accepted,
+      rejected: info.rejected,
+      response: info.response,
+      attachments: attached.length,
     });
   } catch (error) {
     console.error('[assessor-application] send failed', error);
