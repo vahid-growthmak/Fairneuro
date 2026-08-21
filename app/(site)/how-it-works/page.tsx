@@ -85,7 +85,7 @@ export default function Page() {
       <section className="bg-ivory">
         <div className="shell py-11 lg:py-14">
           <SectionHeading title="What you can expect at each stage" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div data-reveal-stagger="0.08" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {detailedJourney.map((step, i) => {
               const accent = cycle(stepCycle, i);
               return (

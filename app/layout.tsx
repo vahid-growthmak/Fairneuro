@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Fraunces, Inter, Poppins } from 'next/font/google';
-import { RevealProvider } from '@/components/ui/RevealProvider';
+import { MotionProvider } from '@/components/ui/MotionProvider';
 import './globals.css';
 
 const poppins = Poppins({
@@ -41,9 +41,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${poppins.variable} ${inter.variable} ${fraunces.variable}`}>
+    <html
+      lang="en-GB"
+      // The inline script below marks this element before React hydrates, which
+      // React would otherwise report as a server/client mismatch.
+      suppressHydrationWarning
+      className={`${poppins.variable} ${inter.variable} ${fraunces.variable}`}
+    >
       <body>
-        <RevealProvider />
+        {/* Flags the document for the motion runtime before the first paint, so
+            elements that animate in are never briefly visible first. Inline and
+            blocking on purpose — if scripting is off the class is never set and
+            every section renders plainly, exactly as authored. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('motion-ready')",
+          }}
+        />
+        <MotionProvider />
         {children}
       </body>
     </html>

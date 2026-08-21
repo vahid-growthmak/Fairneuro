@@ -30,7 +30,10 @@ export function PromptBand({
   return (
     <section className={bg}>
       <div className="shell pb-4">
-        <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-6 py-7 sm:flex-row sm:items-center sm:px-8 lg:px-9">
+        <div
+          data-reveal
+          className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-soft-teal/55 px-6 py-7 sm:flex-row sm:items-center sm:px-8 lg:px-9"
+        >
           <div className="flex items-center gap-4">
             {variant === 'outline' ? (
               <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border-[1.6px] border-navy/25 sm:flex">
@@ -56,10 +59,11 @@ export function PromptBand({
 }
 
 /** Decorative leaf line-art used at both ends of the navy CTA band. */
-function Leaves({ className }: { className?: string }) {
+function Leaves({ className, drift = 0 }: { className?: string; drift?: number }) {
   return (
     <svg
       viewBox="0 0 160 120"
+      data-parallax={drift}
       className={cn('pointer-events-none absolute h-[120px] w-[160px] text-white/10', className)}
       fill="none"
       stroke="currentColor"
@@ -104,13 +108,14 @@ export function CtaBand({
     <section className={bg}>
       <div className="shell py-9">
         <div
+          data-reveal="scale"
           className={cn(
             'relative overflow-hidden rounded-2xl px-6 py-10 sm:px-8 lg:px-9',
             tone === 'navy' ? 'bg-navy' : 'bg-teal',
           )}
         >
-          <Leaves className="-left-6 top-0" />
-          <Leaves className="-right-6 bottom-0 scale-x-[-1]" />
+          <Leaves className="-left-6 top-0" drift={30} />
+          <Leaves className="-right-6 bottom-0 scale-x-[-1]" drift={-24} />
 
           <div
             className={cn(
@@ -119,7 +124,10 @@ export function CtaBand({
             )}
           >
             {medallion && (
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white">
+              <span
+                data-float="5"
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white"
+              >
                 <Calendar className="h-7 w-7 text-navy" />
               </span>
             )}
@@ -196,6 +204,7 @@ export function SplitBand({
     <section className={bg}>
       <div className="shell pb-5">
         <div
+          data-reveal
           className={cn(
             'flex flex-col items-start justify-between gap-5 rounded-2xl px-6 py-7 sm:flex-row sm:items-center sm:px-8 lg:px-9',
             navy ? 'bg-navy' : 'border border-teal/25 bg-soft-teal/55',
@@ -248,7 +257,10 @@ export function StatsBar({
   return (
     <section className="bg-ivory">
       <div className="shell pb-14">
-        <div className="grid rounded-2xl border border-navy/[0.06] bg-white shadow-card sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          data-reveal-stagger="0.09"
+          className="grid rounded-2xl border border-navy/[0.06] bg-white shadow-card sm:grid-cols-2 lg:grid-cols-4"
+        >
           {items.map((item, i) => (
             <div
               key={item.label}
@@ -263,7 +275,10 @@ export function StatsBar({
                 size="lg"
               />
               <div>
-                <p className="font-heading text-[22.5px] font-semibold leading-tight text-navy">
+                <p
+                  data-count
+                  className="font-heading text-[22.5px] font-semibold leading-tight text-navy"
+                >
                   {item.value}
                 </p>
                 <p className="mt-1 max-w-[9rem] text-[13.5px] leading-[1.35] text-navy/62">

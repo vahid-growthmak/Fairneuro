@@ -32,7 +32,7 @@ export function IconBadge({
         className,
       )}
     >
-      <Icon className={cn(sizes[size].icon, a.fg)} />
+      <Icon className={cn('badge-tip', sizes[size].icon, a.fg)} />
     </span>
   );
 }

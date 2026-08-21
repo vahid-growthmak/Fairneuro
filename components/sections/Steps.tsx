@@ -39,6 +39,7 @@ export function NumberedSteps({
           {/* dotted connector, desktop only */}
           <span
             aria-hidden
+            data-reveal="draw"
             className="absolute left-[8%] right-[8%] top-[13px] hidden border-t-2 border-dashed border-navy/15 lg:block"
           />
           <div
@@ -107,10 +108,15 @@ export function JourneySteps({
           {connector === 'dotted' && (
             <span
               aria-hidden
+              data-reveal="draw"
+              data-reveal-delay="0.15"
               className="absolute left-[9%] right-[9%] top-[30px] hidden border-t-2 border-dotted border-navy/20 lg:block"
             />
           )}
-          <div className="grid gap-x-3 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div
+            data-reveal-stagger="0.09"
+            className="grid gap-x-3 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+          >
             {steps.map((step, i) => {
               const accent = step.accent ?? cycle(stepCycle, i);
               return (

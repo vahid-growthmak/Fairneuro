@@ -83,7 +83,7 @@ export function AssessmentPage({
       {explainer && (
         <section className="bg-white">
           <div className="shell py-11 lg:py-14">
-            <div className="grid gap-4 lg:grid-cols-2">
+            <div data-reveal-stagger="0.1" className="grid gap-4 lg:grid-cols-2">
               <div className="rounded-2xl bg-blush/55 p-8 lg:p-10">
                 <h2 className="font-heading text-[24px] font-semibold text-navy">
                   {explainer.heading}

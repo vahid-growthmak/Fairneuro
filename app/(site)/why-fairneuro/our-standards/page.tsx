@@ -69,7 +69,10 @@ export default function Page() {
       {/* The FAIR Standard */}
       <section className="bg-white">
         <div className="shell pb-16 lg:pb-20">
-          <div className="grid items-center gap-9 rounded-2xl bg-soft-teal/55 p-8 lg:grid-cols-[190px_minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:p-12">
+          <div
+            data-reveal
+            className="grid items-center gap-9 rounded-2xl bg-soft-teal/55 p-8 lg:grid-cols-[190px_minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:p-12"
+          >
             <div className="mx-auto">
               <svg viewBox="0 0 150 175" className="h-[175px] w-[150px]" aria-hidden="true">
                 <path

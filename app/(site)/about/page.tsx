@@ -53,7 +53,7 @@ export default function Page() {
       {/* Mission & vision */}
       <section className="bg-white">
         <div className="shell pb-16 lg:pb-20">
-          <div className="grid gap-4 lg:grid-cols-2">
+          <div data-reveal-stagger="0.1" className="grid gap-4 lg:grid-cols-2">
             <div className="rounded-2xl bg-blush/60 p-8 lg:p-10">
               <Target className="h-8 w-8 text-coral" />
               <h2 className="mt-4 font-heading text-[24px] font-semibold text-navy">Our Mission</h2>
@@ -80,7 +80,7 @@ export default function Page() {
       {/* Why Fairneuro exists */}
       <section className="bg-white">
         <div className="shell py-11 lg:py-14">
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div data-reveal-stagger="0.1" className="grid gap-12 lg:grid-cols-2">
             <div>
               <SectionHeading title="Why Fairneuro Exists" align="left" />
               <p className="text-[15px] leading-relaxed text-navy/70">
@@ -101,7 +101,7 @@ export default function Page() {
 
             <div>
               <SectionHeading title="What Makes Fairneuro Different" align="left" />
-              <ul className="grid gap-3 sm:grid-cols-2">
+              <ul data-reveal-stagger="0.06" className="grid gap-3 sm:grid-cols-2">
                 {[
                   { icon: Chat, title: 'Free Consultation', accent: 'teal' as const },
                   { icon: ClipboardCheck, title: 'Online Screening', accent: 'coral' as const },

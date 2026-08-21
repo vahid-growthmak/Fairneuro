@@ -85,7 +85,7 @@ export default async function Page() {
       <section className="bg-ivory">
         <div className="shell py-11 lg:py-14">
           <SectionHeading title="Popular questions" />
-          <div className="mx-auto max-w-4xl">
+          <div data-reveal className="mx-auto max-w-4xl">
             <Accordion items={faqs} />
           </div>
         </div>

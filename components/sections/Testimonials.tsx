@@ -95,11 +95,15 @@ export function TestimonialCarousel({
           aria-roledescription="carousel"
           aria-label={title ?? 'Testimonials'}
         >
-          <div className="rounded-2xl border border-navy/[0.07] bg-white p-8 shadow-card sm:p-10">
+          <div
+            data-reveal="scale"
+            className="rounded-2xl border border-navy/[0.07] bg-white p-8 shadow-card sm:p-10"
+          >
             <Quote className="mx-auto h-8 w-8 text-teal/70" />
             <div
+              key={index}
               className={cn(
-                'mt-6 flex flex-col items-center gap-7 text-center',
+                'mt-6 flex animate-fade-in-up flex-col items-center gap-7 text-center',
                 withAvatar && current.avatar && 'sm:flex-row sm:text-left',
               )}
             >
@@ -138,7 +142,7 @@ export function TestimonialCarousel({
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous testimonial"
-                className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-colors hover:border-teal hover:text-teal lg:flex"
+                className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-[transform,color,border-color] duration-200 hover:scale-110 hover:border-teal hover:text-teal lg:flex"
               >
                 <ArrowRight className="h-4 w-4 rotate-180" />
               </button>
@@ -146,7 +150,7 @@ export function TestimonialCarousel({
                 type="button"
                 onClick={() => go(1)}
                 aria-label="Next testimonial"
-                className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-colors hover:border-teal hover:text-teal lg:flex"
+                className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-navy/10 bg-white text-navy shadow-card transition-[transform,color,border-color] duration-200 hover:scale-110 hover:border-teal hover:text-teal lg:flex"
               >
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -192,7 +196,7 @@ export function TestimonialGrid({
     <section className={bg}>
       <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} />}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div data-reveal-stagger="0.08" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((t) => (
             <figure
               key={t.name + t.quote.slice(0, 12)}
@@ -269,13 +273,15 @@ export function TestimonialQuote({
         >
           <Quote className="mx-auto h-8 w-8 text-teal/75" />
 
-          <blockquote className="mx-auto mt-4 max-w-2xl text-[17px] leading-[1.75] text-navy/80">
-            &ldquo;{current.quote}&rdquo;
-          </blockquote>
+          <div key={index} className="animate-fade-in-up">
+            <blockquote className="mx-auto mt-4 max-w-2xl text-[17px] leading-[1.75] text-navy/80">
+              &ldquo;{current.quote}&rdquo;
+            </blockquote>
 
-          <Stars count={current.stars ?? 5} tone="teal" className="mt-4 justify-center" />
+            <Stars count={current.stars ?? 5} tone="teal" className="mt-4 justify-center" />
 
-          <p className="mt-2.5 text-[14px] text-navy/65">&ndash; {current.name}</p>
+            <p className="mt-2.5 text-[14px] text-navy/65">&ndash; {current.name}</p>
+          </div>
 
           {total > 1 && (
             <>
@@ -283,7 +289,7 @@ export function TestimonialQuote({
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous testimonial"
-                className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-navy/60 transition-colors hover:bg-soft-teal/60 hover:text-teal lg:left-3"
+                className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-navy/60 transition-[transform,color,background-color] duration-200 hover:scale-110 hover:bg-soft-teal/60 hover:text-teal lg:left-3"
               >
                 <ArrowRight className="h-4 w-4 rotate-180" />
               </button>
@@ -291,7 +297,7 @@ export function TestimonialQuote({
                 type="button"
                 onClick={() => go(1)}
                 aria-label="Next testimonial"
-                className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-navy/60 transition-colors hover:bg-soft-teal/60 hover:text-teal lg:right-3"
+                className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-navy/60 transition-[transform,color,background-color] duration-200 hover:scale-110 hover:bg-soft-teal/60 hover:text-teal lg:right-3"
               >
                 <ArrowRight className="h-4 w-4" />
               </button>

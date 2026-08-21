@@ -16,13 +16,16 @@ export function Footer() {
         <div className="grid gap-9 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-start lg:gap-10">
           <Logo tone="light" size="sm" />
 
-          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:pl-4">
+          <div
+            data-reveal-stagger="0.06"
+            className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:pl-4"
+          >
             {footerColumns.map((col) => (
               <div key={col.title}>
                 <h3 className="font-heading text-[14px] font-semibold text-white">{col.title}</h3>
                 <ul className="mt-3.5 space-y-2.5">
                   {col.links.map((l) => (
-                    <li key={l.href + l.label}>
+                    <li key={l.href + l.label} className="link-nudge">
                       <Link
                         href={l.href}
                         className="text-[13.5px] text-white/65 transition-colors hover:text-white"
@@ -44,7 +47,7 @@ export function Footer() {
                 aria-label={label}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white/85 transition-colors hover:border-white hover:text-white"
+                className="pop inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white/85 hover:border-white hover:text-white"
               >
                 <Icon className="h-[19px] w-[19px]" />
               </a>

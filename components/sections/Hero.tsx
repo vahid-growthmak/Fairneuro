@@ -69,7 +69,7 @@ export function Hero({
         {crumbs && <Breadcrumb items={crumbs} />}
 
         <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10">
-          <div data-reveal>
+          <div data-reveal-stagger="0.085">
             {eyebrow && (
               <p className="mb-4 font-heading text-[12.5px] font-semibold uppercase tracking-[0.18em] text-teal">
                 {eyebrow}
@@ -77,6 +77,7 @@ export function Hero({
             )}
 
             <h1
+              data-split="lines"
               className={cn(
                 'text-[42px] font-semibold leading-[1.06] text-navy sm:text-[52px] lg:text-[59px]',
                 titleFont === 'serif' ? 'font-display' : 'font-heading tracking-[-0.015em]',

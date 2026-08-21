@@ -23,7 +23,7 @@ export function LegalPage({
   return (
     <>
       <section className="bg-ivory">
-        <div className="shell pb-14 pt-8 lg:pb-11">
+        <div data-reveal-stagger="0.08" className="shell pb-14 pt-8 lg:pb-11">
           <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: title }]} />
           <h1 className="max-w-3xl font-heading text-[38px] font-semibold leading-tight text-navy sm:text-[44px]">
             {title}
@@ -35,7 +35,7 @@ export function LegalPage({
 
       <section className="bg-white">
         <div className="shell py-11 lg:py-14">
-          <div className="max-w-3xl space-y-10">
+          <div data-reveal-stagger="0.05" className="max-w-3xl space-y-10">
             {sections.map((s) => (
               <div key={s.heading}>
                 <h2 className="font-heading text-[20.5px] font-semibold text-navy">{s.heading}</h2>

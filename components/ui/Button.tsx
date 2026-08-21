@@ -7,13 +7,13 @@ type Size = 'md' | 'lg';
 
 const variants: Record<Variant, string> = {
   // Primary — pink fill, white text
-  primary: 'bg-coral text-white hover:bg-coral/90 shadow-card',
+  primary: 'sheen bg-coral text-white hover:bg-coral/90 shadow-card',
   // Secondary — teal fill, white text
-  secondary: 'bg-teal text-white hover:bg-teal/90 shadow-card',
+  secondary: 'sheen bg-teal text-white hover:bg-teal/90 shadow-card',
   // Tertiary — white fill, teal border + teal text
   tertiary: 'bg-white text-teal border border-teal/45 hover:border-teal hover:bg-soft-teal/50',
   // On navy bands
-  'ghost-light': 'bg-transparent text-white border border-white/45 hover:bg-white/10',
+  'ghost-light': 'sheen bg-transparent text-white border border-white/45 hover:bg-white/10',
 };
 
 const sizes: Record<Size, string> = {
@@ -45,7 +45,7 @@ export function Button({
       href={href}
       className={cn(
         'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-heading font-medium',
-        'transition-[background-color,border-color,color,box-shadow,transform] duration-200',
+        'transition-[background-color,background-position,border-color,color,box-shadow,transform] duration-200',
         'hover:-translate-y-px active:translate-y-0 active:scale-[0.985] motion-reduce:transform-none',
         variants[variant],
         sizes[size],

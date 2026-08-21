@@ -49,7 +49,7 @@ export default function Page() {
       {/* Contact cards */}
       <section className="bg-white">
         <div className="shell py-11 lg:py-14">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div data-reveal-stagger="0.08" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {contactCards.map((c) => (
               <a
                 key={c.title}
@@ -107,7 +107,7 @@ export default function Page() {
             title="Send us a message"
             subtitle="Complete the form and our team will get back to you as soon as possible."
           />
-          <div className="mx-auto max-w-3xl">
+          <div data-reveal className="mx-auto max-w-3xl">
             <ContactForm />
           </div>
         </div>

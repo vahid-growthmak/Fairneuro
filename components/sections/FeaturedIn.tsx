@@ -103,7 +103,10 @@ export function FeaturedIn({
   return (
     <section className={bg}>
       <div className={`shell ${pad}`}>
-        <div className="rounded-2xl border border-navy/[0.07] bg-white px-7 py-7 shadow-card">
+        <div
+          data-reveal
+          className="rounded-2xl border border-navy/[0.07] bg-white px-7 py-7 shadow-card"
+        >
           <h2 className="text-center font-heading text-[12.5px] font-semibold uppercase tracking-[0.2em] text-navy/55">
             {title}
           </h2>

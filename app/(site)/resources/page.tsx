@@ -78,7 +78,7 @@ export default async function Page() {
       <section className="bg-white">
         <div className="shell py-11 lg:py-14">
           <SectionHeading title="Explore by topic" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div data-reveal-stagger="0.08" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {topics.map((t) => (
               <Link
                 key={t.title}
@@ -123,7 +123,7 @@ export default async function Page() {
       {/* Search + tags */}
       <section className="bg-ivory">
         <div className="shell py-11 lg:py-14">
-          <div className="mx-auto max-w-2xl text-center">
+          <div data-reveal className="mx-auto max-w-2xl text-center">
             <SectionHeading title="Looking for something specific?" />
             <label htmlFor="resource-search" className="sr-only">
               Search resources

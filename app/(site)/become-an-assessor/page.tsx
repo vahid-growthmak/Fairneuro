@@ -47,7 +47,7 @@ export default function Page() {
       {/* Who we are looking for */}
       <section className="bg-white">
         <div className="shell py-10 lg:py-12">
-          <div className="mx-auto max-w-3xl text-center">
+          <div data-reveal-stagger="0.08" className="mx-auto max-w-3xl text-center">
             <p className="text-[16.5px] leading-relaxed text-navy/75">
               We are looking for professionals who combine strong clinical or specialist assessment
               expertise with excellent communication, high-quality report writing and a genuinely
@@ -115,7 +115,7 @@ export default function Page() {
             subtitle="Please complete the application below."
           />
 
-          <div className="mx-auto max-w-3xl">
+          <div data-reveal className="mx-auto max-w-3xl">
             <div className="mb-7 flex flex-col gap-3 rounded-2xl bg-soft-teal/55 px-6 py-5 sm:flex-row sm:items-center sm:gap-5">
               <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 font-heading text-[13.5px] font-medium text-navy">
                 <Clock className="h-4 w-4 text-teal" />

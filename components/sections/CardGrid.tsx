@@ -182,6 +182,7 @@ export function IconColumns({
       <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} subtitle={subtitle} serif={serif} />}
         <div
+          data-reveal-stagger="0.07"
           className={cn(
             'grid gap-y-9',
             cols,

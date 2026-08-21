@@ -21,7 +21,7 @@ export function SectionHeading({
 }) {
   return (
     <div
-      data-reveal
+      data-reveal-stagger="0.07"
       className={cn(
         'mb-8',
         align === 'center' ? 'text-center' : 'text-left',
@@ -38,6 +38,7 @@ export function SectionHeading({
       </h2>
       {underline && (
         <span
+          data-reveal="draw"
           className={cn(
             'mt-3 block h-[3px] w-12 rounded-full bg-coral',
             align === 'center' && 'mx-auto',

@@ -74,7 +74,7 @@ export function ScreenerPage({
       {/* What is …? / What can it explore? */}
       <section className="bg-white">
         <div className="shell py-11 lg:py-14">
-          <div className="grid gap-4 lg:grid-cols-2">
+          <div data-reveal-stagger="0.1" className="grid gap-4 lg:grid-cols-2">
             <div className="rounded-2xl bg-blush/55 p-8 lg:p-10">
               <h2 className="font-heading text-[24px] font-semibold text-navy">{what.heading}</h2>
               {whatBody.map((para) => (
@@ -124,7 +124,10 @@ export function ScreenerPage({
                 title="Start your screener"
                 subtitle="Free, confidential and about three minutes. Your answers never leave your browser."
               />
-              <div className="mx-auto max-w-2xl rounded-2xl border border-navy/[0.07] bg-white p-10 text-center shadow-card">
+              <div
+                data-reveal="scale"
+                className="mx-auto max-w-2xl rounded-2xl border border-navy/[0.07] bg-white p-10 text-center shadow-card"
+              >
                 <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-soft-teal text-teal">
                   <Brain className="h-7 w-7" />
                 </span>
@@ -145,7 +148,10 @@ export function ScreenerPage({
                 title="Start your screener"
                 subtitle="This screener is being finalised. In the meantime our team can talk you through what it covers."
               />
-              <div className="mx-auto max-w-2xl rounded-2xl border border-navy/[0.07] bg-white p-10 text-center shadow-card">
+              <div
+                data-reveal="scale"
+                className="mx-auto max-w-2xl rounded-2xl border border-navy/[0.07] bg-white p-10 text-center shadow-card"
+              >
                 <p className="text-[15px] leading-relaxed text-navy/70">
                   Book a free consultation and we will help you decide whether a full assessment is
                   the right next step — no screener required.
