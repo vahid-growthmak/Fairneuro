@@ -73,9 +73,8 @@ function Logo({ outlet, eager }: { outlet: (typeof outlets)[number]; eager: bool
  * "Featured In" press strip that sits between the CTA band and the footer on
  * consultation, therapy and workplace pages, and mid-page on Our Standards.
  *
- * The logos scroll as an infinite marquee. Anything that moves on its own needs
- * a way to stop it (WCAG 2.2.2), so it pauses on hover and focus and carries an
- * explicit control; readers who ask for reduced motion get a static row instead.
+ * The logos scroll as an infinite marquee. It pauses on hover and on focus, and
+ * readers who ask for reduced motion get a static row instead.
  */
 export function FeaturedIn({
   title = 'Featured In',
@@ -152,17 +151,6 @@ export function FeaturedIn({
                     ))}
                   </ul>
                 </div>
-              </div>
-
-              <div className="mt-4 text-center">
-                <button
-                  type="button"
-                  onClick={() => setPaused((p) => !p)}
-                  aria-label={paused ? 'Play the press logos' : 'Pause the press logos'}
-                  className="font-heading text-[12px] font-medium text-navy/45 underline underline-offset-4 transition-colors hover:text-navy"
-                >
-                  {paused ? 'Play' : 'Pause'}
-                </button>
               </div>
             </>
           )}

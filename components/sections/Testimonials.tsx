@@ -225,7 +225,6 @@ export function TestimonialQuote({
     return () => window.clearInterval(id);
   }, [total, paused, reducedMotion, interval]);
 
-  const autoplaying = total > 1 && !reducedMotion && !paused;
 
   return (
     <section className={bg}>
@@ -268,34 +267,20 @@ export function TestimonialQuote({
                 <ArrowRight className="h-4 w-4" />
               </button>
 
-              <div className="mt-7 flex items-center justify-center gap-3">
-                <div className="flex items-center gap-2">
-                  {items.map((item, i) => (
-                    <button
-                      key={item.name + i}
-                      type="button"
-                      onClick={() => setIndex(i)}
-                      aria-label={`Show testimonial ${i + 1} of ${total}`}
-                      aria-current={i === index}
-                      className={cn(
-                        'h-2 rounded-full transition-all duration-200',
-                        i === index ? 'w-6 bg-teal' : 'w-2 bg-navy/20 hover:bg-navy/35',
-                      )}
-                    />
-                  ))}
-                </div>
-
-                {/* Auto-rotating content needs a way to stop it (WCAG 2.2.2). */}
-                {!reducedMotion && (
+              <div className="mt-7 flex items-center justify-center gap-2">
+                {items.map((item, i) => (
                   <button
+                    key={item.name + i}
                     type="button"
-                    onClick={() => setPaused((p) => !p)}
-                    aria-label={autoplaying ? 'Pause testimonials' : 'Play testimonials'}
-                    className="ml-1 font-heading text-[12px] font-medium text-navy/45 underline underline-offset-4 transition-colors hover:text-navy"
-                  >
-                    {autoplaying ? 'Pause' : 'Play'}
-                  </button>
-                )}
+                    onClick={() => setIndex(i)}
+                    aria-label={`Show testimonial ${i + 1} of ${total}`}
+                    aria-current={i === index}
+                    className={cn(
+                      'h-2 rounded-full transition-all duration-200',
+                      i === index ? 'w-6 bg-teal' : 'w-2 bg-navy/20 hover:bg-navy/35',
+                    )}
+                  />
+                ))}
               </div>
             </>
           )}
