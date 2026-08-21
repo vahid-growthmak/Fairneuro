@@ -42,20 +42,41 @@ export function TestimonialCarousel({
   background = 'white',
   withAvatar = true,
   serif = false,
+  /** Seconds between slides. Autoplay is off entirely for reduced motion. */
+  interval = 7,
 }: {
   title?: string;
   items: Testimonial[];
   background?: 'white' | 'ivory' | 'soft-teal';
   withAvatar?: boolean;
   serif?: boolean;
+  interval?: number;
 }) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const total = items.length;
 
   const go = useCallback(
     (dir: 1 | -1) => setIndex((i) => (i + dir + total) % total),
     [total],
   );
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+
+  // Quotes rotate on their own, but never for readers who asked for less
+  // motion, and never while someone is reading or tabbing through the card.
+  useEffect(() => {
+    if (total < 2 || paused || reducedMotion) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % total), interval * 1000);
+    return () => window.clearInterval(id);
+  }, [total, paused, reducedMotion, interval]);
 
   const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
   const current = items[index];
@@ -65,7 +86,15 @@ export function TestimonialCarousel({
       <div className="shell py-11 lg:py-14">
         {title && <SectionHeading title={title} serif={serif} />}
 
-        <div className="relative mx-auto max-w-4xl">
+        <div
+          className="relative mx-auto max-w-4xl"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
+          aria-roledescription="carousel"
+          aria-label={title ?? 'Testimonials'}
+        >
           <div className="rounded-2xl border border-navy/[0.07] bg-white p-8 shadow-card sm:p-10">
             <Quote className="mx-auto h-8 w-8 text-teal/70" />
             <div
