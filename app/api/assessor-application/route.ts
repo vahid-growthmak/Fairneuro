@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import {
   declarations,
+  isEmail,
+  isPhone,
+  isUrl,
   sections,
   type Field,
   type ShowIf,
@@ -162,6 +165,34 @@ export async function POST(request: Request) {
   if (missing.length) {
     return NextResponse.json(
       { error: `Please answer: ${missing.slice(0, 4).join(', ')}${missing.length > 4 ? '…' : ''}` },
+      { status: 422 },
+    );
+  }
+
+  // Formats are re-checked here: the browser's pattern attribute is a
+  // convenience for the applicant, not a guarantee about what arrives.
+  const malformed: string[] = [];
+  for (const section of sections) {
+    if (!visible(section.showIf, values)) continue;
+    for (const field of section.fields as Field[]) {
+      if (!field.name || !visible(field.showIf, values)) continue;
+      const given = values[field.name] ?? [];
+      for (const value of given) {
+        const bad =
+          (field.kind === 'email' && !isEmail(value)) ||
+          (field.kind === 'tel' && !isPhone(value)) ||
+          (field.kind === 'url' && !isUrl(value));
+        if (bad) malformed.push(field.label ?? field.name);
+      }
+    }
+  }
+  if (malformed.length) {
+    return NextResponse.json(
+      {
+        error: `Please check the format of: ${malformed.slice(0, 4).join(', ')}${
+          malformed.length > 4 ? '…' : ''
+        }`,
+      },
       { status: 422 },
     );
   }

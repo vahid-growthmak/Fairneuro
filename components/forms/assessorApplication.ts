@@ -1014,3 +1014,43 @@ export const declarations = [
   'I understand that appointment is subject to appropriate qualification, registration, reference and compliance checks.',
   'I agree to FairNeuro processing the information in this application for recruitment and onboarding purposes in accordance with its privacy notice.',
 ];
+
+/**
+ * Format rules, shared by the form and the API route so the two cannot drift.
+ *
+ * The patterns are written to be valid in an HTML `pattern` attribute (which is
+ * implicitly anchored) and are anchored explicitly when used in JavaScript.
+ */
+export const EMAIL_PATTERN = "[^@\\s]+@[^@\\s]+\\.[A-Za-z]{2,}";
+
+/** Digits, spaces and the usual punctuation; digit count is checked separately. */
+// Escaped for the `v` regex flag that browsers compile `pattern` with, where
+// ( ) / and - are reserved inside a character class. An uncompilable pattern
+// is silently ignored, so an unescaped one validates nothing at all.
+export const PHONE_PATTERN = "[+\\(]?[0-9][0-9 \\(\\)\\.\\/+\\-]{7,19}";
+
+export const EMAIL_HINT = 'Enter an email address, for example name@example.com';
+export const PHONE_HINT =
+  'Enter a phone number, for example 07700 900123 or +44 7700 900123';
+export const URL_HINT = 'Enter a full web address, including https://';
+
+export function isEmail(value: string): boolean {
+  return new RegExp(`^${EMAIL_PATTERN}$`).test(value.trim());
+}
+
+export function isPhone(value: string): boolean {
+  const trimmed = value.trim();
+  if (!new RegExp(`^${PHONE_PATTERN}$`).test(trimmed)) return false;
+  // E.164 allows at most 15 digits; UK numbers are 10-11 without a country code.
+  const digits = trimmed.replace(/\D/g, '').length;
+  return digits >= 9 && digits <= 15;
+}
+
+export function isUrl(value: string): boolean {
+  try {
+    const url = new URL(value.trim());
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}

@@ -1,8 +1,13 @@
 'use client';
 
-import { useMemo, useState, type FormEvent } from 'react';
+import { useMemo, useRef, useState, type FormEvent } from 'react';
 import { Check } from '@/components/icons';
 import {
+  EMAIL_HINT,
+  EMAIL_PATTERN,
+  PHONE_HINT,
+  PHONE_PATTERN,
+  URL_HINT,
   declarations,
   sections,
   type Field,
@@ -67,6 +72,7 @@ export function AssessorApplicationForm() {
   const [missing, setMissing] = useState<string[]>([]);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [accepted, setAccepted] = useState<boolean[]>(() => declarations.map(() => false));
   const [error, setError] = useState<string | null>(null);
   /** Documents the server could not attach; the applicant must send them on. */
   const [tooLarge, setTooLarge] = useState<string[]>([]);
@@ -75,6 +81,8 @@ export function AssessorApplicationForm() {
     () => sections.filter((s) => visible(s.showIf, choices)),
     [choices],
   );
+
+  const allAccepted = accepted.every(Boolean);
 
   const hiddenSpecialists = useMemo(
     () =>
@@ -252,6 +260,12 @@ export function AssessorApplicationForm() {
                   type="checkbox"
                   name={`declaration_${i + 1}`}
                   required
+                  checked={accepted[i]}
+                  onChange={(event) =>
+                    setAccepted((current) =>
+                      current.map((value, index) => (index === i ? event.target.checked : value)),
+                    )
+                  }
                   className="mt-[3px] h-4 w-4 shrink-0 rounded border-navy/30 text-teal accent-teal focus:ring-teal/30"
                 />
                 <span>{text}</span>
@@ -285,11 +299,20 @@ export function AssessorApplicationForm() {
 
         <button
           type="submit"
-          disabled={sending}
+          disabled={sending || !allAccepted}
           className="mt-6 inline-flex items-center justify-center rounded-lg bg-coral px-7 py-3.5 font-heading text-[15.5px] font-medium text-white transition-colors hover:bg-coral/90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {sending ? 'Sending your application…' : 'Submit Application'}
         </button>
+
+        {!allAccepted && (
+          <p className="mt-3 text-[13px] leading-relaxed text-navy/60">
+            Please confirm all {declarations.length} statements above to submit your application.{' '}
+            <span className="font-medium text-navy/75">
+              {accepted.filter(Boolean).length} of {declarations.length} confirmed.
+            </span>
+          </p>
+        )}
 
         <p className="mt-4 text-[12.5px] leading-relaxed text-navy/55">
           We use the information in this application for recruitment and onboarding only. Read our{' '}
@@ -468,18 +491,25 @@ function FieldRow({
     return (
       <div className={span}>
         <label htmlFor={id}>{label}</label>
-        <input
-          id={id}
-          name={name}
-          type="file"
-          multiple={field.multiple}
-          accept={field.accept}
-          required={field.required}
-          className="w-full cursor-pointer rounded-lg border border-dashed border-navy/20 bg-ivory px-4 py-3 text-[13.5px] text-navy/70 file:mr-4 file:rounded-md file:border-0 file:bg-navy file:px-4 file:py-2 file:font-heading file:text-[13.5px] file:text-white hover:file:bg-navy/90"
-        />
+        <FileField id={id} name={name} field={field} />
       </div>
     );
   }
+
+  // Format rules per input kind. `title` is what the browser shows when the
+  // pattern fails, so it has to read as guidance rather than a regex.
+  const validation: Partial<Record<Field['kind'], Record<string, unknown>>> = {
+    email: {
+      pattern: EMAIL_PATTERN,
+      title: EMAIL_HINT,
+      inputMode: 'email',
+      autoCapitalize: 'off',
+      spellCheck: false,
+      maxLength: 254,
+    },
+    tel: { pattern: PHONE_PATTERN, title: PHONE_HINT, inputMode: 'tel', maxLength: 20 },
+    url: { title: URL_HINT, inputMode: 'url', autoCapitalize: 'off', spellCheck: false },
+  };
 
   return (
     <div className={span}>
@@ -492,7 +522,72 @@ function FieldRow({
         placeholder={field.placeholder}
         autoComplete={field.autoComplete}
         className={fieldClass}
+        {...validation[field.kind]}
       />
     </div>
+  );
+}
+
+/**
+ * A file input the applicant can undo.
+ *
+ * A native file input gives no way to take a file back once chosen, which is
+ * unforgiving on a form this long. Selected files are listed underneath with a
+ * remove control; removing rebuilds the input's FileList through a
+ * DataTransfer, so what the form submits always matches what is on screen.
+ */
+function FileField({ id, name, field }: { id: string; name: string; field: Field }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [files, setFiles] = useState<File[]>([]);
+
+  function sync(next: File[]) {
+    const input = inputRef.current;
+    if (input) {
+      const data = new DataTransfer();
+      next.forEach((file) => data.items.add(file));
+      input.files = data.files;
+    }
+    setFiles(next);
+  }
+
+  const size = (bytes: number) =>
+    bytes >= 1_000_000 ? `${(bytes / 1_000_000).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1000))} KB`;
+
+  return (
+    <>
+      <input
+        ref={inputRef}
+        id={id}
+        name={name}
+        type="file"
+        multiple={field.multiple}
+        accept={field.accept}
+        required={field.required && files.length === 0}
+        onChange={(event) => setFiles(Array.from(event.target.files ?? []))}
+        className="w-full cursor-pointer rounded-lg border border-dashed border-navy/20 bg-ivory px-4 py-3 text-[13.5px] text-navy/70 file:mr-4 file:rounded-md file:border-0 file:bg-navy file:px-4 file:py-2 file:font-heading file:text-[13.5px] file:text-white hover:file:bg-navy/90"
+      />
+
+      {files.length > 0 && (
+        <ul className="mt-2.5 space-y-1.5">
+          {files.map((file, i) => (
+            <li
+              key={`${file.name}-${i}`}
+              className="flex items-center gap-3 rounded-lg border border-navy/10 bg-white px-3 py-2"
+            >
+              <span className="min-w-0 flex-1 truncate text-[13px] text-navy/80">{file.name}</span>
+              <span className="shrink-0 text-[12px] text-navy/45">{size(file.size)}</span>
+              <button
+                type="button"
+                onClick={() => sync(files.filter((_, index) => index !== i))}
+                aria-label={`Remove ${file.name}`}
+                className="shrink-0 rounded-md px-2 py-1 font-heading text-[12px] font-medium text-navy/55 transition-colors hover:bg-blush hover:text-coral"
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 }
