@@ -54,15 +54,19 @@ const outlets = [
 export function FeaturedIn({
   title = 'Featured In',
   background = 'white',
+  /** `tight` sits just above the footer; `roomy` matches a mid-page section. */
+  spacing = 'tight',
 }: {
   title?: string;
   background?: 'white' | 'ivory' | 'soft-teal';
+  spacing?: 'tight' | 'roomy';
 }) {
   const bg = { white: 'bg-white', ivory: 'bg-ivory', 'soft-teal': 'bg-soft-teal/45' }[background];
+  const pad = spacing === 'roomy' ? 'pb-16 lg:pb-20' : 'pb-11';
 
   return (
     <section className={bg}>
-      <div className="shell pb-11">
+      <div className={`shell ${pad}`}>
         <div className="rounded-2xl border border-navy/[0.07] bg-white px-7 py-7 shadow-card">
           <h2 className="text-center font-heading text-[12.5px] font-semibold uppercase tracking-[0.2em] text-navy/55">
             {title}

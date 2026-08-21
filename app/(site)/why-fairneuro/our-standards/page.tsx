@@ -1,7 +1,7 @@
 import { Hero } from '@/components/sections/Hero';
 import { CtaBand } from '@/components/sections/Bands';
 import { IconColumns } from '@/components/sections/CardGrid';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { FeaturedIn } from '@/components/sections/FeaturedIn';
 import { Brain, Check, Leaf, Lock, People, Person, Rosette, ShieldCheck, ShieldLock } from '@/components/icons';
 import { img } from '@/lib/images';
 
@@ -18,14 +18,6 @@ const fair = [
   { word: 'Reliable', desc: 'Professional assessment and care you can have confidence in.' },
 ];
 
-const accreditations = [
-  { name: 'hcpc', sub: 'HCPC Registered Professionals' },
-  { name: 'QMS', sub: 'ISO 9001:2015 Quality Management' },
-  { name: 'UK GDPR', sub: 'Compliant' },
-  { name: 'ico.', sub: "Information Commissioner's Office" },
-  { name: 'PSA', sub: 'Professional Standards Authority' },
-  { name: 'Safeguarding', sub: 'Standards Adhered To' },
-];
 
 export default function Page() {
   return (
@@ -132,25 +124,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Accreditations */}
-      <section className="bg-white">
-        <div className="shell pb-16 lg:pb-20">
-          <SectionHeading title="Accreditations & Compliance" />
-          <ul className="grid grid-cols-2 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
-            {accreditations.map((a, i) => (
-              <li
-                key={a.name}
-                className={`px-5 text-center ${i > 0 ? 'lg:border-l lg:border-navy/[0.08]' : ''}`}
-              >
-                <p className="font-heading text-[21.5px] font-semibold lowercase tracking-tight text-navy">
-                  {a.name}
-                </p>
-                <p className="mt-1.5 text-[12px] leading-snug text-navy/58">{a.sub}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <FeaturedIn spacing="roomy" />
 
       <CtaBand
         title="Experience care you can trust."
