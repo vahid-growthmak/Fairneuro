@@ -27,21 +27,59 @@ function Required() {
   return <span className="text-coral"> *</span>;
 }
 
+/** Confirmation-page steps, as specified in the application document. */
+const nextSteps = [
+  {
+    title: 'Application Review',
+    desc: 'Our team reviews your application and supporting documents.',
+  },
+  {
+    title: 'Professional Verification',
+    desc: 'Relevant qualifications, professional registrations and accreditation may be verified.',
+  },
+  {
+    title: 'Interview',
+    desc: 'Suitable applicants may be invited to a short online interview.',
+  },
+  {
+    title: 'Assessment Quality Review',
+    desc: 'Where appropriate, we may review an anonymised report or discuss your assessment approach.',
+  },
+  {
+    title: 'Onboarding',
+    desc: 'Successful applicants complete the relevant FairNeuro onboarding, policies and systems process before accepting referrals.',
+  },
+];
+
+/** Sections 6–9 only apply to particular assessment types. */
+const SPECIALIST_SECTIONS = [6, 7, 8, 9];
+
 /**
  * The assessor application. Long, conditional and file-heavy, so it is
  * rendered from `assessorApplication.ts` rather than hand-written markup.
  *
- * Submission is client-side only until the recruitment inbox / ATS endpoint
- * is wired up — matching the enquiry form on /contact.
+ * On submit the whole form is posted to /api/assessor-application, which
+ * validates it against the same schema and emails it to the recruitment inbox
+ * with any uploaded documents attached.
  */
 export function AssessorApplicationForm() {
   const [choices, setChoices] = useState<Choices>({});
   const [missing, setMissing] = useState<string[]>([]);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  /** Documents the server could not attach; the applicant must send them on. */
+  const [tooLarge, setTooLarge] = useState<string[]>([]);
 
   const visibleSections = useMemo(
     () => sections.filter((s) => visible(s.showIf, choices)),
     [choices],
+  );
+
+  const hiddenSpecialists = useMemo(
+    () =>
+      SPECIALIST_SECTIONS.filter((n) => !visibleSections.some((s) => s.number === n)),
+    [visibleSections],
   );
 
   function setRadio(name: string, value: string) {
@@ -60,8 +98,9 @@ export function AssessorApplicationForm() {
     setMissing((m) => m.filter((n) => n !== name));
   }
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (sending) return;
 
     // Native validation covers text inputs and radios; required checkbox
     // groups need checking by hand.
@@ -83,8 +122,34 @@ export function AssessorApplicationForm() {
     }
 
     setMissing([]);
-    setSent(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setError(null);
+    setSending(true);
+
+    try {
+      const response = await fetch('/api/assessor-application', {
+        method: 'POST',
+        body: new FormData(e.currentTarget),
+      });
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        oversized?: string[];
+      };
+
+      if (!response.ok) {
+        setError(result.error ?? 'Something went wrong. Please try again.');
+        setSending(false);
+        return;
+      }
+
+      setTooLarge(result.oversized ?? []);
+      setSent(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      setError(
+        'We could not reach the server. Check your connection and try again, or email your application to management@fairneurodiagnostics.com.',
+      );
+      setSending(false);
+    }
   }
 
   if (sent) {
@@ -107,6 +172,37 @@ export function AssessorApplicationForm() {
           If your experience matches our current requirements, we will contact you regarding the
           next stage.
         </p>
+
+        <div className="mx-auto mt-9 max-w-lg text-left">
+          <h4 className="font-heading text-[16px] font-semibold text-navy">What happens next?</h4>
+          <ol className="mt-4 space-y-4">
+            {nextSteps.map((step, i) => (
+              <li key={step.title} className="flex gap-3.5">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white font-heading text-[13px] font-semibold text-teal">
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="font-heading text-[14.5px] font-semibold text-navy">{step.title}</p>
+                  <p className="mt-0.5 text-[13.5px] leading-relaxed text-navy/70">{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {tooLarge.length > 0 && (
+          <p className="mx-auto mt-5 max-w-lg rounded-lg bg-blush px-5 py-4 text-[13.5px] leading-relaxed text-navy/80">
+            <strong className="font-semibold text-navy">One thing to finish.</strong> These files
+            were too large to send with the form — please email them to{' '}
+            <a
+              href="mailto:management@fairneurodiagnostics.com"
+              className="text-teal underline underline-offset-2"
+            >
+              management@fairneurodiagnostics.com
+            </a>
+            : {tooLarge.join(', ')}.
+          </p>
+        )}
       </div>
     );
   }
@@ -114,14 +210,34 @@ export function AssessorApplicationForm() {
   return (
     <form id="application" onSubmit={onSubmit} noValidate={false} className="scroll-mt-24 space-y-6">
       {visibleSections.map((section) => (
-        <SectionCard
-          key={section.number}
-          section={section}
-          choices={choices}
-          missing={missing}
-          setRadio={setRadio}
-          toggleCheck={toggleCheck}
-        />
+        <div key={section.number}>
+          <SectionCard
+            section={section}
+            choices={choices}
+            missing={missing}
+            setRadio={setRadio}
+            toggleCheck={toggleCheck}
+          />
+
+          {/*
+            Sections 6-9 are specific to assessment types and only appear once
+            the matching area is chosen in Section 2, as the application
+            document specifies. Without a word here the numbering jumps from 5
+            to 10 and reads as though the form is broken.
+          */}
+          {section.number === 5 && hiddenSpecialists.length > 0 && (
+            <div className="mt-6 rounded-2xl border border-dashed border-teal/40 bg-soft-teal/30 p-6 text-center">
+              <p className="font-heading text-[14.5px] font-semibold text-navy">
+                Sections 6–9 depend on your answers
+              </p>
+              <p className="mx-auto mt-2 max-w-xl text-[13.5px] leading-relaxed text-navy/70">
+                {hiddenSpecialists.map((n) => `Section ${n}`).join(', ')} cover ADHD, autism,
+                dyslexia and the combined pathway. They appear here as soon as you tick the matching
+                assessment areas in Section 2, so you only answer the ones relevant to you.
+              </p>
+            </div>
+          )}
+        </div>
       ))}
 
       {/* SECTION 17 — Declaration */}
@@ -150,11 +266,29 @@ export function AssessorApplicationForm() {
           </p>
         )}
 
+        {error && (
+          <p
+            role="alert"
+            className="mt-5 rounded-lg border border-coral/30 bg-blush px-4 py-3 text-[13.5px] leading-relaxed text-coral"
+          >
+            {error}
+          </p>
+        )}
+
+        {/* Honeypot — hidden from people, irresistible to bots. */}
+        <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+          <label>
+            Company website
+            <input type="text" name="company_website" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+
         <button
           type="submit"
-          className="mt-6 inline-flex items-center justify-center rounded-lg bg-coral px-7 py-3.5 font-heading text-[15.5px] font-medium text-white transition-colors hover:bg-coral/90"
+          disabled={sending}
+          className="mt-6 inline-flex items-center justify-center rounded-lg bg-coral px-7 py-3.5 font-heading text-[15.5px] font-medium text-white transition-colors hover:bg-coral/90 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Submit Application
+          {sending ? 'Sending your application…' : 'Submit Application'}
         </button>
 
         <p className="mt-4 text-[12.5px] leading-relaxed text-navy/55">
