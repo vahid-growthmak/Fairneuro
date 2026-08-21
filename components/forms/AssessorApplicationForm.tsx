@@ -31,13 +31,18 @@ function Required() {
  * The assessor application. Long, conditional and file-heavy, so it is
  * rendered from `assessorApplication.ts` rather than hand-written markup.
  *
- * Submission is client-side only until the recruitment inbox / ATS endpoint
- * is wired up — matching the enquiry form on /contact.
+ * On submit the whole form is posted to /api/assessor-application, which
+ * validates it against the same schema and emails it to the recruitment inbox
+ * with any uploaded documents attached.
  */
 export function AssessorApplicationForm() {
   const [choices, setChoices] = useState<Choices>({});
   const [missing, setMissing] = useState<string[]>([]);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  /** Documents the server could not attach; the applicant must send them on. */
+  const [tooLarge, setTooLarge] = useState<string[]>([]);
 
   const visibleSections = useMemo(
     () => sections.filter((s) => visible(s.showIf, choices)),
@@ -60,8 +65,9 @@ export function AssessorApplicationForm() {
     setMissing((m) => m.filter((n) => n !== name));
   }
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (sending) return;
 
     // Native validation covers text inputs and radios; required checkbox
     // groups need checking by hand.
@@ -83,8 +89,34 @@ export function AssessorApplicationForm() {
     }
 
     setMissing([]);
-    setSent(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setError(null);
+    setSending(true);
+
+    try {
+      const response = await fetch('/api/assessor-application', {
+        method: 'POST',
+        body: new FormData(e.currentTarget),
+      });
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        oversized?: string[];
+      };
+
+      if (!response.ok) {
+        setError(result.error ?? 'Something went wrong. Please try again.');
+        setSending(false);
+        return;
+      }
+
+      setTooLarge(result.oversized ?? []);
+      setSent(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      setError(
+        'We could not reach the server. Check your connection and try again, or email your application to management@fairneurodiagnostics.com.',
+      );
+      setSending(false);
+    }
   }
 
   if (sent) {
@@ -107,6 +139,20 @@ export function AssessorApplicationForm() {
           If your experience matches our current requirements, we will contact you regarding the
           next stage.
         </p>
+
+        {tooLarge.length > 0 && (
+          <p className="mx-auto mt-5 max-w-lg rounded-lg bg-blush px-5 py-4 text-[13.5px] leading-relaxed text-navy/80">
+            <strong className="font-semibold text-navy">One thing to finish.</strong> These files
+            were too large to send with the form — please email them to{' '}
+            <a
+              href="mailto:management@fairneurodiagnostics.com"
+              className="text-teal underline underline-offset-2"
+            >
+              management@fairneurodiagnostics.com
+            </a>
+            : {tooLarge.join(', ')}.
+          </p>
+        )}
       </div>
     );
   }
@@ -150,11 +196,29 @@ export function AssessorApplicationForm() {
           </p>
         )}
 
+        {error && (
+          <p
+            role="alert"
+            className="mt-5 rounded-lg border border-coral/30 bg-blush px-4 py-3 text-[13.5px] leading-relaxed text-coral"
+          >
+            {error}
+          </p>
+        )}
+
+        {/* Honeypot — hidden from people, irresistible to bots. */}
+        <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+          <label>
+            Company website
+            <input type="text" name="company_website" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+
         <button
           type="submit"
-          className="mt-6 inline-flex items-center justify-center rounded-lg bg-coral px-7 py-3.5 font-heading text-[15.5px] font-medium text-white transition-colors hover:bg-coral/90"
+          disabled={sending}
+          className="mt-6 inline-flex items-center justify-center rounded-lg bg-coral px-7 py-3.5 font-heading text-[15.5px] font-medium text-white transition-colors hover:bg-coral/90 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Submit Application
+          {sending ? 'Sending your application…' : 'Submit Application'}
         </button>
 
         <p className="mt-4 text-[12.5px] leading-relaxed text-navy/55">
