@@ -5,10 +5,9 @@
  * domain — it must match the domain visitors actually land on, or search
  * engines are told the content lives somewhere else.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fairneuro.com').replace(
-  /\/$/,
-  '',
-);
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.fairneurodiagnostics.com'
+).replace(/\/$/, '');
 
 export const site = {
   name: 'Fairneuro',
