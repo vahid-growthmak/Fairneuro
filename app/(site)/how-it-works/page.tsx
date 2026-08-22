@@ -68,7 +68,7 @@ export default function Page() {
         title="How It Works"
         lede="A clear, supportive journey from first step to lasting support."
         body="Our proven process ensures you receive the right assessment, clear answers and the support you need to thrive."
-        secondaryCta={{ label: 'Watch Overview', href: '#journey' }}
+        secondaryCta={{ label: 'See the Journey', href: '#journey' }}
         ticks={['Free consultation', 'No obligation', 'Confidential', 'Here to help']}
         image={{ src: img.heroHowItWorks, alt: 'A person smiling thoughtfully' }}
       />
