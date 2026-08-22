@@ -7,7 +7,16 @@
  * so `npm run build` keeps working before credentials are added.
  */
 
-export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? '';
+/**
+ * The project this site's content lives in.
+ *
+ * Defaulted in code rather than carried in a committed .env. NEXT_PUBLIC_*
+ * values are inlined into the browser bundle at build time and the dataset is
+ * world-readable, so this is public either way — and hardcoding the default
+ * means any build reaches the CMS without per-environment configuration.
+ * Override it to point a checkout at a different project.
+ */
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? 'th11nlwk';
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production';
 export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? '2024-10-01';
 
