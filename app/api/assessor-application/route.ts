@@ -35,23 +35,44 @@ function visible(showIf: ShowIf | undefined, values: Values): boolean {
 const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+interface Item {
+  label: string;
+  answer: string;
+  /** A group divider rather than an answer — e.g. "Professional Reference 2". */
+  heading?: boolean;
+}
+
 /** Answered fields, in the order the form asks them. */
 function walk(values: Values) {
-  const out: { section: string; number: number; items: { label: string; answer: string }[] }[] = [];
+  const out: { section: string; number: number; items: Item[] }[] = [];
 
   for (const section of sections) {
     if (!visible(section.showIf, values)) continue;
-    const items: { label: string; answer: string }[] = [];
+    const items: Item[] = [];
+    // Held back until something under it is answered, so empty groups are not
+    // announced — without this the two reference blocks arrive as identical
+    // runs of Name / Job title / Organisation with nothing to tell them apart.
+    let pendingHeading: string | null = null;
 
     for (const field of section.fields as Field[]) {
-      if (!field.name || field.kind === 'note' || field.kind === 'subheading') continue;
+      if (field.kind === 'subheading') {
+        pendingHeading = field.text ?? null;
+        continue;
+      }
+      if (!field.name || field.kind === 'note') continue;
       if (!visible(field.showIf, values)) continue;
       const answer = (values[field.name] ?? []).filter(Boolean).join(', ');
       if (!answer) continue;
+      if (pendingHeading) {
+        items.push({ label: pendingHeading, answer: '', heading: true });
+        pendingHeading = null;
+      }
       items.push({ label: field.label ?? field.name, answer });
     }
 
-    if (items.length) out.push({ section: section.title, number: section.number, items });
+    if (items.some((i) => !i.heading)) {
+      out.push({ section: section.title, number: section.number, items });
+    }
   }
 
   return out;
@@ -67,7 +88,9 @@ function render(
     .map(
       (g) =>
         `SECTION ${g.number} — ${g.section}\n` +
-        g.items.map((i) => `  ${i.label}\n    ${i.answer}`).join('\n'),
+        g.items
+          .map((i) => (i.heading ? `\n  -- ${i.label} --` : `  ${i.label}\n    ${i.answer}`))
+          .join('\n'),
     )
     .join('\n\n');
 
@@ -79,8 +102,10 @@ function render(
         (g) => `<h3 style="margin:22px 0 8px;padding-bottom:5px;border-bottom:1px solid #e3e9ef;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#45AEB6">
             Section ${g.number} — ${esc(g.section)}</h3>
           <table style="width:100%;border-collapse:collapse">${g.items
-            .map(
-              (i) => `<tr>
+            .map((i) =>
+              i.heading
+                ? `<tr><td colspan="2" style="padding:14px 0 4px;font-weight:700;color:#113A61">${esc(i.label)}</td></tr>`
+                : `<tr>
                 <td style="padding:5px 12px 5px 0;vertical-align:top;width:40%;color:#5b7189">${esc(i.label)}</td>
                 <td style="padding:5px 0;vertical-align:top;font-weight:600;white-space:pre-wrap">${esc(i.answer)}</td>
               </tr>`,
