@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { Logo } from './Logo';
-import { Facebook, Instagram, LinkedIn } from '@/components/icons';
+import { Instagram } from '@/components/icons';
 import { footerColumns, legalLinks } from '@/lib/site';
 
 const socials = [
-  { label: 'Instagram', href: 'https://instagram.com', Icon: Instagram },
-  { label: 'Facebook', href: 'https://facebook.com', Icon: Facebook },
-  { label: 'LinkedIn', href: 'https://linkedin.com', Icon: LinkedIn },
+  { label: 'Instagram', href: 'https://instagram.com/fairneuro', Icon: Instagram },
 ];
 
 export function Footer() {
