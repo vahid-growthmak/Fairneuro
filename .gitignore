@@ -1,11 +1,32 @@
+# dependencies
 node_modules
+
+# build output
 .next
 out
+.turbo
+*.tsbuildinfo
+
+# deployment
+.vercel
+
+# local environment — secrets live here, never in the repo.
+# Note: .env IS tracked on purpose; it holds only the public
+# NEXT_PUBLIC_SANITY_* values needed for every deployment to build.
+.env*.local
+
+# generated
+next-env.d.ts
+
+# tooling / editors
 .DS_Store
+Thumbs.db
 *.pem
 npm-debug.log*
-.env*.local
-next-env.d.ts
+yarn-error.log*
+.eslintcache
+coverage
+
+# working files that should not ship
 .design-notes
-tsconfig.tsbuildinfo
 .image-cache

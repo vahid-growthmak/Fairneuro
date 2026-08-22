@@ -1,3 +1,15 @@
+/**
+ * Canonical origin, used for metadata, the sitemap and robots.
+ *
+ * Set NEXT_PUBLIC_SITE_URL in the environment to point these at a different
+ * domain — it must match the domain visitors actually land on, or search
+ * engines are told the content lives somewhere else.
+ */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fairneuro.com').replace(
+  /\/$/,
+  '',
+);
+
 export const site = {
   name: 'Fairneuro',
   suffix: 'Diagnostics',

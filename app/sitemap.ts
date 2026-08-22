@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { client } from '@/sanity/client';
 import { isSanityConfigured } from '@/sanity/env';
 import { SITEMAP_QUERY } from '@/sanity/lib/queries';
+import { SITE_URL } from '@/lib/site';
 
 const routes = [
   '',
@@ -67,7 +68,7 @@ export const revalidate = 3600;
 
 /** Static routes plus every published CMS article. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = 'https://fairneuro.com';
+  const base = SITE_URL;
 
   let articles: MetadataRoute.Sitemap = [];
   if (isSanityConfigured && client) {

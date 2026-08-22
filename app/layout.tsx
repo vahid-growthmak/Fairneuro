@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Fraunces, Inter, Poppins } from 'next/font/google';
 import { MotionProvider } from '@/components/ui/MotionProvider';
 import './globals.css';
+import { SITE_URL } from '@/lib/site';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -23,7 +24,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://fairneuro.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Fairneuro Diagnostics — Understand. Support. Thrive.',
     template: '%s | Fairneuro Diagnostics',
