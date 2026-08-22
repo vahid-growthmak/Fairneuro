@@ -193,7 +193,6 @@ export const footerColumns = [
       { label: 'ADHD Quiz', href: '/adhd-quiz' },
       { label: 'Autism Test', href: '/autism-test' },
       { label: 'Dyslexia Test', href: '/dyslexia-test' },
-      { label: 'Online Screener', href: '/screener' },
     ],
   },
   {
