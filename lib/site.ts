@@ -188,10 +188,18 @@ export const footerColumns = [
     ],
   },
   {
+    title: 'Free Tests',
+    links: [
+      { label: 'ADHD Quiz', href: '/adhd-quiz' },
+      { label: 'Autism Test', href: '/autism-test' },
+      { label: 'Dyslexia Test', href: '/dyslexia-test' },
+      { label: 'Online Screener', href: '/screener' },
+    ],
+  },
+  {
     title: 'Help',
     links: [
       { label: 'Blog', href: '/blog' },
-      { label: 'Free ADHD Quiz', href: '/adhd-quiz' },
       { label: 'FAQs', href: '/faqs' },
       { label: 'Contact Us', href: '/contact' },
     ],

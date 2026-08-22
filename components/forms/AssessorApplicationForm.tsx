@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Check } from '@/components/icons';
 import {
   EMAIL_HINT,
@@ -80,6 +80,7 @@ export function AssessorApplicationForm() {
     sections: [],
   });
   const formRef = useRef<HTMLFormElement>(null);
+  const confirmationRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   /** Documents the server could not attach; the applicant must send them on. */
   const [tooLarge, setTooLarge] = useState<string[]>([]);
@@ -131,6 +132,31 @@ export function AssessorApplicationForm() {
 
     return { count: names.size, sections: Array.from(sections) };
   }
+
+  // The confirmation replaces a form that runs several screens long, so the
+  // page has to be taken to it — scrolling to the top of the document lands on
+  // the hero instead, with the message far below the fold.
+  useEffect(() => {
+    if (!sent) return;
+    const panel = confirmationRef.current;
+    if (!panel) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    panel.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    // Focus without scrolling again, so the smooth scroll is not cut short.
+    panel.focus({ preventScroll: true });
+
+    // A smooth scroll can be interrupted, or never run at all in environments
+    // that do not animate. Land the message in view regardless.
+    const settle = window.setTimeout(() => {
+      const { top } = panel.getBoundingClientRect();
+      if (top < -8 || top > window.innerHeight * 0.6) {
+        panel.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    }, 700);
+
+    return () => window.clearTimeout(settle);
+  }, [sent]);
 
   function setRadio(name: string, value: string) {
     setChoices((c) => ({ ...c, [name]: [value] }));
@@ -195,7 +221,6 @@ export function AssessorApplicationForm() {
 
       setTooLarge(result.oversized ?? []);
       setSent(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch {
       setError(
         'We could not reach the server. Check your connection and try again, or email your application to management@fairneurodiagnostics.com.',
@@ -208,7 +233,9 @@ export function AssessorApplicationForm() {
     return (
       <div
         id="application"
-        className="scroll-mt-24 rounded-2xl border border-teal/30 bg-soft-teal/50 p-10 text-center"
+        ref={confirmationRef}
+        tabIndex={-1}
+        className="scroll-mt-24 rounded-2xl border border-teal/30 bg-soft-teal/50 p-10 text-center outline-none"
       >
         <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal text-white">
           <Check className="h-7 w-7" strokeWidth={2.6} />

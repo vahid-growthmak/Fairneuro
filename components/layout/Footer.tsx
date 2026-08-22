@@ -18,7 +18,7 @@ export function Footer() {
 
           <div
             data-reveal-stagger="0.06"
-            className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 lg:pl-4"
+            className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-7 lg:gap-x-5 lg:pl-4"
           >
             {footerColumns.map((col) => (
               <div key={col.title}>
