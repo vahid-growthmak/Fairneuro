@@ -10,10 +10,13 @@ out
 # deployment
 .vercel
 
-# local environment — secrets live here, never in the repo.
-# Note: .env IS tracked on purpose; it holds only the public
-# NEXT_PUBLIC_SANITY_* values needed for every deployment to build.
-.env*.local
+# local environment — no env file is tracked.
+# .env.example is the exception: it documents what has to be set, and
+# carries no values. Every real value belongs in the host's environment
+# settings (Vercel) and in .env.local for local work.
+.env
+.env.*
+!.env.example
 
 # generated
 next-env.d.ts
