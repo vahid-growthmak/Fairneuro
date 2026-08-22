@@ -107,6 +107,7 @@ export const primaryNav: NavItem[] = [
       { label: 'Therapy & Wellbeing', href: '/support/therapy-wellbeing' },
       { label: 'Post-Diagnostic Support', href: '/support/post-diagnostic' },
       { label: 'Parent & Family Support', href: '/support/parent-family' },
+      { label: 'Clinical Care Pathway', href: '/clinical-care' },
     ],
   },
   { label: 'How It Works', href: '/how-it-works' },
@@ -137,7 +138,6 @@ export const primaryNav: NavItem[] = [
       { label: 'Professional Referrals', href: '/professional-referrals' },
       { label: 'Schools & Education', href: '/schools' },
       { label: 'Employer / Corporate', href: '/employers' },
-      { label: 'Clinical Care Pathway', href: '/clinical-care' },
     ],
   },
 ];
