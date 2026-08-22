@@ -73,6 +73,13 @@ export function AssessorApplicationForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [accepted, setAccepted] = useState<boolean[]>(() => declarations.map(() => false));
+  /** Set once the applicant tries to submit, so nothing nags before then. */
+  const [attempted, setAttempted] = useState(false);
+  const [outstanding, setOutstanding] = useState<{ count: number; sections: string[] }>({
+    count: 0,
+    sections: [],
+  });
+  const formRef = useRef<HTMLFormElement>(null);
   const [error, setError] = useState<string | null>(null);
   /** Documents the server could not attach; the applicant must send them on. */
   const [tooLarge, setTooLarge] = useState<string[]>([]);
@@ -89,6 +96,41 @@ export function AssessorApplicationForm() {
       SPECIALIST_SECTIONS.filter((n) => !visibleSections.some((s) => s.number === n)),
     [visibleSections],
   );
+
+  /**
+   * Counts required questions still unanswered and names the sections they are
+   * in. Radio and checkbox groups are counted once, not once per option.
+   */
+  function scanOutstanding() {
+    const form = formRef.current;
+    if (!form) return { count: 0, sections: [] as string[] };
+
+    const names = new Set<string>();
+    const sections = new Set<string>();
+
+    for (const element of Array.from(form.elements)) {
+      const field = element as HTMLInputElement;
+      if (!field.willValidate || field.checkValidity()) continue;
+      names.add(field.name || field.id);
+      const heading = field.closest('section')?.querySelector('h2')?.textContent?.trim();
+      if (heading) sections.add(heading);
+    }
+
+    // Required checkbox groups carry no native `required`, so they are tracked
+    // separately by the same rules the submit handler uses.
+    for (const section of visibleSections) {
+      for (const field of section.fields) {
+        if (field.kind !== 'checkboxes' || !field.required || !field.name) continue;
+        if (!visible(field.showIf, choices)) continue;
+        if ((choices[field.name] ?? []).length === 0) {
+          names.add(field.name);
+          sections.add(`${section.title}`);
+        }
+      }
+    }
+
+    return { count: names.size, sections: Array.from(sections) };
+  }
 
   function setRadio(name: string, value: string) {
     setChoices((c) => ({ ...c, [name]: [value] }));
@@ -109,6 +151,8 @@ export function AssessorApplicationForm() {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (sending) return;
+    setAttempted(true);
+    setOutstanding(scanOutstanding());
 
     // Native validation covers text inputs and radios; required checkbox
     // groups need checking by hand.
@@ -216,7 +260,15 @@ export function AssessorApplicationForm() {
   }
 
   return (
-    <form id="application" onSubmit={onSubmit} noValidate={false} className="scroll-mt-24 space-y-6">
+    <form
+      id="application"
+      ref={formRef}
+      onSubmit={onSubmit}
+      onInput={() => (attempted || allAccepted) && setOutstanding(scanOutstanding())}
+      onChange={() => (attempted || allAccepted) && setOutstanding(scanOutstanding())}
+      noValidate={false}
+      className="scroll-mt-24 space-y-6"
+    >
       {visibleSections.map((section) => (
         <div key={section.number}>
           <SectionCard
@@ -274,10 +326,26 @@ export function AssessorApplicationForm() {
           ))}
         </ul>
 
-        {missing.length > 0 && (
-          <p className="mt-5 rounded-lg bg-blush px-4 py-3 text-[13.5px] text-coral">
-            Some required questions above still need an answer. We have highlighted them for you.
-          </p>
+        {(attempted || allAccepted) && outstanding.count > 0 && (
+          <div
+            role="alert"
+            className="mt-5 rounded-lg border border-coral/30 bg-blush px-4 py-3.5 text-[13.5px] leading-relaxed text-navy/80"
+          >
+            <p className="font-heading font-semibold text-coral">
+              {outstanding.count} required question{outstanding.count === 1 ? '' : 's'} still
+              need{outstanding.count === 1 ? 's' : ''} an answer
+            </p>
+            <p className="mt-1">
+              {outstanding.sections.length === 1 ? 'In ' : 'Across '}
+              {outstanding.sections.slice(0, 3).join(', ')}
+              {outstanding.sections.length > 3
+                ? ` and ${outstanding.sections.length - 3} other section${
+                    outstanding.sections.length - 3 === 1 ? '' : 's'
+                  }`
+                : ''}
+              .{attempted ? ' We have taken you to the first one.' : ''}
+            </p>
+          </div>
         )}
 
         {error && (
@@ -299,6 +367,10 @@ export function AssessorApplicationForm() {
 
         <button
           type="submit"
+          onClick={() => {
+            setAttempted(true);
+            setOutstanding(scanOutstanding());
+          }}
           disabled={sending || !allAccepted}
           className="mt-6 inline-flex items-center justify-center rounded-lg bg-coral px-7 py-3.5 font-heading text-[15.5px] font-medium text-white transition-colors hover:bg-coral/90 disabled:cursor-not-allowed disabled:opacity-60"
         >
