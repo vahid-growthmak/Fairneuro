@@ -195,7 +195,7 @@ export function AssessorApplicationForm() {
       setMissing(unanswered);
       document
         .getElementById(`field-${unanswered[0]}`)
-        ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        ?.scrollIntoView({ behavior: 'auto', block: 'center' });
       return;
     }
 

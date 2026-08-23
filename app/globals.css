@@ -8,8 +8,12 @@
      block later in the cascade wins the specificity tie and silently replaces
      the generated @font-face family names with unloaded bare names. */
 
+  /* Anchor jumps are deliberately instant. With smooth scrolling, travelling
+     to an in-page anchor passes dozens of sections whose reveal animations
+     fire on the way — the layout shifts underneath the scroll and the page
+     settles short of the target. An instant jump computes the destination
+     once and always lands on it. */
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
