@@ -272,12 +272,14 @@ export const sections: Section[] = [
         kind: 'text',
         name: 'registration_number',
         label: 'Professional registration / membership number',
+        required: true,
         half: true,
       },
       {
         kind: 'date',
         name: 'registration_expiry',
         label: 'Expiry / renewal date, where applicable',
+        required: true,
         half: true,
       },
       {
