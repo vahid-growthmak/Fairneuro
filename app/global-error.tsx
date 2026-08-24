@@ -12,11 +12,22 @@ import { useEffect } from 'react';
  * hashed and served `immutable`, while the HTML is revalidated — so a visitor
  * holding HTML from a previous deployment asks for chunk names that no longer
  * exist, and hydration dies. Reloading fetches the current HTML and fixes it,
- * so that specific case reloads itself once. The reload is recorded for the
- * session, because a genuinely broken build must not loop.
+ * so that specific case reloads itself.
+ *
+ * A build can be one of many the same day, so a single "reloaded once, ever"
+ * guard is not enough — a tab that already recovered from an earlier deploy
+ * would sit on this page forever on the next one. Instead the guard is a
+ * cooldown: a genuinely broken page re-throws again within a few seconds of
+ * the reload it just did, so that case is left on this page; a stale build
+ * fixes itself and does not throw again, so the guard is free for the *next*
+ * deploy however soon it lands. A session cap stops a pathological loop.
  */
-const STALE_BUILD = /ChunkLoadError|Loading chunk|Loading CSS chunk|dynamically imported module|Importing a module script failed/i;
-const RELOAD_KEY = 'fairneuro:reloaded-for-stale-build';
+const STALE_BUILD =
+  /ChunkLoadError|Loading chunk|Loading CSS chunk|dynamically imported module|Importing a module script failed|Unable to preload CSS|error loading dynamically imported module/i;
+const RELOAD_AT_KEY = 'fairneuro:stale-build-reload-at';
+const RELOAD_COUNT_KEY = 'fairneuro:stale-build-reload-count';
+const COOLDOWN_MS = 8000;
+const MAX_RELOADS_PER_SESSION = 5;
 
 export default function GlobalError({
   error,
@@ -28,8 +39,14 @@ export default function GlobalError({
   useEffect(() => {
     if (!STALE_BUILD.test(`${error?.name} ${error?.message}`)) return;
     try {
-      if (sessionStorage.getItem(RELOAD_KEY)) return;
-      sessionStorage.setItem(RELOAD_KEY, '1');
+      const last = Number(sessionStorage.getItem(RELOAD_AT_KEY) ?? 0);
+      if (Date.now() - last < COOLDOWN_MS) return;
+
+      const count = Number(sessionStorage.getItem(RELOAD_COUNT_KEY) ?? 0);
+      if (count >= MAX_RELOADS_PER_SESSION) return;
+
+      sessionStorage.setItem(RELOAD_AT_KEY, String(Date.now()));
+      sessionStorage.setItem(RELOAD_COUNT_KEY, String(count + 1));
     } catch {
       // Private browsing can refuse storage; better to not reload than to loop.
       return;
@@ -60,7 +77,10 @@ export default function GlobalError({
           <div style={{ marginTop: 28, display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <button
               type="button"
-              onClick={() => reset()}
+              onClick={() => {
+                reset();
+                window.location.reload();
+              }}
               style={{
                 border: 0,
                 cursor: 'pointer',
