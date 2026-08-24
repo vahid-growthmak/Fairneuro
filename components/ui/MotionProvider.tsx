@@ -94,6 +94,21 @@ function markShown(el: Element) {
   el.setAttribute('data-shown', '');
 }
 
+/**
+ * True if `el` has already crossed the point a `once: true` ScrollTrigger
+ * would fire at. Anchor links on this site jump instantly rather than
+ * smooth-scrolling, so a click can land past a screen's worth of reveals in
+ * one tick — creating that many "already satisfied" one-shot triggers at
+ * once is what trips ScrollTrigger's internal bookkeeping (it self-kills
+ * each on completion while another is still walking the trigger list,
+ * occasionally reading a slot another completion already spliced out).
+ * Binding functions check this and skip straight to the arrived state
+ * instead of queuing a trigger that would fire immediately anyway.
+ */
+function isPastReveal(el: Element, pct: number) {
+  return el.getBoundingClientRect().top <= window.innerHeight * pct;
+}
+
 export function MotionProvider() {
   const pathname = usePathname();
 
@@ -150,6 +165,9 @@ export function MotionProvider() {
       }
       markShown(el);
       gsap.set(el, { opacity: 1 });
+
+      if (isPastReveal(el, 0.92)) return; // already on screen — leave the lines in place
+
       gsap.from(parts, {
         yPercent: 108,
         duration: 0.95,
@@ -175,6 +193,17 @@ export function MotionProvider() {
 
       const fallback = group.dataset.revealStaggerVariant || 'up';
       const step = num(group.dataset.revealStagger, 0.08);
+
+      if (isPastReveal(group, 0.86)) {
+        kids.forEach((kid) => {
+          const variant = kid.dataset.reveal || fallback;
+          if (variant === 'draw') gsap.set(kid, { transformOrigin: 'left center' });
+          gsap.set(kid, revealVars(variant).to);
+          markShown(kid);
+          release(kid);
+        });
+        return;
+      }
 
       const tl = gsap.timeline({
         delay: num(group.dataset.revealDelay, 0),
@@ -204,6 +233,14 @@ export function MotionProvider() {
       const variant = el.dataset.reveal || 'up';
       const { from, to } = revealVars(variant);
       if (variant === 'draw') gsap.set(el, { transformOrigin: 'left center' });
+
+      if (isPastReveal(el, 0.88)) {
+        markShown(el);
+        gsap.set(el, to);
+        release(el);
+        return;
+      }
+
       gsap.fromTo(el, from, {
         ...to,
         duration: REVEAL_DURATION[variant] ?? 0.85,
@@ -429,6 +466,8 @@ export function MotionProvider() {
       const target = parseFloat(raw.replace(/,/g, ''));
       if (!Number.isFinite(target)) return;
 
+      if (isPastReveal(el, 0.92)) return; // already on screen, showing its authored text
+
       const decimals = (raw.split('.')[1] || '').length;
       const grouped = raw.includes(',');
       const counter = { v: 0 };
@@ -484,14 +523,26 @@ export function MotionProvider() {
           document.querySelectorAll<HTMLElement>('[data-split]').forEach((el) => {
             if (entry.has(el)) return;
             entry.add(el);
-            bindSplit(el);
+            try {
+              bindSplit(el);
+            } catch {
+              markShown(el);
+              gsap.set(el, { opacity: 1 });
+            }
           });
         }
         for (const [selector, bind, claimed] of passes) {
           document.querySelectorAll<HTMLElement>(selector).forEach((el) => {
             if (claimed.has(el)) return;
             claimed.add(el);
-            bind(el);
+            // A binder must never take the page down with it — worst case an
+            // element skips its motion and stays in its arrived state.
+            try {
+              bind(el);
+            } catch {
+              markShown(el);
+              release(el);
+            }
           });
         }
       });
@@ -500,7 +551,14 @@ export function MotionProvider() {
     // Fonts change line boxes and image loads change page height; both move
     // every trigger position, so measure again once they settle.
     let timer: ReturnType<typeof setTimeout> | undefined;
-    const refresh = () => ScrollTrigger.refresh();
+    const refresh = () => {
+      try {
+        ScrollTrigger.refresh();
+      } catch {
+        // ScrollTrigger's own bookkeeping can still race on a wild resize;
+        // never let that surface as a page-level crash.
+      }
+    };
     const rescan = () => {
       clearTimeout(timer);
       timer = setTimeout(() => {
