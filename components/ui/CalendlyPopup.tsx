@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-const CALENDLY_URL = 'https://calendly.com/management-fairneurodiagnostics/30min';
+const CALENDLY_URL = 'https://calendly.com/management-fairneurodiagnostics';
 
 const PARAMS = new URLSearchParams({
   hide_landing_page_details: '1',

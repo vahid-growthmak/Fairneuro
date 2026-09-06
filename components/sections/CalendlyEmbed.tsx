@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
 
-const CALENDLY_URL = 'https://calendly.com/management-fairneurodiagnostics/30min';
+const CALENDLY_URL = 'https://calendly.com/management-fairneurodiagnostics';
 
 /**
  * Calendly's inline scheduler.
