@@ -3,7 +3,10 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-const CALENDLY_URL = 'https://calendly.com/management-fairneurodiagnostics';
+// The event type itself, without a query string: both components append their
+// own parameters with `?`, and a month pinned in the URL goes stale.
+const CALENDLY_URL =
+  'https://calendly.com/management-fairneurodiagnostics/free-assessment-consultation';
 
 const PARAMS = new URLSearchParams({
   hide_landing_page_details: '1',
